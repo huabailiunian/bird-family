@@ -1,0 +1,51 @@
+package com.bird.core.consts;
+
+import java.nio.charset.Charset;
+
+/**
+ * @author youly
+ * 2019/6/25 17:51
+ */
+public interface BirdConst {
+
+    /**
+     * 字符编码
+     */
+    Charset CHARSET_UTF8 = Charset.forName("UTF-8");
+    Charset CHARSET_GBK = Charset.forName("GBK");
+    /**
+     * 定界、分隔等字符
+     */
+    String DELIMITER_DEFAULT = ",";
+    String DELIMITER_UNDERLINE = "_";
+    String SEPARATOR_DEFAULT = ",";
+    String SEPARATOR_UNDERLINE = "_";
+    String NEW_LINE = "\n";
+    String BLACK_STRING = "";
+    String FILE_SEPARATOR_UNIX = "/";
+    String FILE_SEPARATOR_WINDOWS = "\\";
+    /**
+     * 逻辑值
+     */
+    boolean BOOLEAN_TRUE = true;
+    boolean BOOLEAN_FALSE = false;
+    int INT_BOOLEAN_TRUE = 1;
+    int INT_BOOLEAN_FALSE = 0;
+    /**
+     * 脱敏后字符
+     */
+    String GRAY_MASK_STR = "****";
+    /**
+     * 时间格式化
+     */
+    String FORMAT_DATE = "yyyy-MM-dd";
+    String FORMAT_TIME = "HH:mm:ss";
+    String FORMAT_DATETIME = "yyyy-MM-dd HH:mm:ss";
+    String FORMAT_TIMESTAMP = "yyyyMMddHHmmssSSS";
+    /**
+     * 网络连接参数
+     * 单位：毫秒
+     */
+    int CONNECT_TIME_OUT = 10000;
+    int SOCKET_TIME_OUT = 20000;
+}

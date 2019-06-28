@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema xmlns="http://www.bird.com/schema/database"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.bird.com/schema/database"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[
+    Defines the configuration elements for the Database.
+            ]]></xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:complexType name="baseType" abstract="true">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="display" type="xsd:string"/>
+        <xsd:attribute name="desc" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:simpleType name="jdbcType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="tinyint"/>
+            <xsd:enumeration value="smallint"/>
+            <xsd:enumeration value="int"/>
+            <xsd:enumeration value="integer"/>
+            <xsd:enumeration value="bigint"/>
+            <xsd:enumeration value="float"/>
+            <xsd:enumeration value="double"/>
+            <xsd:enumeration value="decimal"/>
+            <xsd:enumeration value="date"/>
+            <xsd:enumeration value="time"/>
+            <xsd:enumeration value="datetime"/>
+            <xsd:enumeration value="timestamp"/>
+            <xsd:enumeration value="char"/>
+            <xsd:enumeration value="varchar"/>
+            <xsd:enumeration value="character"/>
+            <xsd:enumeration value="text"/>
+            <xsd:enumeration value="mediumtext"/>
+            <xsd:enumeration value="longtext"/>
+            <xsd:enumeration value="blob"/>
+            <xsd:enumeration value="mediumblob"/>
+            <xsd:enumeration value="longblob"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="columnType">
+        <xsd:complexContent>
+            <xsd:extension base="baseType">
+                <xsd:attribute name="type" type="jdbcType" use="required"/>
+                <xsd:attribute name="length" type="xsd:int"/>
+                <xsd:attribute name="decimal" type="xsd:int"/>
+                <xsd:attribute name="unsigned" type="xsd:boolean"/>
+                <xsd:attribute name="default" type="xsd:string"/>
+                <xsd:attribute name="allowNull" type="xsd:boolean" default="false"/>
+                <xsd:attribute name="primaryKey" type="xsd:boolean" default="false"/>
+                <xsd:attribute name="autoIncrement" type="xsd:boolean" default="false"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="indexType">
+        <xsd:complexContent>
+            <xsd:extension base="baseType">
+                <xsd:attribute name="columns" type="xsd:string" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="tableType">
+        <xsd:complexContent>
+            <xsd:extension base="baseType">
+                <xsd:sequence>
+                    <xsd:element name="column" type="columnType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="uniqueKey" type="indexType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="index" type="indexType" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="configType">
+        <xsd:sequence>
+            <xsd:element name="database" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="dialect" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="mysql"/>
+                        <xsd:enumeration value="oracle"/>
+                        <xsd:enumeration value="sqlServer"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="charset" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="utf8"/>
+                        <xsd:enumeration value="utf8mb4"/>
+                        <xsd:enumeration value="gbk"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="database">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="setting" type="configType" maxOccurs="1" minOccurs="0"/>
+                <xsd:element name="table" type="tableType" maxOccurs="unbounded" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
