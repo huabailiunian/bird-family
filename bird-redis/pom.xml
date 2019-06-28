@@ -16,8 +16,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <redisson.version>3.8.2</redisson.version>
     </properties>
 
     <dependencies>
@@ -29,7 +27,7 @@
         <dependency>
             <groupId>com.bird</groupId>
             <artifactId>bird-core</artifactId>
-            <version>${bird.core.version}</version>
+            <version>${bird.version}</version>
         </dependency>
         <dependency>
             <groupId>org.redisson</groupId>

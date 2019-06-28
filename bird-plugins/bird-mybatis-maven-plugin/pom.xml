@@ -7,14 +7,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>bird-mybatis-maven-plugin</artifactId>
-    <version>1.0</version>
     <packaging>maven-plugin</packaging>
     <name>bird-mybatis-maven-plugin</name>
     <url>http://maven.apache.org</url>
-
-    <properties>
-        <bird.mybatis.version>1.0-SNAPSHOT</bird.mybatis.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -25,7 +20,7 @@
         <dependency>
             <groupId>com.bird</groupId>
             <artifactId>bird-mybatis</artifactId>
-            <version>${bird.mybatis.version}</version>
+            <version>${bird.version}</version>
         </dependency>
         <dependency>
             <groupId>org.freemarker</groupId>
