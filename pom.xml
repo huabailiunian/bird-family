@@ -7,7 +7,7 @@
     <groupId>com.bird</groupId>
     <artifactId>bird-family</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <modules>
         <module>bird-plugins</module>
         <module>bird-core</module>
