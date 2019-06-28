@@ -18,7 +18,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <redisson.version>3.8.2</redisson.version>
-        <bird.core.version>1.0-SNAPSHOT</bird.core.version>
     </properties>
 
     <dependencies>

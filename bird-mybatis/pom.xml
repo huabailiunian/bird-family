@@ -16,8 +16,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <bird.core.version>1.0-SNAPSHOT</bird.core.version>
     </properties>
 
     <dependencies>
