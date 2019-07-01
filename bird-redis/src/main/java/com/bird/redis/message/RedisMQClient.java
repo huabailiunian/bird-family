@@ -1,7 +1,7 @@
 package com.bird.redis.message;
 
 import com.bird.core.message.MessageClient;
-import com.bird.redis.entity.RedisClientWrapper;
+import com.bird.redis.client.RedisClientWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

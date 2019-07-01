@@ -1,7 +1,7 @@
 package com.bird.redis.message;
 
 import com.bird.core.tools.CollectionTools;
-import com.bird.redis.entity.RedisClientWrapper;
+import com.bird.redis.client.RedisClientWrapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.task.AsyncListenableTaskExecutor;
 import org.springframework.scheduling.SchedulingAwareRunnable;

@@ -1,4 +1,4 @@
-package com.bird.redis.entity;
+package com.bird.redis.client;
 
 import com.bird.redis.codec.CodecFactory;
 import org.apache.commons.lang3.StringUtils;
