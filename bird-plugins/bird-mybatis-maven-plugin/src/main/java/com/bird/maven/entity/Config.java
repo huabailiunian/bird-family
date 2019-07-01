@@ -66,7 +66,7 @@ public class Config {
     }
 
     public String getEntityPath() {
-        return Paths.get(sourcePath, basePackage.replace(".", "/"), "entity").toString();
+        return Paths.get(sourcePath, basePackage.replace(".", "/"), "object").toString();
     }
 
     public String getMapperLocation() {
