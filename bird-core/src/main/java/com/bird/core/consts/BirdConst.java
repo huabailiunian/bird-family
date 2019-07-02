@@ -48,4 +48,18 @@ public interface BirdConst {
      */
     int CONNECT_TIME_OUT = 10000;
     int SOCKET_TIME_OUT = 20000;
+
+    /**
+     * 数字
+     */
+    int NUM_ZERO = 0;
+    int NUM_ONE = 1;
+    int NUM_TWO = 2;
+    int NUM_THREE = 3;
+    int NUM_FOUR = 4;
+    int NUM_FIVE = 5;
+    int NUM_SIX = 6;
+    int NUM_SEVEN = 7;
+    int NUM_EIGHT = 8;
+    int NUM_NINE = 9;
 }

@@ -3,6 +3,7 @@ package com.bird.core.tools;
 import com.bird.core.consts.BirdConst;
 
 import java.io.*;
+import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 
 /**
@@ -74,5 +75,19 @@ public class FileTools {
 
     public static void writeFile(String file, String data) throws IOException {
         writeFile(new File(file), data, BirdConst.BOOLEAN_FALSE);
+    }
+
+    /**
+     * 文件复制
+     *
+     * @param source 源文件
+     * @param target 目标文件
+     */
+    public static void zeroCopy(File source, File target) throws IOException {
+        FileChannel input = new FileInputStream(source).getChannel();
+        FileChannel output = new FileOutputStream(target).getChannel();
+        input.transferTo(BirdConst.NUM_ZERO, input.size(), output);
+        input.close();
+        output.close();
     }
 }
