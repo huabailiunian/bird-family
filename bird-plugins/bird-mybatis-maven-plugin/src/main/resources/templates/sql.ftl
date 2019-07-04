@@ -1,5 +1,6 @@
-<#assign strEnums=["char","varchar","character","text","mediumtext","longtext"]/>
-<#assign timeEnums=["timestamp"]/>
+<#assign strEnums=["char","varchar","character"]/>
+<#assign largeEnums=["text","mediumtext","longtext","blob","mediumblob","longblob"]/>
+<#assign timeEnums=["timestamp","datetime","date","time"]/>
 <#if tables??>
 <#list tables as table>
 DROP TABLE IF EXISTS `${table.name}`;
@@ -10,6 +11,8 @@ CREATE TABLE `${table.name}` (
     `${column.name}` ${column.type}<#if column.length??>(${column.length})</#if><#if column.unsigned> unsigned</#if><#if column.allowNull> DEFAULT NULL<#else> NOT NULL DEFAULT '${column.defaultValue!}'</#if><#if column.display??> COMMENT '${column.display}'</#if>,
 <#elseif timeEnums?seq_contains(column.type)>
     `${column.name}` ${column.type}<#if column.length??>(${column.length})</#if><#if column.unsigned> unsigned</#if><#if column.allowNull> DEFAULT NULL<#else> NOT NULL DEFAULT ${column.defaultValue!'CURRENT_TIMESTAMP'}</#if><#if column.display??> COMMENT '${column.display}'</#if>,
+<#elseif largeEnums?seq_contains(column.type)>
+    `${column.name}` ${column.type}<#if column.display??> COMMENT '${column.display}'</#if>,
 <#else>
     `${column.name}` ${column.type}<#if column.length??>(${column.length})</#if><#if column.unsigned> unsigned</#if><#if column.allowNull> DEFAULT NULL<#else> NOT NULL<#if !column.autoIncrement> DEFAULT ${column.defaultValue!'0'}</#if></#if><#if column.autoIncrement> AUTO_INCREMENT</#if><#if column.display??> COMMENT '${column.display}'</#if>,
 </#if>
