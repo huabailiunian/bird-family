@@ -166,6 +166,7 @@ public class JdbcAutoConfiguration {
             String[] packages = StringUtils.concatenateStringArrays(strings, strings2);
             if (!ObjectUtils.isEmpty(packages)) {
                 ClassPathMapperScanner scanner = new ClassPathMapperScanner(registry);
+                scanner.setSqlSessionTemplateBeanName("sqlSession");
                 try {
                     if (logger.isDebugEnabled()) {
                         for (String pkg : packages) {
