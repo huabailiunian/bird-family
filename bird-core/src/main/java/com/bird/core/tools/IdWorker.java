@@ -18,9 +18,9 @@ package com.bird.core.tools;
 public class IdWorker {
 
     /**
-     * 开始时间截 (2015-01-01)
+     * 开始时间截 (2018-01-01)
      */
-    private final long startTime = 1420041600000L;
+    private static final long startTime = 1514736000000L;
 
     /**
      * 机器id所占的位数
@@ -30,7 +30,7 @@ public class IdWorker {
     /**
      * 数据标识id所占的位数
      */
-    private final long dataCenterIdBits = 3L;
+    private final long centerIdBits = 3L;
 
     /**
      * 支持的最大机器id，结果是127 (这个移位算法可以很快的计算出几位二进制数所能表示的最大十进制数)
@@ -40,7 +40,7 @@ public class IdWorker {
     /**
      * 支持的最大数据标识id，结果是7
      */
-    private final long maxDataCenterId = ~(-1L << dataCenterIdBits);
+    private final long maxCenterId = ~(-1L << centerIdBits);
 
     /**
      * 序列在id中占的位数
@@ -55,12 +55,12 @@ public class IdWorker {
     /**
      * 数据标识id向左移17位(12+7)
      */
-    private final long dataCenterIdShift = sequenceBits + workerIdBits;
+    private final long centerIdShift = sequenceBits + workerIdBits;
 
     /**
      * 时间截向左移22位(3+7+12)
      */
-    private final long timestampShift = sequenceBits + workerIdBits + dataCenterIdBits;
+    private final long timestampShift = sequenceBits + workerIdBits + centerIdBits;
 
     /**
      * 生成序列的掩码，这里为4095 (0b111111111111=0xfff=4095)
@@ -75,7 +75,7 @@ public class IdWorker {
     /**
      * 数据中心ID(0~7)
      */
-    private long dataCenterId;
+    private long centerId;
 
     /**
      * 毫秒内序列(0~4095)
@@ -92,18 +92,18 @@ public class IdWorker {
     /**
      * 构造函数
      *
-     * @param workerId     工作ID (0~127)
-     * @param dataCenterId 数据中心ID (0~5)
+     * @param workerId 工作ID (0~127)
+     * @param centerId 数据中心ID (0~7)
      */
-    public IdWorker(long dataCenterId, long workerId) {
+    public IdWorker(long centerId, long workerId) {
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
         }
-        if (dataCenterId > maxDataCenterId || dataCenterId < 0) {
-            throw new IllegalArgumentException(String.format("data center Id can't be greater than %d or less than 0", maxDataCenterId));
+        if (centerId > maxCenterId || centerId < 0) {
+            throw new IllegalArgumentException(String.format("data center Id can't be greater than %d or less than 0", maxCenterId));
         }
+        this.centerId = centerId;
         this.workerId = workerId;
-        this.dataCenterId = dataCenterId;
     }
 
     // ==============================Methods==========================================
@@ -138,7 +138,7 @@ public class IdWorker {
         lastTimestamp = timestamp;
 
         //移位并通过或运算拼到一起组成64位的ID
-        return ((timestamp - startTime) << timestampShift) | (dataCenterId << dataCenterIdShift) | (workerId << workerIdShift) | sequence;
+        return ((timestamp - startTime) << timestampShift) | (centerId << centerIdShift) | (workerId << workerIdShift) | sequence;
     }
 
     /**
