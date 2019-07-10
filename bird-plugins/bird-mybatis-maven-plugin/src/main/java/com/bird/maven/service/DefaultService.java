@@ -68,7 +68,7 @@ public class DefaultService implements GenService {
      * @param database 原始数据
      */
     private void resolveDatabase(Config config, Database database) {
-        List<DataObject> objectList = genObject(config, database);
+        List<DataObject> objectList = objectGen(config, database);
         autoWriteAll(config, objectList);
         if (config.isAutoSQL()) {
             autoWriteSQL(config, database);
@@ -145,7 +145,7 @@ public class DefaultService implements GenService {
         }
     }
 
-    private List<DataObject> genObject(Config config, Database database) {
+    private List<DataObject> objectGen(Config config, Database database) {
         List<Table> tables = database.getTables();
         if (CollectionTools.isNotEmpty(tables)) {
             List<DataObject> result = new ArrayList<>(tables.size());
@@ -159,7 +159,7 @@ public class DefaultService implements GenService {
                 object.setBasePackage(config.getBasePackage());
                 object.setPrimaryKey(new ArrayList<>());
                 object.setFields(new ArrayList<>());
-                genField(object, config.getRegex(), table.getColumns());
+                fieldGen(object, config.getRegex(), table.getColumns());
                 result.add(object);
             });
             return result;
@@ -167,7 +167,7 @@ public class DefaultService implements GenService {
         return Collections.emptyList();
     }
 
-    private void genField(DataObject object, String regex, List<Column> columns) {
+    private void fieldGen(DataObject object, String regex, List<Column> columns) {
         if (CollectionTools.isNotEmpty(columns)) {
             columns.forEach(column -> {
                 DataField field = new DataField();

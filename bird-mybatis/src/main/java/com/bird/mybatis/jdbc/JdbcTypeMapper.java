@@ -6,9 +6,9 @@ package com.bird.mybatis.jdbc;
  */
 public enum JdbcTypeMapper {
 
-    TINYINT("Byte", "TINYINT"),
+    TINYINT("Integer", "TINYINT"),
 
-    SMALLINT("Short", "SMALLINT"),
+    SMALLINT("Integer", "SMALLINT"),
 
     INT("Integer", "INTEGER"),
 
