@@ -6,7 +6,7 @@ import ${basePackage}.object.${objectName};
 
 /**
  * @author sql-maven-plugin
- *  ${.now?string("yyyy/MM/dd HH:mm:ss")}
+ * ${.now?string("yyyy/MM/dd HH:mm:ss")}
  */
 public interface ${daoName} {
 

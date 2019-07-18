@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * @author sql-maven-plugin
- *  ${.now?string("yyyy/MM/dd HH:mm:ss")}
+ * ${.now?string("yyyy/MM/dd HH:mm:ss")}
  */
 @Repository
 public class BaseDaoImpl implements BaseDao {

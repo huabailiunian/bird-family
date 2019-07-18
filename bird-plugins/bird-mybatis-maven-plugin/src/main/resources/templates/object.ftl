@@ -4,7 +4,7 @@ package ${basePackage}.object;
  * <p>${display!}</p>
  *
  * @author maven-plugin
- *  ${.now?string("yyyy-MM-dd HH:mm:ss")}
+ * ${.now?string("yyyy-MM-dd HH:mm:ss")}
  */
 public class ${objectName} {
 <#if fields??>
@@ -28,11 +28,11 @@ public class ${objectName} {
     </#list>
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "@[" +
-            <#list fields as f>
-            "${f.fieldName}=" + ${f.fieldName} +<#if f_has_next> "," +</#if>
-            </#list>
-            "]";
+        return getClass().getSimpleName() + "{" +
+                <#list fields as f>
+                "${f.fieldName}=" + ${f.fieldName} +<#if f_has_next> "," +</#if>
+                </#list>
+                "}";
     }
 </#if>
 }
