@@ -3,13 +3,13 @@
 <mapper namespace="${basePackage}.dao.${daoName}">
 <#if fields??>
     <resultMap id="base_result_map" type="${basePackage}.object.${objectName}">
-        <#list primaryKey as key>
-        <id column="${key.columnName}" jdbcType="${key.jdbcType}" property="${key.fieldName}" />
-        </#list>
+        <#--<#list primaryKey as key>-->
+        <#--<id column="${key.columnName}" jdbcType="${key.jdbcType}" property="${key.fieldName}" />-->
+        <#--</#list>-->
         <#list fields as f>
-        <#if !f.primaryKey>
+        <#--<#if !f.primaryKey>-->
         <result column="${f.columnName}" jdbcType="${f.jdbcType}" property="${f.fieldName}" />
-        </#if>
+        <#--</#if>-->
         </#list>
     </resultMap>
 
