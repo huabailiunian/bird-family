@@ -68,12 +68,12 @@ public class IdWorker {
     private final long sequenceMask = ~(-1L << sequenceBits);
 
     /**
-     * 工作机器ID(0~127)
+     * 工作机器ID(0~63)
      */
     private long workerId;
 
     /**
-     * 数据中心ID(0~7)
+     * 数据中心ID(0~15)
      */
     private long centerId;
 
