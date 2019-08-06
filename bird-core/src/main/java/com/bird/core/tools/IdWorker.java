@@ -25,22 +25,22 @@ public class IdWorker {
     /**
      * 机器id所占的位数
      */
-    private final long workerIdBits = 6L;
+    private static final long workerIdBits = 6L;
 
     /**
      * 数据标识id所占的位数
      */
-    private final long centerIdBits = 4L;
+    private static final long centerIdBits = 4L;
 
     /**
-     * 支持的最大机器id，结果是127 (这个移位算法可以很快的计算出几位二进制数所能表示的最大十进制数)
+     * 支持的最大机器id，结果是63 (这个移位算法可以很快的计算出几位二进制数所能表示的最大十进制数)
      */
-    private final long maxWorkerId = ~(-1L << workerIdBits);
+    public static final long maxWorkerId = ~(-1L << workerIdBits);
 
     /**
-     * 支持的最大数据标识id，结果是7
+     * 支持的最大数据标识id，结果是15
      */
-    private final long maxCenterId = ~(-1L << centerIdBits);
+    public static final long maxCenterId = ~(-1L << centerIdBits);
 
     /**
      * 序列在id中占的位数
@@ -53,12 +53,12 @@ public class IdWorker {
     private final long workerIdShift = sequenceBits;
 
     /**
-     * 数据标识id向左移17位(12+7)
+     * 数据标识id向左移18位(12+6)
      */
     private final long centerIdShift = sequenceBits + workerIdBits;
 
     /**
-     * 时间截向左移22位(3+7+12)
+     * 时间截向左移22位(4+6+12)
      */
     private final long timestampShift = sequenceBits + workerIdBits + centerIdBits;
 
@@ -162,14 +162,6 @@ public class IdWorker {
      */
     private long timeGen() {
         return System.currentTimeMillis();
-    }
-
-    public long getMaxWorkerId() {
-        return maxWorkerId;
-    }
-
-    public long getMaxCenterId() {
-        return maxCenterId;
     }
 
     public long getWorkerId() {
