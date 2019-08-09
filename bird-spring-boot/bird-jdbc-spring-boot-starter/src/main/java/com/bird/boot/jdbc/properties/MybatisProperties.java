@@ -28,7 +28,7 @@ public class MybatisProperties {
     /**
      * Packages to search mapper interface. (Package delimiters are ","; \t\n")
      */
-    private String mapperPackages;
+    private String interfacePackages;
     /**
      * Packages to search type aliases. (Package delimiters are ","; \t\n")
      */
@@ -56,12 +56,12 @@ public class MybatisProperties {
         this.mapperLocations = mapperLocations;
     }
 
-    public String getMapperPackages() {
-        return mapperPackages;
+    public String getInterfacePackages() {
+        return interfacePackages;
     }
 
-    public void setMapperPackages(String mapperPackages) {
-        this.mapperPackages = mapperPackages;
+    public void setInterfacePackages(String interfacePackages) {
+        this.interfacePackages = interfacePackages;
     }
 
     public String getTypeAliasesPackage() {

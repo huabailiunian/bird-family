@@ -39,7 +39,8 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <#list fields as f>
                 <#if !f.autoIncrement>
-            <if test="${f.fieldName} != null<#if f.fieldType == 'String'> and ${f.fieldName} != ''</#if>">
+            <#--<if test="${f.fieldName} != null<#if f.fieldType == 'String'> and ${f.fieldName} != ''</#if>">-->
+            <if test="${f.fieldName} != null">
                 ${f.columnName},
             </if>
                 </#if>
@@ -48,7 +49,8 @@
         <trim prefix=" values(" suffix=")" suffixOverrides=",">
             <#list fields as f>
                 <#if !f.autoIncrement>
-            <if test="${f.fieldName} != null<#if f.fieldType == 'String'> and ${f.fieldName} != ''</#if>">
+            <#--<if test="${f.fieldName} != null<#if f.fieldType == 'String'> and ${f.fieldName} != ''</#if>">-->
+            <if test="${f.fieldName} != null">
                 ${r'#{'}${f.fieldName},jdbcType=${f.jdbcType}},
             </if>
                 </#if>
@@ -68,7 +70,8 @@
         delete from ${tableName}
         <where>
         <#list fields as f>
-            <if test="${f.fieldName} != null<#if f.fieldType == 'String'> and ${f.fieldName} != ''</#if>">
+            <#--<if test="${f.fieldName} != null<#if f.fieldType == 'String'> and ${f.fieldName} != ''</#if>">-->
+            <if test="${f.fieldName} != null">
                 AND ${f.columnName} = ${r'#{'}${f.fieldName},jdbcType=${f.jdbcType}}
             </if>
         </#list>
@@ -92,7 +95,8 @@
         from ${tableName}
         <where>
         <#list fields as f>
-            <if test="${f.fieldName} != null<#if f.fieldType == 'String'> and ${f.fieldName} != ''</#if>">
+            <#--<if test="${f.fieldName} != null<#if f.fieldType == 'String'> and ${f.fieldName} != ''</#if>">-->
+            <if test="${f.fieldName} != null">
             AND ${f.columnName} = ${r'#{'}${f.fieldName},jdbcType=${f.jdbcType}}
             </if>
         </#list>
@@ -120,7 +124,8 @@
         <set>
         <#list fields as f>
         <#if !f.primaryKey>
-            <if test="${f.fieldName} != null<#if f.fieldType == 'String'> and ${f.fieldName} != ''</#if>">
+            <#--<if test="${f.fieldName} != null<#if f.fieldType == 'String'> and ${f.fieldName} != ''</#if>">-->
+            <if test="${f.fieldName} != null">
                 ${f.columnName} = ${r'#{'}${f.fieldName},jdbcType=${f.jdbcType}},
             </if>
         </#if>

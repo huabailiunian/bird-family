@@ -139,8 +139,6 @@ public class JdbcAutoConfiguration {
 
     public static class AutoConfiguredMapperScannerRegistrar implements EnvironmentAware, ImportBeanDefinitionRegistrar, ResourceLoaderAware {
 
-        private static final String lineSeparator = ",";
-
         private Environment environment;
         private ResourceLoader resourceLoader;
 
@@ -159,8 +157,8 @@ public class JdbcAutoConfiguration {
             if (logger.isDebugEnabled()) {
                 logger.debug("Searching for mapper interfaces with packages");
             }
-            String property = environment.getProperty("bird.jdbc.mybatis.mapper-packages");
-            String property2 = environment.getProperty("bird.jdbc.mybatis.mapperPackages");
+            String property = environment.getProperty("bird.jdbc.mybatis.interface-packages");
+            String property2 = environment.getProperty("bird.jdbc.mybatis.interfacePackages");
             String[] strings = StringUtils.commaDelimitedListToStringArray(property);
             String[] strings2 = StringUtils.commaDelimitedListToStringArray(property2);
             String[] packages = StringUtils.concatenateStringArrays(strings, strings2);
