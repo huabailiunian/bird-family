@@ -31,6 +31,8 @@ public class Table {
     @XStreamImplicit
     private List<Index> indexes;
 
+    private List<Query> queries;
+
     public String getName() {
         return name;
     }
@@ -79,6 +81,14 @@ public class Table {
         this.indexes = indexes;
     }
 
+    public List<Query> getQueries() {
+        return queries;
+    }
+
+    public void setQueries(List<Query> queries) {
+        this.queries = queries;
+    }
+
     @Override
     public String toString() {
         return "Table{" +
@@ -88,6 +98,7 @@ public class Table {
                 ", columns=" + columns +
                 ", uniqueKeys=" + uniqueKeys +
                 ", indexes=" + indexes +
+                ", queries=" + queries +
                 '}';
     }
 }
