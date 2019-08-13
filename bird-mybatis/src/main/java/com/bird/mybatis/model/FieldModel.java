@@ -1,10 +1,10 @@
-package com.bird.maven.entity;
+package com.bird.mybatis.model;
 
 /**
  * @author youly
  * 2018/9/29 14:48
  */
-public class DataField {
+public class FieldModel {
 
     private String fieldName;
     private String fieldType;
@@ -19,7 +19,7 @@ public class DataField {
     private boolean primaryKey;
     private boolean autoIncrement;
 
-    public DataField() {
+    public FieldModel() {
     }
 
     public String getFieldName() {
@@ -120,7 +120,7 @@ public class DataField {
 
     @Override
     public String toString() {
-        return "DataField{" +
+        return "FieldModel{" +
                 "fieldName='" + fieldName + '\'' +
                 ", fieldType='" + fieldType + '\'' +
                 ", columnName='" + columnName + '\'' +

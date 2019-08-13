@@ -1,4 +1,4 @@
-package com.bird.maven.generator;
+package com.bird.mybatis.generator;
 
 import com.bird.core.generator.Generator;
 import freemarker.template.Template;

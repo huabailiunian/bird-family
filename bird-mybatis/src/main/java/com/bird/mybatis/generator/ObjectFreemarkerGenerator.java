@@ -1,4 +1,4 @@
-package com.bird.maven.generator;
+package com.bird.mybatis.generator;
 
 import freemarker.template.Template;
 
@@ -9,13 +9,13 @@ import java.io.IOException;
  * @version 1.0
  * 2018/6/15 9:47
  */
-public class EntityFreemarkerGenerator extends BaseFreemarkerGenerator {
+public class ObjectFreemarkerGenerator extends BaseFreemarkerGenerator {
 
     private static final String TEMPLATE_FILE = "object.ftl";
 
-    public static final EntityFreemarkerGenerator INSTANCE = new EntityFreemarkerGenerator();
+    public static final ObjectFreemarkerGenerator INSTANCE = new ObjectFreemarkerGenerator();
 
-    private EntityFreemarkerGenerator() {
+    private ObjectFreemarkerGenerator() {
     }
 
     @Override

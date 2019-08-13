@@ -132,7 +132,7 @@
         <xsd:attribute name="paramType" type="xsd:string"/>
         <xsd:attribute name="params" type="xsd:string"/>
         <xsd:attribute name="resultType" type="xsd:string"/>
-        <xsd:attribute name="resultMap" type="xsd:string"/>
+        <xsd:attribute name="rowMap" type="xsd:boolean" default="false"/>
         <xsd:attribute name="array" type="xsd:boolean" default="false"/>
     </xsd:complexType>
 

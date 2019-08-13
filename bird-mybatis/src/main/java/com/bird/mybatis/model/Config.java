@@ -1,4 +1,4 @@
-package com.bird.maven.entity;
+package com.bird.mybatis.model;
 
 
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ public class Config {
     private String mapperLocation;
     private String daoSuffix;
     private String entitySuffix;
-    private String regex;
+    private String regex = "_";
     private boolean autoDao;
     private boolean autoEntity;
     private boolean autoMapper;

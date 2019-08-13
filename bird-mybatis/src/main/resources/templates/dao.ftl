@@ -1,11 +1,11 @@
-package ${basePackage}.dao;
+package ${pkg}.dao;
 
 import java.util.List;
 
-import ${basePackage}.object.${objectName};
+import ${pkg}.object.${objectName};
 
 /**
- * @author sql-maven-plugin
+ * @author maven-plugin
  * ${.now?string("yyyy/MM/dd HH:mm:ss")}
  */
 public interface ${daoName} {

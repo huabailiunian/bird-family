@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>bird-mybatis</artifactId>
+    <version>1.1</version>
 
     <name>bird-mybatis</name>
     <url>http://www.example.com</url>
@@ -32,6 +33,11 @@
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.23</version>
         </dependency>
     </dependencies>
 

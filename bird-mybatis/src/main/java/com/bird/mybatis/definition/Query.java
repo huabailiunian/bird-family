@@ -22,16 +22,13 @@ public class Query {
     private String name;
 
     @XStreamAsAttribute
-    private String paramType;
-
-    @XStreamAsAttribute
     private String params;
 
     @XStreamAsAttribute
     private String resultType;
 
     @XStreamAsAttribute
-    private String resultMap;
+    private boolean rowMap = false;
 
     @XStreamAsAttribute
     private boolean array = false;
@@ -56,14 +53,6 @@ public class Query {
         this.name = name;
     }
 
-    public String getParamType() {
-        return paramType;
-    }
-
-    public void setParamType(String paramType) {
-        this.paramType = paramType;
-    }
-
     public List<String> getParamList() {
         return Arrays.asList(StringUtils.split(params, BirdConst.SEPARATOR_DEFAULT));
     }
@@ -84,12 +73,12 @@ public class Query {
         this.resultType = resultType;
     }
 
-    public String getResultMap() {
-        return resultMap;
+    public boolean isRowMap() {
+        return rowMap;
     }
 
-    public void setResultMap(String resultMap) {
-        this.resultMap = resultMap;
+    public void setRowMap(boolean rowMap) {
+        this.rowMap = rowMap;
     }
 
     public boolean isArray() {
@@ -98,5 +87,17 @@ public class Query {
 
     public void setArray(boolean array) {
         this.array = array;
+    }
+
+    @Override
+    public String toString() {
+        return "Query{" +
+                "type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", params='" + params + '\'' +
+                ", resultType='" + resultType + '\'' +
+                ", rowMap=" + rowMap +
+                ", array=" + array +
+                '}';
     }
 }

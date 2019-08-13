@@ -1,4 +1,4 @@
-package com.bird.maven.generator;
+package com.bird.mybatis.generator;
 
 import freemarker.template.TemplateException;
 
@@ -12,10 +12,10 @@ import java.io.StringWriter;
 public abstract class BaseFreemarkerGenerator implements FreemarkerGenerator {
 
     @Override
-    public String process(Object objectModule) throws IOException {
+    public String process(Object model) throws IOException {
         StringWriter writer = new StringWriter();
         try {
-            this.getTemplate().process(objectModule, writer);
+            this.getTemplate().process(model, writer);
         } catch (TemplateException e) {
             throw new IOException(e);
         }
