@@ -1,6 +1,7 @@
 package com.bird.redis.codec;
 
 import org.redisson.client.codec.Codec;
+import org.redisson.codec.JsonJacksonCodec;
 
 /**
  * @author youly
@@ -12,7 +13,7 @@ public class CodecFactory {
      * 默认使用FastJson序列化
      */
     public static Codec defaultCodec() {
-        return FastJsonCodec.INSTANCE;
+        return JsonJacksonCodec.INSTANCE;
     }
 
     /**
@@ -26,7 +27,7 @@ public class CodecFactory {
         } else if (type.equals(String.class)) {
             return StringCodec.INSTANCE;
         } else {
-            return FastJsonCodec.INSTANCE;
+            return JsonJacksonCodec.INSTANCE;
         }
     }
 }
