@@ -6,7 +6,7 @@ package com.bird.core.enums;
  * @author youly
  * 2018/10/25 10:22
  */
-public enum TypeEnum {
+public enum ValueTypeEnum {
 
     BYTE,
     SHORT,

@@ -13,11 +13,11 @@ import java.util.Map;
  * @author youly
  * 2019/7/24 10:06
  */
-public class BirdContext {
+public class ThreadContext {
 
     private static ThreadLocal<Map<String, Object>> resources = new InheritableThreadLocalMap();
 
-    protected BirdContext() {
+    protected ThreadContext() {
     }
 
     public static Map<String, Object> getResource() {
