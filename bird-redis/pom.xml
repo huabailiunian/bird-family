@@ -27,7 +27,7 @@
         <dependency>
             <groupId>com.bird</groupId>
             <artifactId>bird-core</artifactId>
-            <version>1.0</version>
+            <version>${bird.version}</version>
         </dependency>
         <dependency>
             <groupId>org.redisson</groupId>
