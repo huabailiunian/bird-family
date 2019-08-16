@@ -5,7 +5,6 @@ import com.bird.core.tools.StringTools;
 import com.bird.mybatis.definition.Column;
 import com.bird.mybatis.definition.Query;
 import com.bird.mybatis.definition.Table;
-import com.bird.mybatis.jdbc.JdbcTypeMapper;
 import com.bird.mybatis.model.Config;
 import com.bird.mybatis.model.FieldModel;
 import com.bird.mybatis.model.ObjectModel;
@@ -20,10 +19,10 @@ import java.util.List;
  * @author youly
  * 2019/8/13 13:58
  */
-public class ObjectModelConvertor {
+public class ObjectModelConverter {
 
 
-    public static List<ObjectModel> convertor(Config config, List<Table> tables) {
+    public static List<ObjectModel> converter(Config config, List<Table> tables) {
         if (CollectionTools.isNotEmpty(tables)) {
             List<ObjectModel> result = new ArrayList<>(tables.size());
             for (Table table : tables) {

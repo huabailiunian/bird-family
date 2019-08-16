@@ -3,7 +3,7 @@ package com.bird.maven.service;
 import com.bird.core.generator.Generator;
 import com.bird.core.tools.CollectionTools;
 import com.bird.core.tools.FileTools;
-import com.bird.mybatis.ObjectModelConvertor;
+import com.bird.mybatis.ObjectModelConverter;
 import com.bird.mybatis.definition.Database;
 import com.bird.mybatis.generator.DaoFreemarkerGenerator;
 import com.bird.mybatis.generator.MapperFreemarkerGenerator;
@@ -63,7 +63,7 @@ public class DefaultService implements GenService {
      * @param database 原始数据
      */
     private void resolveDatabase(Config config, Database database) {
-        List<ObjectModel> objectList = ObjectModelConvertor.convertor(config, database.getTables());
+        List<ObjectModel> objectList = ObjectModelConverter.converter(config, database.getTables());
         autoWriteAll(config, objectList);
         if (config.isAutoSQL()) {
             autoWriteSQL(config, database);
@@ -118,7 +118,7 @@ public class DefaultService implements GenService {
                 Generator generator = MapperFreemarkerGenerator.INSTANCE;
                 for (ObjectModel object : objectList) {
                     String mapperPath = config.getMapperPath();
-                    String mapperName = object.getMapperName() + ".xml";
+                    String mapperName = object.getName() + ".xml";
                     String data = generator.process(object);
                     writeFile(mapperPath, mapperName, data);
                 }

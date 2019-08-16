@@ -1,7 +1,7 @@
 package com.bird.mybatis.test;
 
 import com.bird.core.tools.FileTools;
-import com.bird.mybatis.ObjectModelConvertor;
+import com.bird.mybatis.ObjectModelConverter;
 import com.bird.mybatis.definition.Database;
 import com.bird.mybatis.generator.DaoFreemarkerGenerator;
 import com.bird.mybatis.model.Config;
@@ -35,7 +35,7 @@ public class GeneratorTest {
         Config config = new Config();
         config.setBasePackage("com.demo");
         config.setEntitySuffix("");
-        List<ObjectModel> models = ObjectModelConvertor.convertor(config, database.getTables());
+        List<ObjectModel> models = ObjectModelConverter.converter(config, database.getTables());
         ObjectModel objectModel = models.get(0);
         String process = DaoFreemarkerGenerator.INSTANCE.process(objectModel);
 
