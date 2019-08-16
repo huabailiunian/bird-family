@@ -18,6 +18,8 @@ public class QueryModel {
 
     private String resultType;
 
+    private boolean rowMap = false;
+
     private boolean array = false;
 
     public String getType() {
@@ -60,6 +62,14 @@ public class QueryModel {
         this.resultType = resultType;
     }
 
+    public boolean isRowMap() {
+        return rowMap;
+    }
+
+    public void setRowMap(boolean rowMap) {
+        this.rowMap = rowMap;
+    }
+
     public boolean isArray() {
         return array;
     }
@@ -76,6 +86,7 @@ public class QueryModel {
                 ", paramType='" + paramType + '\'' +
                 ", params=" + params +
                 ", resultType='" + resultType + '\'' +
+                ", rowMap=" + rowMap +
                 ", array=" + array +
                 '}';
     }

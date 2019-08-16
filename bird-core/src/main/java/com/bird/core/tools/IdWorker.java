@@ -1,5 +1,7 @@
 package com.bird.core.tools;
 
+import com.bird.core.generator.IdGenerator;
+
 /**
  * Twitter_Snowflake GUID生成器<br>
  * SnowFlake的结构如下(每部分用-分开):<br>
@@ -15,7 +17,7 @@ package com.bird.core.tools;
  * @author youly
  * 2019/7/9 13:42
  */
-public class IdWorker {
+public class IdWorker implements IdGenerator {
 
     /**
      * 开始时间截 (2018-01-01)
@@ -113,6 +115,7 @@ public class IdWorker {
      *
      * @return SnowflakeId
      */
+    @Override
     public synchronized long nextId() {
         long timestamp = timeGen();
 

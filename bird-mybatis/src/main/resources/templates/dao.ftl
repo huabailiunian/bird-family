@@ -28,4 +28,10 @@ public interface ${daoName} {
 
     int updateByPKSelective(${objectName} object);
 
+<#if queries??>
+    <#list queries as query>
+    <#if query.array>List<</#if><#if query.rowMap>${objectName}<#else>${query.resultType}</#if><#if query.array>></#if> ${query.name}();
+    </#list>
+</#if>
+
 }

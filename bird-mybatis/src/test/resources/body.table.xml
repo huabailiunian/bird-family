@@ -14,7 +14,7 @@
         <column name="gmt_modify" type="timestamp" display="修改时间" default="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"/>
 
         <queries>
-            <query type="select" name="count" paramType="map" params="id,name" resultType="Integer" rowMap="true"/>
+            <query type="select" name="count" paramType="map" params="partner_code,app_name" resultType="Integer"/>
         </queries>
     </table>
 </database>

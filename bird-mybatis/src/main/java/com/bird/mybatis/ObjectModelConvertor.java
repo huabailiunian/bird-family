@@ -28,13 +28,8 @@ public class ObjectModelConvertor {
             List<ObjectModel> result = new ArrayList<>(tables.size());
             for (Table table : tables) {
                 ObjectModel object = new ObjectModel();
-                object.setPkg(config.getBasePackage());
+                object.setPkg(config.getObjectPkg());
                 object.setName(StringTools.camelCase(table.getName(), config.getRegex()));
-                object.setTableName(table.getName());
-                object.setDisplay(table.getDisplay());
-                object.setDaoSuffix(config.getDaoSuffix());
-                object.setEntitySuffix(config.getEntitySuffix());
-                object.setPrimaryKey(new ArrayList<>());
                 object.setFields(new ArrayList<>());
                 fieldGen(object, config.getRegex(), table.getColumns());
                 queryGen(object, config.getRegex(), table.getQueries());
@@ -52,17 +47,16 @@ public class ObjectModelConvertor {
                 QueryModel queryModel = new QueryModel();
                 queryModel.setType(query.getType());
                 queryModel.setName(query.getName());
-                queryModel.setParamType(query.getParamType());
                 String params = query.getParams();
                 if (StringUtils.isNotBlank(params)) {
                     queryModel.setParams(query.getParamList());
                 }
                 queryModel.setResultType(query.getResultType());
+                queryModel.setRowMap(query.isRowMap());
                 queryModel.setArray(query.isArray());
 
                 queryModels.add(queryModel);
             }
-            object.setQueries(queryModels);
         }
     }
 
@@ -71,22 +65,6 @@ public class ObjectModelConvertor {
             for (Column column : columns) {
                 FieldModel field = new FieldModel();
                 String type = column.getType();
-                field.setFieldType(JdbcTypeMapper.valueOf(type.toUpperCase()).objectType());
-                field.setJdbcType(JdbcTypeMapper.valueOf(type.toUpperCase()).jdbcType());
-                field.setFieldName(StringTools.lowerCaseFirst(StringTools.camelCase(column.getName().trim(), regex)));
-                field.setColumnName(column.getName().trim());
-                field.setDisplay(column.getDisplay());
-                field.setDesc(column.getDesc());
-                field.setLength(column.getLength());
-                if (column.isAutoIncrement()) {
-                    field.setAutoIncrement(true);
-                    field.setPrimaryKey(true);
-                    object.setAutoInPK(field);
-                }
-                if (column.isPrimaryKey()) {
-                    field.setPrimaryKey(true);
-                    object.getPrimaryKey().add(field);
-                }
                 object.getFields().add(field);
             }
         }

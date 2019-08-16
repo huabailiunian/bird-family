@@ -3,18 +3,14 @@ package com.bird.maven.service;
 import com.bird.core.generator.Generator;
 import com.bird.core.tools.CollectionTools;
 import com.bird.core.tools.FileTools;
-import com.bird.core.tools.StringTools;
-import com.bird.maven.entity.Config;
-import com.bird.maven.entity.DataField;
-import com.bird.maven.entity.DataObject;
-import com.bird.maven.generator.DaoFreemarkerGenerator;
-import com.bird.maven.generator.EntityFreemarkerGenerator;
-import com.bird.maven.generator.MapperFreemarkerGenerator;
-import com.bird.maven.generator.SQLFreemarkerGenerator;
-import com.bird.mybatis.definition.Column;
+import com.bird.mybatis.ObjectModelConvertor;
 import com.bird.mybatis.definition.Database;
-import com.bird.mybatis.definition.Table;
-import com.bird.mybatis.jdbc.JdbcTypeMapper;
+import com.bird.mybatis.generator.DaoFreemarkerGenerator;
+import com.bird.mybatis.generator.MapperFreemarkerGenerator;
+import com.bird.mybatis.generator.ObjectFreemarkerGenerator;
+import com.bird.mybatis.generator.SQLFreemarkerGenerator;
+import com.bird.mybatis.model.Config;
+import com.bird.mybatis.model.ObjectModel;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 import org.apache.commons.lang3.ArrayUtils;
@@ -24,7 +20,6 @@ import org.apache.maven.plugin.logging.Log;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -68,7 +63,7 @@ public class DefaultService implements GenService {
      * @param database 原始数据
      */
     private void resolveDatabase(Config config, Database database) {
-        List<DataObject> objectList = objectGen(config, database);
+        List<ObjectModel> objectList = ObjectModelConvertor.convertor(config, database.getTables());
         autoWriteAll(config, objectList);
         if (config.isAutoSQL()) {
             autoWriteSQL(config, database);
@@ -88,14 +83,14 @@ public class DefaultService implements GenService {
         }
     }
 
-    private void autoWriteAll(Config config, List<DataObject> objectList) {
+    private void autoWriteAll(Config config, List<ObjectModel> objectList) {
         if (CollectionTools.isEmpty(objectList)) {
             return;
         }
         if (config.isAutoDao()) {
             try {
                 Generator generator = DaoFreemarkerGenerator.INSTANCE;
-                for (DataObject object : objectList) {
+                for (ObjectModel object : objectList) {
                     String daoPath = config.getDaoPath();
                     String daoName = object.getDaoName() + ".java";
                     String data = generator.process(object);
@@ -107,8 +102,8 @@ public class DefaultService implements GenService {
         }
         if (config.isAutoEntity()) {
             try {
-                Generator generator = EntityFreemarkerGenerator.INSTANCE;
-                for (DataObject object : objectList) {
+                Generator generator = ObjectFreemarkerGenerator.INSTANCE;
+                for (ObjectModel object : objectList) {
                     String entityPath = config.getEntityPath();
                     String name = object.getObjectName() + ".java";
                     String data = generator.process(object);
@@ -121,7 +116,7 @@ public class DefaultService implements GenService {
         if (config.isAutoMapper()) {
             try {
                 Generator generator = MapperFreemarkerGenerator.INSTANCE;
-                for (DataObject object : objectList) {
+                for (ObjectModel object : objectList) {
                     String mapperPath = config.getMapperPath();
                     String mapperName = object.getMapperName() + ".xml";
                     String data = generator.process(object);
@@ -142,54 +137,6 @@ public class DefaultService implements GenService {
             logger.info("write file:" + filePath);
         } catch (IOException e) {
             logger.warn("write file error:" + e.getMessage());
-        }
-    }
-
-    private List<DataObject> objectGen(Config config, Database database) {
-        List<Table> tables = database.getTables();
-        if (CollectionTools.isNotEmpty(tables)) {
-            List<DataObject> result = new ArrayList<>(tables.size());
-            tables.forEach(table -> {
-                DataObject object = new DataObject();
-                object.setTableName(table.getName());
-                object.setDisplay(table.getDisplay());
-                object.setClassName(StringTools.camelCase(table.getName(), config.getRegex()));
-                object.setDaoSuffix(config.getDaoSuffix());
-                object.setEntitySuffix(config.getEntitySuffix());
-                object.setBasePackage(config.getBasePackage());
-                object.setPrimaryKey(new ArrayList<>());
-                object.setFields(new ArrayList<>());
-                fieldGen(object, config.getRegex(), table.getColumns());
-                result.add(object);
-            });
-            return result;
-        }
-        return Collections.emptyList();
-    }
-
-    private void fieldGen(DataObject object, String regex, List<Column> columns) {
-        if (CollectionTools.isNotEmpty(columns)) {
-            columns.forEach(column -> {
-                DataField field = new DataField();
-                String type = column.getType();
-                field.setFieldType(JdbcTypeMapper.valueOf(type.toUpperCase()).objectType());
-                field.setJdbcType(JdbcTypeMapper.valueOf(type.toUpperCase()).jdbcType());
-                field.setFieldName(StringTools.lowerCaseFirst(StringTools.camelCase(column.getName().trim(), regex)));
-                field.setColumnName(column.getName().trim());
-                field.setDesc(column.getDesc());
-                field.setLength(column.getLength());
-                field.setDisplay(column.getDisplay());
-                if (column.isAutoIncrement()) {
-                    field.setAutoIncrement(true);
-                    field.setPrimaryKey(true);
-                    object.setAutoInPK(field);
-                }
-                if (column.isPrimaryKey()) {
-                    field.setPrimaryKey(true);
-                    object.getPrimaryKey().add(field);
-                }
-                object.getFields().add(field);
-            });
         }
     }
 

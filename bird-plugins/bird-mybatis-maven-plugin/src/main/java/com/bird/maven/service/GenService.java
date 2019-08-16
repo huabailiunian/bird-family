@@ -1,6 +1,6 @@
 package com.bird.maven.service;
 
-import com.bird.maven.entity.Config;
+import com.bird.mybatis.model.Config;
 import org.apache.maven.plugin.logging.Log;
 
 /**

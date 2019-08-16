@@ -10,20 +10,12 @@ import java.util.List;
 public class ObjectModel {
 
     private String pkg;
+
     private String name;
-    private String tableName;
-    private String display;
-    private String daoSuffix;
-    private String entitySuffix;
 
-    private FieldModel autoInPK;
-    private List<FieldModel> primaryKey;
+    private List<String> imports;
+
     private List<FieldModel> fields;
-
-    private List<QueryModel> queries;
-
-    public ObjectModel() {
-    }
 
     public String getPkg() {
         return pkg;
@@ -42,55 +34,15 @@ public class ObjectModel {
     }
 
     public String getClassName() {
-        return pkg + "." + name;
+        return this.pkg + "." + name;
     }
 
-    public String getTableName() {
-        return tableName;
+    public List<String> getImports() {
+        return imports;
     }
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
-
-    public String getDisplay() {
-        return display;
-    }
-
-    public void setDisplay(String display) {
-        this.display = display;
-    }
-
-    public String getDaoSuffix() {
-        return daoSuffix;
-    }
-
-    public void setDaoSuffix(String daoSuffix) {
-        this.daoSuffix = daoSuffix;
-    }
-
-    public String getEntitySuffix() {
-        return entitySuffix;
-    }
-
-    public void setEntitySuffix(String entitySuffix) {
-        this.entitySuffix = entitySuffix;
-    }
-
-    public FieldModel getAutoInPK() {
-        return autoInPK;
-    }
-
-    public void setAutoInPK(FieldModel autoInPK) {
-        this.autoInPK = autoInPK;
-    }
-
-    public List<FieldModel> getPrimaryKey() {
-        return primaryKey;
-    }
-
-    public void setPrimaryKey(List<FieldModel> primaryKey) {
-        this.primaryKey = primaryKey;
+    public void setImports(List<String> imports) {
+        this.imports = imports;
     }
 
     public List<FieldModel> getFields() {
@@ -101,23 +53,13 @@ public class ObjectModel {
         this.fields = fields;
     }
 
-    public List<QueryModel> getQueries() {
-        return queries;
-    }
-
-    public void setQueries(List<QueryModel> queries) {
-        this.queries = queries;
-    }
-
-    public String getDaoName() {
-        return name + daoSuffix;
-    }
-
-    public String getObjectName() {
-        return name + entitySuffix;
-    }
-
-    public String getMapperName() {
-        return name + "Mapper";
+    @Override
+    public String toString() {
+        return "ObjectModel{" +
+                "pkg='" + pkg + '\'' +
+                ", name='" + name + '\'' +
+                ", imports=" + imports +
+                ", fields=" + fields +
+                '}';
     }
 }

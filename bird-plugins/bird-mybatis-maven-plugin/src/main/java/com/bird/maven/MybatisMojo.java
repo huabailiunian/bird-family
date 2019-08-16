@@ -1,8 +1,8 @@
 package com.bird.maven;
 
-import com.bird.maven.entity.Config;
 import com.bird.maven.service.DefaultService;
 import com.bird.maven.service.GenService;
+import com.bird.mybatis.model.Config;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;

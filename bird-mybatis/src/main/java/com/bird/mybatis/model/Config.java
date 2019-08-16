@@ -1,8 +1,6 @@
 package com.bird.mybatis.model;
 
 
-import java.nio.file.Paths;
-
 /**
  * @author youly
  * 2018/9/29 18:09
@@ -13,6 +11,8 @@ public class Config {
     private String resourcesPath;
     private String basePackage;
     private String mapperLocation;
+    private String daoDirectory = "dao";
+    private String objectDirectory = "object";
     private String daoSuffix;
     private String entitySuffix;
     private String regex = "_";
@@ -37,6 +37,38 @@ public class Config {
         this.resourcesPath = resourcesPath;
     }
 
+    public String getBasePackage() {
+        return basePackage;
+    }
+
+    public void setBasePackage(String basePackage) {
+        this.basePackage = basePackage;
+    }
+
+    public String getMapperLocation() {
+        return mapperLocation;
+    }
+
+    public void setMapperLocation(String mapperLocation) {
+        this.mapperLocation = mapperLocation;
+    }
+
+    public String getDaoDirectory() {
+        return daoDirectory;
+    }
+
+    public void setDaoDirectory(String daoDirectory) {
+        this.daoDirectory = daoDirectory;
+    }
+
+    public String getObjectDirectory() {
+        return objectDirectory;
+    }
+
+    public void setObjectDirectory(String objectDirectory) {
+        this.objectDirectory = objectDirectory;
+    }
+
     public String getDaoSuffix() {
         return daoSuffix;
     }
@@ -51,34 +83,6 @@ public class Config {
 
     public void setEntitySuffix(String entitySuffix) {
         this.entitySuffix = entitySuffix;
-    }
-
-    public String getBasePackage() {
-        return basePackage;
-    }
-
-    public void setBasePackage(String basePackage) {
-        this.basePackage = basePackage;
-    }
-
-    public String getDaoPath() {
-        return Paths.get(sourcePath, basePackage.replace(".", "/"), "dao").toString();
-    }
-
-    public String getEntityPath() {
-        return Paths.get(sourcePath, basePackage.replace(".", "/"), "object").toString();
-    }
-
-    public String getMapperLocation() {
-        return mapperLocation;
-    }
-
-    public String getMapperPath() {
-        return Paths.get(resourcesPath, mapperLocation).toString();
-    }
-
-    public void setMapperLocation(String mapperLocation) {
-        this.mapperLocation = mapperLocation;
     }
 
     public String getRegex() {
@@ -121,6 +125,14 @@ public class Config {
         this.autoSQL = autoSQL;
     }
 
+    public String getDaoPkg() {
+        return this.basePackage + "." + daoDirectory;
+    }
+
+    public String getObjectPkg() {
+        return this.basePackage + "." + objectDirectory;
+    }
+
     @Override
     public String toString() {
         return "Config{" +
@@ -128,6 +140,8 @@ public class Config {
                 ", resourcesPath='" + resourcesPath + '\'' +
                 ", basePackage='" + basePackage + '\'' +
                 ", mapperLocation='" + mapperLocation + '\'' +
+                ", daoDirectory='" + daoDirectory + '\'' +
+                ", objectDirectory='" + objectDirectory + '\'' +
                 ", daoSuffix='" + daoSuffix + '\'' +
                 ", entitySuffix='" + entitySuffix + '\'' +
                 ", regex='" + regex + '\'' +
