@@ -2,12 +2,12 @@ package com.bird.redis.spring.auto;
 
 import com.bird.core.executor.ExecutorConfig;
 import com.bird.core.executor.ExecutorFactory;
-import com.bird.core.message.MessageConsumerContainer;
-import com.bird.redis.client.RedisClientWrapper;
+import com.bird.redis.client.RedisClient;
 import com.bird.redis.codec.CodecFactory;
-import com.bird.redis.message.DefaultRedisConsumerContainer;
+import com.bird.redis.message.ConsumerContainer;
+import com.bird.redis.message.impl.DefaultRedisConsumerContainer;
 import com.bird.redis.message.RedisConsumer;
-import com.bird.redis.message.RedisMQClient;
+import com.bird.redis.message.impl.RedisMQClient;
 import com.bird.redis.spring.properties.RedisProperties;
 import com.bird.redis.spring.validator.AddressValidator;
 import org.redisson.Redisson;
@@ -51,19 +51,19 @@ public class RedisAutoConfiguration {
     }
 
     @Bean
-    public RedissonClient redisClient() {
+    public RedissonClient redissonClient() {
         return Redisson.create(getRedisConfig());
     }
 
     @Bean
     @ConditionalOnBean(RedissonClient.class)
-    public RedisClientWrapper redisClientWrapper(RedissonClient redisClient) {
-        RedisClientWrapper redisClientWrapper = new RedisClientWrapper(redisClient);
+    public RedisClient redisClient(RedissonClient redissonClient) {
+        RedisClient redisClient = new RedisClient(redissonClient);
         String keyGroup = redisProperties.getKeyGroup();
         if (StringUtils.hasText(keyGroup)) {
-            redisClientWrapper.setKeyGroup(keyGroup);
+            redisClient.setKeyGroup(keyGroup);
         }
-        return redisClientWrapper;
+        return redisClient;
     }
 
     private Config getRedisConfig() {
@@ -100,8 +100,8 @@ public class RedisAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(prefix = "bird.redis.mq", name = "client", havingValue = "true", matchIfMissing = true)
-    public RedisMQClient redisMQClient(RedisClientWrapper redisClientWrapper) {
-        RedisMQClient redisMQClient = new RedisMQClient(redisClientWrapper);
+    public RedisMQClient redisMQClient(RedisClient redisClient) {
+        RedisMQClient redisMQClient = new RedisMQClient(redisClient);
         redisMQClient.setTimeout(redisProperties.getMq().getTimeout());
         return redisMQClient;
     }
@@ -119,9 +119,9 @@ public class RedisAutoConfiguration {
     @Bean
     @ConditionalOnBean({RedisConsumer.class})
     @ConditionalOnProperty(prefix = "bird.redis.mq", name = "consumer", havingValue = "true", matchIfMissing = true)
-    public MessageConsumerContainer redisMQConsumerContainer(RedisClientWrapper redisClientWrapper, @Qualifier(value = "redisMQExecutor") AsyncListenableTaskExecutor taskExecutor,
-                                                             List<RedisConsumer> redisConsumers) {
-        DefaultRedisConsumerContainer consumerContainer = new DefaultRedisConsumerContainer(redisClientWrapper);
+    public ConsumerContainer redisMQConsumerContainer(RedisClient redisClient, @Qualifier(value = "redisMQExecutor") AsyncListenableTaskExecutor taskExecutor,
+                                                      List<RedisConsumer> redisConsumers) {
+        DefaultRedisConsumerContainer consumerContainer = new DefaultRedisConsumerContainer(redisClient);
         consumerContainer.setListenerTaskExecutor(taskExecutor);
         consumerContainer.setConsumers(redisConsumers);
         consumerContainer.setInstanceNum(redisProperties.getMq().getInstanceNumber());

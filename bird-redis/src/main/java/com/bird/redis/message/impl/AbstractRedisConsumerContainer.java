@@ -1,6 +1,6 @@
-package com.bird.redis.message;
+package com.bird.redis.message.impl;
 
-import com.bird.core.message.MessageConsumerContainer;
+import com.bird.redis.message.ConsumerContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
@@ -9,7 +9,7 @@ import org.springframework.core.Ordered;
  * @author youly
  * 2019/7/1 16:18
  */
-public abstract class AbstractRedisConsumerContainer implements MessageConsumerContainer {
+public abstract class AbstractRedisConsumerContainer implements ConsumerContainer {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 

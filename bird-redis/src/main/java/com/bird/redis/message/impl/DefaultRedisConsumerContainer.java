@@ -1,7 +1,8 @@
-package com.bird.redis.message;
+package com.bird.redis.message.impl;
 
 import com.bird.core.tools.CollectionTools;
-import com.bird.redis.client.RedisClientWrapper;
+import com.bird.redis.client.RedisClient;
+import com.bird.redis.message.RedisConsumer;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.task.AsyncListenableTaskExecutor;
 import org.springframework.scheduling.SchedulingAwareRunnable;
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class DefaultRedisConsumerContainer extends AbstractRedisConsumerContainer {
 
-    private RedisClientWrapper redisClientWrapper;
+    private RedisClient redisClient;
 
     /**
      * 消息超时时间 单位：毫秒
@@ -31,8 +32,8 @@ public class DefaultRedisConsumerContainer extends AbstractRedisConsumerContaine
     private List<ListenableFuture> futures = new ArrayList<>();
     private boolean interruptIfRunning = false;
 
-    public DefaultRedisConsumerContainer(RedisClientWrapper redisClientWrapper) {
-        this.redisClientWrapper = redisClientWrapper;
+    public DefaultRedisConsumerContainer(RedisClient redisClient) {
+        this.redisClient = redisClient;
     }
 
     @Override
@@ -67,7 +68,7 @@ public class DefaultRedisConsumerContainer extends AbstractRedisConsumerContaine
 
     @Override
     public Object poll(String queue) throws InterruptedException {
-        return redisClientWrapper.getBlockingQueue(queue).poll(this.timeout, TimeUnit.MILLISECONDS);
+        return redisClient.getBlockingQueue(queue).poll(this.timeout, TimeUnit.MILLISECONDS);
     }
 
     public long getTimeout() {

@@ -11,14 +11,14 @@ import org.redisson.api.RedissonClient;
  * @author youly
  * 2018/12/26 15:45
  */
-public class RedisClientWrapper {
+public class RedisClient {
 
     private String keyGroup = "dev";
 
-    private RedissonClient redisClient;
+    private RedissonClient client;
 
-    public RedisClientWrapper(RedissonClient redisClient) {
-        this.redisClient = redisClient;
+    public RedisClient(RedissonClient client) {
+        this.client = client;
     }
 
     public String getKeyGroup() {
@@ -29,12 +29,12 @@ public class RedisClientWrapper {
         this.keyGroup = keyGroup;
     }
 
-    public RedissonClient getRedisClient() {
-        return redisClient;
+    public RedissonClient getClient() {
+        return client;
     }
 
-    public void setRedisClient(RedissonClient redisClient) {
-        this.redisClient = redisClient;
+    public void setClient(RedissonClient client) {
+        this.client = client;
     }
 
     public String getKey(String key) {
@@ -42,6 +42,6 @@ public class RedisClientWrapper {
     }
 
     public RBlockingQueue<Object> getBlockingQueue(String queue) {
-        return this.redisClient.getBlockingQueue(this.getKey(queue), CodecFactory.defaultCodec());
+        return this.client.getBlockingQueue(this.getKey(queue), CodecFactory.defaultCodec());
     }
 }
