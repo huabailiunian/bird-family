@@ -2,7 +2,7 @@ package com.bird.mybatis.test;
 
 import com.bird.core.tools.FileTools;
 import com.bird.mybatis.ObjectModelConverter;
-import com.bird.mybatis.definition.Database;
+import com.bird.mybatis.define.Database;
 import com.bird.mybatis.generator.DaoFreemarkerGenerator;
 import com.bird.mybatis.model.Config;
 import com.bird.mybatis.model.ObjectModel;

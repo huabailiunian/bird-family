@@ -1,4 +1,4 @@
-package com.bird.mybatis.definition;
+package com.bird.mybatis.define;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 

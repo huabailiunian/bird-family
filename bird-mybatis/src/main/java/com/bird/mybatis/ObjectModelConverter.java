@@ -2,9 +2,9 @@ package com.bird.mybatis;
 
 import com.bird.core.tools.CollectionTools;
 import com.bird.core.tools.StringTools;
-import com.bird.mybatis.definition.Column;
-import com.bird.mybatis.definition.Query;
-import com.bird.mybatis.definition.Table;
+import com.bird.mybatis.define.Column;
+import com.bird.mybatis.define.Query;
+import com.bird.mybatis.define.Table;
 import com.bird.mybatis.model.Config;
 import com.bird.mybatis.model.FieldModel;
 import com.bird.mybatis.model.ObjectModel;

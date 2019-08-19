@@ -17,6 +17,81 @@ public class ObjectModel {
 
     private List<FieldModel> fields;
 
+    private String className;
+    private String fullClassName;
+    private String tableName;
+    private String display;
+    private String daoSuffix;
+    private String entitySuffix;
+    private String basePackage;
+
+    private FieldModel autoInPK;
+    private List<FieldModel> primaryKey;
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getFullClassName() {
+        return fullClassName;
+    }
+
+    public void setFullClassName(String fullClassName) {
+        this.fullClassName = fullClassName;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
+    public String getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(String display) {
+        this.display = display;
+    }
+
+    public String getDaoSuffix() {
+        return daoSuffix;
+    }
+
+    public void setDaoSuffix(String daoSuffix) {
+        this.daoSuffix = daoSuffix;
+    }
+
+    public String getEntitySuffix() {
+        return entitySuffix;
+    }
+
+    public void setEntitySuffix(String entitySuffix) {
+        this.entitySuffix = entitySuffix;
+    }
+
+    public String getBasePackage() {
+        return basePackage;
+    }
+
+    public void setBasePackage(String basePackage) {
+        this.basePackage = basePackage;
+    }
+
+    public String getDaoName() {
+        return className + daoSuffix;
+    }
+
+    public String getObjectName() {
+        return className + entitySuffix;
+    }
+
+    public String getMapperName() {
+        return className + "Mapper";
+    }
+
     public String getPkg() {
         return pkg;
     }
