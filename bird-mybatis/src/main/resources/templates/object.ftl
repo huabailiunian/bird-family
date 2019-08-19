@@ -28,7 +28,7 @@ public class ${objectName} {
     </#list>
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" +
+        return "${objectName}{" +
                 <#list fields as f>
                 "${f.fieldName}=" + ${f.fieldName} +<#if f_has_next> "," +</#if>
                 </#list>
