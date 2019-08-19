@@ -8,6 +8,7 @@
     <artifactId>bird-family</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
+    <name>bird</name>
     <description>小鸟家族</description>
     <modules>
         <module>bird-core</module>
