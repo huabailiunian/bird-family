@@ -5,12 +5,11 @@
     <parent>
         <artifactId>bird-family</artifactId>
         <groupId>com.bird</groupId>
-        <version>1.0</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>bird-mybatis</artifactId>
-    <version>1.1</version>
 
     <name>bird-mybatis</name>
     <url>http://www.example.com</url>
