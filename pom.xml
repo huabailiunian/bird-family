@@ -13,7 +13,6 @@
         <module>bird-core</module>
         <module>bird-redis</module>
         <module>bird-mybatis</module>
-        <module>bird-plugins</module>
     </modules>
 
     <properties>
