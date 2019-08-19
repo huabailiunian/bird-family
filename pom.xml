@@ -12,7 +12,6 @@
     <modules>
         <module>bird-core</module>
         <module>bird-redis</module>
-        <module>bird-spring-boot</module>
         <module>bird-mybatis</module>
         <module>bird-plugins</module>
     </modules>
