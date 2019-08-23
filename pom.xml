@@ -44,6 +44,7 @@
         <aspectj.version>1.9.2</aspectj.version>
         <curator.version>4.2.0</curator.version>
         <zookeeper.version>3.5.5</zookeeper.version>
+        <guava.version>27.1-jre</guava.version>
     </properties>
 
     <dependencyManagement>
@@ -53,6 +54,12 @@
                 <groupId>org.bouncycastle</groupId>
                 <artifactId>bcprov-jdk15on</artifactId>
                 <version>1.62</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
 
             <!--测试框架-->
