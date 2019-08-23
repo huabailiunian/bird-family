@@ -1,8 +1,10 @@
-package ${pkg}.dao;
+<#assign entityName = engine.entityNameGen(model.name)>
+<#assign daoName = engine.daoNameGen(model.name)>
+package ${engine.daoPkg};
 
 import java.util.List;
 
-import ${pkg}.object.${objectName};
+import ${engine.entityPkg}.${entityName};
 
 /**
  * @author maven-plugin
@@ -10,28 +12,22 @@ import ${pkg}.object.${objectName};
  */
 public interface ${daoName} {
 
-    int insert(${objectName} object);
+    int insert(${entityName} object);
 
-    int insertList(List<${objectName}> list);
+    int insertList(List<${entityName}> list);
 
-    int insertSelective(${objectName} object);
+    int insertSelective(${entityName} object);
 
-    int deleteByPK(${objectName} object);
+    int deleteByPK(${entityName} object);
 
-    int deleteByCondition(${objectName} object);
+    int deleteByCondition(${entityName} object);
 
-    ${objectName} selectByPK(${objectName} object);
+    ${entityName} selectByPK(${entityName} object);
 
-    List<${objectName}> selectByCondition(${objectName} object);
+    List<${entityName}> selectByCondition(${entityName} object);
 
-    int updateByPK(${objectName} object);
+    int updateByPK(${entityName} object);
 
-    int updateByPKSelective(${objectName} object);
-
-<#if queries??>
-    <#list queries as query>
-    <#if query.array>List<</#if><#if query.rowMap>${objectName}<#else>${query.resultType}</#if><#if query.array>></#if> ${query.name}();
-    </#list>
-</#if>
+    int updateByPKSelective(${entityName} object);
 
 }

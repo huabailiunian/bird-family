@@ -1,36 +1,40 @@
-package ${basePackage}.object;
+<#assign entityName = engine.entityNameGen(model.name)>
+package ${engine.entityPkg};
 
 /**
- * <p>${display!}</p>
+ * <p>${model.display!}</p>
  *
  * @author maven-plugin
  * ${.now?string("yyyy-MM-dd HH:mm:ss")}
  */
-public class ${objectName} {
-<#if fields??>
+public class ${entityName} {
+<#if model.columns??>
+    <#assign fields = model.columns>
 
-    <#list fields as f>
+    <#list fields as field>
     /**
-     * <p>${f.display!}</p>
+     * <p>${field.display!}</p>
      */
-    private ${f.fieldType} ${f.fieldName};
+    private ${engine.fieldType(field.type)} ${engine.fieldNameGen(field.name)};
 
     </#list>
-    <#list fields as f>
-    public void set${f.fieldName?cap_first}(${f.fieldType} ${f.fieldName}) {
-        this.${f.fieldName} = ${f.fieldName};
+    <#list fields as field>
+    <#assign name = engine.fieldNameGen(field.name)>
+    <#assign type = engine.fieldType(field.type)>
+    public void set${name?cap_first}(${type} ${name}) {
+        this.${name} = ${name};
     }
 
-    public ${f.fieldType} get${f.fieldName?cap_first}() {
-        return this.${f.fieldName};
+    public ${type} get${name?cap_first}() {
+        return this.${name};
     }
 
     </#list>
     @Override
     public String toString() {
-        return "${objectName}{" +
+        return "${entityName}{" +
                 <#list fields as f>
-                "${f.fieldName}=" + ${f.fieldName} +<#if f_has_next> "," +</#if>
+                "${engine.fieldNameGen(f.name)}=" + ${engine.fieldNameGen(f.name)} +<#if f_has_next> "," +</#if>
                 </#list>
                 "}";
     }

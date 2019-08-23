@@ -1,20 +1,27 @@
-package com.bird.mybatis.model;
+package com.bird.mybatis;
 
+
+import com.bird.core.tools.StringTools;
+import com.bird.mybatis.define.Column;
+import com.bird.mybatis.jdbc.JdbcTypeMapper;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author youly
  * 2018/9/29 18:09
  */
-public class Config {
+public class DefaultEngine implements GenEngine {
 
     private String sourcePath;
     private String resourcesPath;
     private String basePackage;
-    private String mapperLocation;
+    private String mapperLocation = "mybatis-mapper";
     private String daoDirectory = "dao";
-    private String objectDirectory = "object";
-    private String daoSuffix;
-    private String entitySuffix;
+    private String entityDirectory = "object";
+    private String daoSuffix = "Dao";
+    private String entitySuffix = "";
     private String regex = "_";
     private boolean autoDao;
     private boolean autoEntity;
@@ -61,12 +68,12 @@ public class Config {
         this.daoDirectory = daoDirectory;
     }
 
-    public String getObjectDirectory() {
-        return objectDirectory;
+    public String getEntityDirectory() {
+        return entityDirectory;
     }
 
-    public void setObjectDirectory(String objectDirectory) {
-        this.objectDirectory = objectDirectory;
+    public void setEntityDirectory(String entityDirectory) {
+        this.entityDirectory = entityDirectory;
     }
 
     public String getDaoSuffix() {
@@ -125,23 +132,56 @@ public class Config {
         this.autoSQL = autoSQL;
     }
 
+    @Override
     public String getDaoPkg() {
         return this.basePackage + "." + daoDirectory;
     }
 
-    public String getObjectPkg() {
-        return this.basePackage + "." + objectDirectory;
+    @Override
+    public String getEntityPkg() {
+        return this.basePackage + "." + entityDirectory;
+    }
+
+    @Override
+    public String entityNameGen(String tableName) {
+        return StringTools.camelCase(tableName, regex) + entitySuffix;
+    }
+
+    @Override
+    public String daoNameGen(String tableName) {
+        return StringTools.camelCase(tableName, regex) + daoSuffix;
+    }
+
+    @Override
+    public String fieldNameGen(String columnName) {
+        String camelCase = StringTools.camelCase(columnName, regex);
+        return StringTools.lowerCaseFirst(camelCase);
+    }
+
+    @Override
+    public String fieldType(String type) {
+        return JdbcTypeMapper.valueOf(type.toUpperCase()).objectType();
+    }
+
+    @Override
+    public String jdbcType(String type) {
+        return JdbcTypeMapper.valueOf(type.toUpperCase()).jdbcType();
+    }
+
+    @Override
+    public List<Column> keys(List<Column> columns) {
+        return columns.stream().filter(Column::isPrimaryKey).collect(Collectors.toList());
     }
 
     @Override
     public String toString() {
-        return "Config{" +
+        return "DefaultEngine{" +
                 "sourcePath='" + sourcePath + '\'' +
                 ", resourcesPath='" + resourcesPath + '\'' +
                 ", basePackage='" + basePackage + '\'' +
                 ", mapperLocation='" + mapperLocation + '\'' +
                 ", daoDirectory='" + daoDirectory + '\'' +
-                ", objectDirectory='" + objectDirectory + '\'' +
+                ", entityDirectory='" + entityDirectory + '\'' +
                 ", daoSuffix='" + daoSuffix + '\'' +
                 ", entitySuffix='" + entitySuffix + '\'' +
                 ", regex='" + regex + '\'' +

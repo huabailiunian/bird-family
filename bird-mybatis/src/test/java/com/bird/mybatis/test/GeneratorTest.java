@@ -1,18 +1,19 @@
 package com.bird.mybatis.test;
 
 import com.bird.core.tools.FileTools;
-import com.bird.mybatis.ObjectModelConverter;
+import com.bird.mybatis.DefaultEngine;
 import com.bird.mybatis.define.Database;
-import com.bird.mybatis.generator.DaoFreemarkerGenerator;
-import com.bird.mybatis.model.Config;
-import com.bird.mybatis.model.ObjectModel;
+import com.bird.mybatis.define.Table;
+import com.bird.mybatis.generator.MapperFreemarkerGenerator;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author youly
@@ -32,12 +33,16 @@ public class GeneratorTest {
         xStream.processAnnotations(Database.class);
 
         Database database = (Database) xStream.fromXML(data);
-        Config config = new Config();
-        config.setBasePackage("com.demo");
-        config.setEntitySuffix("");
-        List<ObjectModel> models = ObjectModelConverter.converter(config, database.getTables());
-        ObjectModel objectModel = models.get(0);
-        String process = DaoFreemarkerGenerator.INSTANCE.process(objectModel);
+        List<Table> tables = database.getTables();
+        DefaultEngine engine = new DefaultEngine();
+        engine.setBasePackage("com.youly.demo.dal");
+        engine.setEntitySuffix("DO");
+        Map<String, Object> context = new HashMap<>();
+        context.put("engine", engine);
+
+        context.put("model",tables.get(0));
+
+        String process = MapperFreemarkerGenerator.INSTANCE.process(context);
 
         System.out.println(process);
 

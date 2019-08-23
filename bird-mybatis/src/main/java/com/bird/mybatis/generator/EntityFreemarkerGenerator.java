@@ -9,13 +9,13 @@ import java.io.IOException;
  * @version 1.0
  * 2018/6/15 9:47
  */
-public class ObjectFreemarkerGenerator extends BaseFreemarkerGenerator {
+public class EntityFreemarkerGenerator extends BaseFreemarkerGenerator {
 
     private static final String TEMPLATE_FILE = "object.ftl";
 
-    public static final ObjectFreemarkerGenerator INSTANCE = new ObjectFreemarkerGenerator();
+    public static final EntityFreemarkerGenerator INSTANCE = new EntityFreemarkerGenerator();
 
-    private ObjectFreemarkerGenerator() {
+    private EntityFreemarkerGenerator() {
     }
 
     @Override
