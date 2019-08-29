@@ -59,7 +59,7 @@
         </trim>
     </insert>
 
-    <delete id="deleteByPK" parameterType="${entityName}">
+    <delete id="deleteByPK" parameterType="map">
         delete from ${tableName}
         <where>
         <#list keys as key>
@@ -81,7 +81,7 @@
         </where>
     </delete>
 
-    <select id="selectByPK" parameterType="${entityName}" resultMap="base_result_map">
+    <select id="selectByPK" parameterType="map" resultMap="base_result_map">
         select
         <include refid="base_column_list" />
         from ${tableName}

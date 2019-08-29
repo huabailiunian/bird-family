@@ -1,10 +1,13 @@
 <#assign entityName = engine.entityNameGen(model.name)>
 <#assign daoName = engine.daoNameGen(model.name)>
+<#assign columns = model.columns>
+<#assign keys = engine.keys(columns)>
 package ${engine.daoPkg};
 
 import java.util.List;
 
 import ${engine.entityPkg}.${entityName};
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author maven-plugin
@@ -18,11 +21,11 @@ public interface ${daoName} {
 
     int insertSelective(${entityName} object);
 
-    int deleteByPK(${entityName} object);
+    int deleteByPK(<#list keys as key>@Param("${key.name}") ${engine.fieldType(key.type)} ${engine.fieldNameGen(key.name)}<#if key_has_next>, </#if></#list>);
 
     int deleteByCondition(${entityName} object);
 
-    ${entityName} selectByPK(${entityName} object);
+    ${entityName} selectByPK(<#list keys as key>@Param("${key.name}") ${engine.fieldType(key.type)} ${engine.fieldNameGen(key.name)}<#if key_has_next>, </#if></#list>);
 
     List<${entityName}> selectByCondition(${entityName} object);
 
