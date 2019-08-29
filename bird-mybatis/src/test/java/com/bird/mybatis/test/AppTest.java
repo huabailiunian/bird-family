@@ -19,7 +19,7 @@ import java.util.Map;
  * @author youly
  * 2019/8/13 11:13
  */
-public class GeneratorTest {
+public class AppTest {
 
     @Test
     public void daoTest() throws IOException {

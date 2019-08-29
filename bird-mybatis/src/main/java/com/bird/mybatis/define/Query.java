@@ -28,7 +28,7 @@ public class Query {
     private String resultType;
 
     @XStreamAsAttribute
-    private boolean rowMap = false;
+    private String resultMap;
 
     @XStreamAsAttribute
     private boolean array = false;
@@ -73,12 +73,12 @@ public class Query {
         this.resultType = resultType;
     }
 
-    public boolean isRowMap() {
-        return rowMap;
+    public String getResultMap() {
+        return resultMap;
     }
 
-    public void setRowMap(boolean rowMap) {
-        this.rowMap = rowMap;
+    public void setResultMap(String resultMap) {
+        this.resultMap = resultMap;
     }
 
     public boolean isArray() {
@@ -96,7 +96,7 @@ public class Query {
                 ", name='" + name + '\'' +
                 ", params='" + params + '\'' +
                 ", resultType='" + resultType + '\'' +
-                ", rowMap=" + rowMap +
+                ", resultMap='" + resultMap + '\'' +
                 ", array=" + array +
                 '}';
     }

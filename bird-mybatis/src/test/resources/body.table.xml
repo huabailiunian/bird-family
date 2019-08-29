@@ -15,6 +15,7 @@
 
         <queries>
             <query type="select" name="count" params="partner_code,app_name" resultType="Integer"/>
+            <query type="delete" name="deleteAll"/>
         </queries>
     </table>
 </database>

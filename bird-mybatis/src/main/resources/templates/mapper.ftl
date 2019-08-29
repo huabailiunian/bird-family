@@ -63,7 +63,7 @@
         delete from ${tableName}
         <where>
         <#list keys as key>
-            ${key.name} = ${r'#{'}${engine.fieldNameGen(key.name)},jdbcType=${engine.jdbcType(key.type)}}<#if key_has_next> AND </#if>
+            ${key.name} = ${r'#{'}${key.name},jdbcType=${engine.jdbcType(key.type)}}<#if key_has_next> AND </#if>
         </#list>
         </where>
     </delete>
@@ -87,7 +87,7 @@
         from ${tableName}
         <where>
         <#list keys as key>
-            ${key.name} = ${r'#{'}${engine.fieldNameGen(key.name)},jdbcType=${engine.jdbcType(key.type)}}<#if key_has_next> AND </#if>
+            ${key.name} = ${r'#{'}${key.name},jdbcType=${engine.jdbcType(key.type)}}<#if key_has_next> AND </#if>
         </#list>
         </where>
         limit 1
