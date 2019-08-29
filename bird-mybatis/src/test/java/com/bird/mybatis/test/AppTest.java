@@ -1,19 +1,18 @@
 package com.bird.mybatis.test;
 
 import com.bird.core.tools.FileTools;
-import com.bird.mybatis.DefaultEngine;
+import com.bird.mybatis.GenContext;
+import com.bird.mybatis.GenEngine;
 import com.bird.mybatis.define.Database;
 import com.bird.mybatis.define.Table;
-import com.bird.mybatis.generator.MapperFreemarkerGenerator;
+import com.bird.mybatis.generator.SQLFreemarkerGenerator;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author youly
@@ -34,15 +33,15 @@ public class AppTest {
 
         Database database = (Database) xStream.fromXML(data);
         List<Table> tables = database.getTables();
-        DefaultEngine engine = new DefaultEngine();
+        GenEngine engine = new GenEngine();
         engine.setBasePackage("com.youly.demo.dal");
         engine.setEntitySuffix("DO");
-        Map<String, Object> context = new HashMap<>();
-        context.put("engine", engine);
+        GenContext context = new GenContext();
+        context.setEngine(engine);
 
-        context.put("model",tables.get(0));
+        context.setModel(tables);
 
-        String process = MapperFreemarkerGenerator.INSTANCE.process(context);
+        String process = SQLFreemarkerGenerator.INSTANCE.process(context);
 
         System.out.println(process);
 

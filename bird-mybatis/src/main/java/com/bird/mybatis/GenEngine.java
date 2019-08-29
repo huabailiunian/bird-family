@@ -1,48 +1,186 @@
 package com.bird.mybatis;
 
+
+import com.bird.core.tools.StringTools;
 import com.bird.mybatis.define.Column;
+import com.bird.mybatis.jdbc.JdbcTypeMapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author youly
- * 2019/8/23 17:27
+ * 2018/9/29 18:09
  */
-public interface GenEngine {
+public class GenEngine {
 
-    String getDaoPkg();
+    private String sourcePath;
+    private String resourcesPath;
+    private String basePackage;
+    private String mapperLocation = "mybatis-mapper";
+    private String daoDirectory = "dao";
+    private String entityDirectory = "object";
+    private String daoSuffix = "Dao";
+    private String entitySuffix = "";
+    private String regex = "_";
+    private boolean autoDao;
+    private boolean autoEntity;
+    private boolean autoMapper;
+    private boolean autoSQL;
 
-    String getEntityPkg();
+    public String getSourcePath() {
+        return sourcePath;
+    }
 
-    /**
-     * 实体名生成
-     *
-     * @param tableName 数据表名
-     */
-    String entityNameGen(String tableName);
+    public void setSourcePath(String sourcePath) {
+        this.sourcePath = sourcePath;
+    }
 
-    /**
-     * Dao接口名生成
-     *
-     * @param tableName 数据表名
-     */
-    String daoNameGen(String tableName);
+    public String getResourcesPath() {
+        return resourcesPath;
+    }
 
-    /**
-     * 属性名生成
-     *
-     * @param columnName 字段名
-     */
-    String fieldNameGen(String columnName);
+    public void setResourcesPath(String resourcesPath) {
+        this.resourcesPath = resourcesPath;
+    }
 
-    /**
-     * 筛选出主键字段
-     *
-     * @param columns 所有字段
-     */
-    List<Column> keys(List<Column> columns);
+    public String getBasePackage() {
+        return basePackage;
+    }
 
-    String fieldType(String type);
+    public void setBasePackage(String basePackage) {
+        this.basePackage = basePackage;
+    }
 
-    String jdbcType(String type);
+    public String getMapperLocation() {
+        return mapperLocation;
+    }
+
+    public void setMapperLocation(String mapperLocation) {
+        this.mapperLocation = mapperLocation;
+    }
+
+    public String getDaoDirectory() {
+        return daoDirectory;
+    }
+
+    public void setDaoDirectory(String daoDirectory) {
+        this.daoDirectory = daoDirectory;
+    }
+
+    public String getEntityDirectory() {
+        return entityDirectory;
+    }
+
+    public void setEntityDirectory(String entityDirectory) {
+        this.entityDirectory = entityDirectory;
+    }
+
+    public String getDaoSuffix() {
+        return daoSuffix;
+    }
+
+    public void setDaoSuffix(String daoSuffix) {
+        this.daoSuffix = daoSuffix;
+    }
+
+    public String getEntitySuffix() {
+        return entitySuffix;
+    }
+
+    public void setEntitySuffix(String entitySuffix) {
+        this.entitySuffix = entitySuffix;
+    }
+
+    public String getRegex() {
+        return regex;
+    }
+
+    public void setRegex(String regex) {
+        this.regex = regex;
+    }
+
+    public boolean isAutoDao() {
+        return autoDao;
+    }
+
+    public void setAutoDao(boolean autoDao) {
+        this.autoDao = autoDao;
+    }
+
+    public boolean isAutoEntity() {
+        return autoEntity;
+    }
+
+    public void setAutoEntity(boolean autoEntity) {
+        this.autoEntity = autoEntity;
+    }
+
+    public boolean isAutoMapper() {
+        return autoMapper;
+    }
+
+    public void setAutoMapper(boolean autoMapper) {
+        this.autoMapper = autoMapper;
+    }
+
+    public boolean isAutoSQL() {
+        return autoSQL;
+    }
+
+    public void setAutoSQL(boolean autoSQL) {
+        this.autoSQL = autoSQL;
+    }
+
+    public String getDaoPkg() {
+        return this.basePackage + "." + daoDirectory;
+    }
+
+    public String getEntityPkg() {
+        return this.basePackage + "." + entityDirectory;
+    }
+
+    public String entityNameGen(String tableName) {
+        return StringTools.camelCase(tableName, regex) + entitySuffix;
+    }
+
+    public String daoNameGen(String tableName) {
+        return StringTools.camelCase(tableName, regex) + daoSuffix;
+    }
+
+    public String fieldNameGen(String columnName) {
+        String camelCase = StringTools.camelCase(columnName, regex);
+        return StringTools.lowerCaseFirst(camelCase);
+    }
+
+    public String fieldType(String type) {
+        return JdbcTypeMapper.valueOf(type.toUpperCase()).objectType();
+    }
+
+    public String jdbcType(String type) {
+        return JdbcTypeMapper.valueOf(type.toUpperCase()).jdbcType();
+    }
+
+    public List<Column> keys(List<Column> columns) {
+        return columns.stream().filter(Column::isPrimaryKey).collect(Collectors.toList());
+    }
+
+    @Override
+    public String toString() {
+        return "GenEngine{" +
+                "sourcePath='" + sourcePath + '\'' +
+                ", resourcesPath='" + resourcesPath + '\'' +
+                ", basePackage='" + basePackage + '\'' +
+                ", mapperLocation='" + mapperLocation + '\'' +
+                ", daoDirectory='" + daoDirectory + '\'' +
+                ", entityDirectory='" + entityDirectory + '\'' +
+                ", daoSuffix='" + daoSuffix + '\'' +
+                ", entitySuffix='" + entitySuffix + '\'' +
+                ", regex='" + regex + '\'' +
+                ", autoDao=" + autoDao +
+                ", autoEntity=" + autoEntity +
+                ", autoMapper=" + autoMapper +
+                ", autoSQL=" + autoSQL +
+                '}';
+    }
 }
