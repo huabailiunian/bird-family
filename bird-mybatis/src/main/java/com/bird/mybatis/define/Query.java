@@ -16,7 +16,10 @@ import java.util.List;
 public class Query {
 
     @XStreamAsAttribute
-    private String id;
+    private String name;
+
+    @XStreamAsAttribute
+    private String columns;
 
     @XStreamAsAttribute
     private String params;
@@ -34,12 +37,20 @@ public class Query {
     public Query() {
     }
 
-    public String getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getColumns() {
+        return columns;
+    }
+
+    public void setColumns(String columns) {
+        this.columns = columns;
     }
 
     public List<String> getParamList() {
@@ -81,7 +92,8 @@ public class Query {
     @Override
     public String toString() {
         return "Query{" +
-                "id='" + id + '\'' +
+                "name='" + name + '\'' +
+                ", columns='" + columns + '\'' +
                 ", params='" + params + '\'' +
                 ", resultType='" + resultType + '\'' +
                 ", useRowMap='" + useRowMap + '\'' +

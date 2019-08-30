@@ -7,6 +7,7 @@
     <#assign columns = model.columns>
     <#assign keys = engine.keys(columns)>
     <#assign tableName = model.name>
+    <#assign queries = model.queries>
 
     <resultMap id="base_result_map" type="${entityName}">
         <#list columns as col>
@@ -141,6 +142,22 @@
             ${key.name} = ${r'#{'}${engine.fieldNameGen(key.name)},jdbcType=${engine.jdbcType(key.type)}}<#if key_has_next> AND </#if>
             </#list>
     </update>
+
+<#if queries??>
+    <#list queries as query>
+        <#assign params = engine.queryColGen(columns,query.params)>
+    <select id="${query.name}"<#if query.params??> parameterType="map"</#if><#if query.useRowMap> resultMap="base_result_map"<#else> resultType="${query.resultType}"</#if>>
+        select <#if query.columns??>${query.columns}<#else><include refid="base_column_list" /></#if>
+        from ${tableName}
+        <#if query.params??>
+        where
+             <#list params as key>
+             ${key.name} = ${r'#{'}${key.name},jdbcType=${engine.jdbcType(key.type)}}<#if key_has_next> AND </#if>
+             </#list>
+        </#if>
+    </select>
+    </#list>
+</#if>
 
 </#if>
 </mapper>

@@ -1,10 +1,14 @@
 package com.bird.mybatis;
 
 
+import com.bird.core.consts.BirdConst;
 import com.bird.core.tools.StringTools;
 import com.bird.mybatis.define.Column;
 import com.bird.mybatis.jdbc.JdbcTypeMapper;
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -163,6 +167,14 @@ public class GenEngine {
 
     public List<Column> keys(List<Column> columns) {
         return columns.stream().filter(Column::isPrimaryKey).collect(Collectors.toList());
+    }
+
+    public List<Column> queryColGen(List<Column> columns, String params) {
+        if (StringUtils.isBlank(params)) {
+            return Collections.emptyList();
+        }
+        List<String> strings = Arrays.asList(StringUtils.split(params, BirdConst.SEPARATOR_DEFAULT));
+        return columns.stream().filter(col -> strings.contains(col.getName())).collect(Collectors.toList());
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.bird.mybatis.test;
 
 import com.bird.core.tools.FileTools;
+import com.bird.mybatis.GenContext;
+import com.bird.mybatis.GenEngine;
 import com.bird.mybatis.define.Database;
-import com.bird.mybatis.define.Query;
 import com.bird.mybatis.define.Table;
+import com.bird.mybatis.generator.DaoFreemarkerGenerator;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 import org.junit.Test;
@@ -31,10 +33,16 @@ public class AppTest {
 
         Database database = (Database) xStream.fromXML(data);
         List<Table> tables = database.getTables();
+        GenEngine engine = new GenEngine();
+        engine.setBasePackage("com.youly.demo.dal");
+        engine.setEntitySuffix("DO");
+        GenContext context = new GenContext();
+        context.setEngine(engine);
+        context.setModel(tables.get(0));
 
-        Table table = tables.get(0);
-        List<Query> queries = table.getQueries();
-        System.out.println(queries.size());
+        String process = DaoFreemarkerGenerator.INSTANCE.process(context);
+
+        System.out.println(process);
 
     }
 }
