@@ -31,6 +31,7 @@ public class Table {
     @XStreamImplicit
     private List<Index> indexes;
 
+    @XStreamImplicit
     private List<Query> queries;
 
     public String getName() {

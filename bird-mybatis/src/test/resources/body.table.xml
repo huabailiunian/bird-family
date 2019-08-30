@@ -13,10 +13,7 @@
         <column name="gmt_create" type="timestamp" display="创建时间" default="CURRENT_TIMESTAMP"/>
         <column name="gmt_modify" type="timestamp" display="修改时间" default="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"/>
 
-        <queries>
-            <query type="select" name="count" params="partner_code,app_name" resultType="Integer"/>
-            <query type="delete" name="deleteAll"/>
-        </queries>
+        <query  id="count" params="partner_code,app_name" resultType="Integer"/>
     </table>
 </database>
 

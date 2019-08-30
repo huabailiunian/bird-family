@@ -16,10 +16,7 @@ import java.util.List;
 public class Query {
 
     @XStreamAsAttribute
-    private String type;
-
-    @XStreamAsAttribute
-    private String name;
+    private String id;
 
     @XStreamAsAttribute
     private String params;
@@ -28,7 +25,7 @@ public class Query {
     private String resultType;
 
     @XStreamAsAttribute
-    private String resultMap;
+    private boolean useRowMap = false;
 
     @XStreamAsAttribute
     private boolean array = false;
@@ -37,20 +34,12 @@ public class Query {
     public Query() {
     }
 
-    public String getType() {
-        return type;
+    public String getId() {
+        return id;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public List<String> getParamList() {
@@ -73,12 +62,12 @@ public class Query {
         this.resultType = resultType;
     }
 
-    public String getResultMap() {
-        return resultMap;
+    public boolean isUseRowMap() {
+        return useRowMap;
     }
 
-    public void setResultMap(String resultMap) {
-        this.resultMap = resultMap;
+    public void setUseRowMap(boolean useRowMap) {
+        this.useRowMap = useRowMap;
     }
 
     public boolean isArray() {
@@ -92,11 +81,10 @@ public class Query {
     @Override
     public String toString() {
         return "Query{" +
-                "type='" + type + '\'' +
-                ", name='" + name + '\'' +
+                "id='" + id + '\'' +
                 ", params='" + params + '\'' +
                 ", resultType='" + resultType + '\'' +
-                ", resultMap='" + resultMap + '\'' +
+                ", useRowMap='" + useRowMap + '\'' +
                 ", array=" + array +
                 '}';
     }
