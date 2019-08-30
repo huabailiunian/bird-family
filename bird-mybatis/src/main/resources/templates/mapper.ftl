@@ -7,7 +7,6 @@
     <#assign columns = model.columns>
     <#assign keys = engine.keys(columns)>
     <#assign tableName = model.name>
-    <#assign queries = model.queries>
 
     <resultMap id="base_result_map" type="${entityName}">
         <#list columns as col>
@@ -143,19 +142,31 @@
             </#list>
     </update>
 
-<#if queries??>
+<#if model.queries??>
+    <#assign queries = model.queries>
     <#list queries as query>
         <#assign params = engine.queryColGen(columns,query.params)>
     <select id="${query.name}"<#if query.params??> parameterType="map"</#if><#if query.useRowMap> resultMap="base_result_map"<#else> resultType="${query.resultType}"</#if>>
         select <#if query.columns??>${query.columns}<#else><include refid="base_column_list" /></#if>
         from ${tableName}
         <#if query.params??>
+        <#if query.useAuto>
+        <where>
+        <#list params as f>
+            <if test="${f.name} != null">
+                AND ${f.name} = ${r'#{'}${f.name},jdbcType=${engine.jdbcType(f.type)}}
+            </if>
+        </#list>
+        </where>
+        <#else>
         where
-             <#list params as key>
-             ${key.name} = ${r'#{'}${key.name},jdbcType=${engine.jdbcType(key.type)}}<#if key_has_next> AND </#if>
-             </#list>
+            <#list params as key>
+            ${key.name} = ${r'#{'}${key.name},jdbcType=${engine.jdbcType(key.type)}}<#if key_has_next> AND </#if>
+            </#list>
+        </#if>
         </#if>
     </select>
+
     </#list>
 </#if>
 

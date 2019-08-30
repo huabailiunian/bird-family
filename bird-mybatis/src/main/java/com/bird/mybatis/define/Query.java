@@ -33,6 +33,9 @@ public class Query {
     @XStreamAsAttribute
     private boolean array = false;
 
+    @XStreamAsAttribute
+    private boolean useAuto = false;
+
 
     public Query() {
     }
@@ -89,6 +92,14 @@ public class Query {
         this.array = array;
     }
 
+    public boolean isUseAuto() {
+        return useAuto;
+    }
+
+    public void setUseAuto(boolean useAuto) {
+        this.useAuto = useAuto;
+    }
+
     @Override
     public String toString() {
         return "Query{" +
@@ -98,6 +109,7 @@ public class Query {
                 ", resultType='" + resultType + '\'' +
                 ", useRowMap='" + useRowMap + '\'' +
                 ", array=" + array +
+                ", useAuto=" + useAuto +
                 '}';
     }
 }

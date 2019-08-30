@@ -118,6 +118,7 @@
         <xsd:attribute name="resultType" type="xsd:string"/>
         <xsd:attribute name="useRowMap" type="xsd:boolean" default="false"/>
         <xsd:attribute name="array" type="xsd:boolean" default="false"/>
+        <xsd:attribute name="useAuto" type="xsd:boolean" default="false"/>
     </xsd:complexType>
 
 </xsd:schema>

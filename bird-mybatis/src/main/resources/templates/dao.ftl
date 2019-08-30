@@ -2,7 +2,6 @@
 <#assign daoName = engine.daoNameGen(model.name)>
 <#assign columns = model.columns>
 <#assign keys = engine.keys(columns)>
-<#assign queries = model.queries>
 package ${engine.daoPkg};
 
 import java.util.List;
@@ -34,7 +33,8 @@ public interface ${daoName} {
 
     int updateByPKSelective(${entityName} object);
 
-<#if queries??>
+<#if model.queries??>
+<#assign queries = model.queries>
 <#list queries as query>
 <#assign params = engine.queryColGen(columns,query.params)>
     <#if query.useRowMap>${entityName}<#else>${query.resultType}</#if> ${query.name}(<#if query.params??><#list params as key>@Param("${key.name}") ${engine.fieldType(key.type)} ${engine.fieldNameGen(key.name)}<#if key_has_next>, </#if></#list></#if>);
