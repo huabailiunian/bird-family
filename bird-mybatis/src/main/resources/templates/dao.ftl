@@ -37,7 +37,7 @@ public interface ${daoName} {
 <#assign queries = model.queries>
 <#list queries as query>
 <#assign params = engine.queryColGen(columns,query.params)>
-    <#if query.useRowMap>${entityName}<#else>${query.resultType}</#if> ${query.name}(<#if query.params??><#list params as key>@Param("${key.name}") ${engine.fieldType(key.type)} ${engine.fieldNameGen(key.name)}<#if key_has_next>, </#if></#list></#if>);
+    <#if query.array>List<</#if><#if query.useRowMap>${entityName}<#else>${query.resultType}</#if><#if query.array>></#if> ${query.name}(<#if query.params??><#list params as key>@Param("${key.name}") ${engine.fieldType(key.type)} ${engine.fieldNameGen(key.name)}<#if key_has_next>, </#if></#list></#if>);
 
 </#list>
 </#if>
