@@ -119,6 +119,7 @@
         <xsd:attribute name="useRowMap" type="xsd:boolean" default="false"/>
         <xsd:attribute name="array" type="xsd:boolean" default="false"/>
         <xsd:attribute name="useAuto" type="xsd:boolean" default="false"/>
+        <xsd:attribute name="extSql" type="xsd:string"/>
     </xsd:complexType>
 
 </xsd:schema>

@@ -36,6 +36,8 @@ public class Query {
     @XStreamAsAttribute
     private boolean useAuto = false;
 
+    @XStreamAsAttribute
+    private String extSql;
 
     public Query() {
     }
@@ -100,6 +102,14 @@ public class Query {
         this.useAuto = useAuto;
     }
 
+    public String getExtSql() {
+        return extSql;
+    }
+
+    public void setExtSql(String extSql) {
+        this.extSql = extSql;
+    }
+
     @Override
     public String toString() {
         return "Query{" +
@@ -110,6 +120,7 @@ public class Query {
                 ", useRowMap='" + useRowMap + '\'' +
                 ", array=" + array +
                 ", useAuto=" + useAuto +
+                ", extSql=" + extSql +
                 '}';
     }
 }

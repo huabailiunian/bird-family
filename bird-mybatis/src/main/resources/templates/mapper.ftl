@@ -165,6 +165,9 @@
             </#list>
         </#if>
         </#if>
+        <#if query.extSql??>
+        ${query.extSql}
+        </#if>
     </select>
 
     </#list>
