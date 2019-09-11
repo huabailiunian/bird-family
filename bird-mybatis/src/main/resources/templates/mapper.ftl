@@ -30,7 +30,7 @@
         values
         <foreach collection="list" index="index" item="item" separator=",">
             (<#list columns as col><#if !col.autoIncrement>
-            ${r'#{'}${engine.fieldNameGen(col.name)},jdbcType=${engine.jdbcType(col.type)}}<#if col_has_next>,</#if></#if></#list>
+            ${r'#{item.'}${engine.fieldNameGen(col.name)},jdbcType=${engine.jdbcType(col.type)}}<#if col_has_next>,</#if></#if></#list>
             )
         </foreach>
     </insert>
@@ -167,6 +167,9 @@
         </#if>
         <#if query.extSql??>
         ${query.extSql}
+        </#if>
+        <#if query.usePage>
+        ${r'limit #{offset},#{size}'}
         </#if>
     </select>
 
