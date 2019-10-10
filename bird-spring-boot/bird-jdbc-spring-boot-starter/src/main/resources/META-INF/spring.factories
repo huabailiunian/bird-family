@@ -1,3 +1,0 @@
-#AutoConfiguration
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.bird.boot.jdbc.auto.JdbcAutoConfiguration

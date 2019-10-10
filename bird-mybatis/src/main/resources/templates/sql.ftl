@@ -1,11 +1,12 @@
 <#assign strEnums=["char","varchar","character"]/>
 <#assign largeEnums=["text","mediumtext","longtext","blob","mediumblob","longblob"]/>
 <#assign timeEnums=["timestamp","datetime","date","time"]/>
-<#if tables??>
-<#list tables as table>
+<#if model??>
+<#list model as table>
 DROP TABLE IF EXISTS `${table.name}`;
 CREATE TABLE `${table.name}` (
 <#if table.columns??>
+<#assign keys = engine.keys(table.columns)>
 <#list table.columns as column>
 <#if strEnums?seq_contains(column.type)>
     `${column.name}` ${column.type}<#if column.length??>(${column.length})</#if><#if column.unsigned> unsigned</#if><#if column.allowNull> DEFAULT NULL<#else> NOT NULL DEFAULT '${column.defaultValue!}'</#if><#if column.display??> COMMENT '${column.display}'</#if>,
@@ -17,7 +18,7 @@ CREATE TABLE `${table.name}` (
     `${column.name}` ${column.type}<#if column.length??>(${column.length})</#if><#if column.unsigned> unsigned</#if><#if column.allowNull> DEFAULT NULL<#else> NOT NULL<#if !column.autoIncrement> DEFAULT ${column.defaultValue!'0'}</#if></#if><#if column.autoIncrement> AUTO_INCREMENT</#if><#if column.display??> COMMENT '${column.display}'</#if>,
 </#if>
 </#list>
-    PRIMARY KEY(<#list table.columns as column><#if column.primaryKey>`${column.name}`</#if></#list>)<#if table.uniqueKeys?? || table.indexes??>,</#if>
+    PRIMARY KEY(<#list keys as key>`${key.name}`<#if key_has_next>,</#if></#list>)<#if table.uniqueKeys?? || table.indexes??>,</#if>
 </#if>
 <#if table.uniqueKeys??>
 <#list table.uniqueKeys as key>
