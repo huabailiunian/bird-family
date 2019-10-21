@@ -1,7 +1,6 @@
 package com.bird.zookeeper.service;
 
 import com.bird.core.consts.BirdConst;
-import com.bird.core.tools.PathTools;
 import com.bird.zookeeper.exception.NoNodeException;
 import com.bird.zookeeper.exception.ZKException;
 import org.apache.curator.framework.CuratorFramework;
@@ -27,9 +26,8 @@ public class ZkServiceImpl implements ZkService {
 
     @Override
     public List<String> getChildren(String path) throws NoNodeException {
-        String zkPath = PathTools.getZkPath(path);
         try {
-            return curatorFramework.getChildren().forPath(zkPath);
+            return curatorFramework.getChildren().forPath(path);
         } catch (KeeperException.NoNodeException e) {
             throw new NoNodeException("不存在的路径", e);
         } catch (Exception e) {
@@ -53,27 +51,26 @@ public class ZkServiceImpl implements ZkService {
 
     @Override
     public String create(String path, boolean recursive, boolean isContainer, boolean isTemp) throws Exception {
-        String zkPath = PathTools.getZkPath(path);
         CreateBuilder createBuilder = curatorFramework.create();
         if (recursive) {
             if (isContainer) {
                 if (isTemp) {
-                    return createBuilder.creatingParentContainersIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(zkPath);
+                    return createBuilder.creatingParentContainersIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(path);
                 } else {
-                    return createBuilder.creatingParentContainersIfNeeded().withMode(CreateMode.PERSISTENT).forPath(zkPath);
+                    return createBuilder.creatingParentContainersIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path);
                 }
             } else {
                 if (isTemp) {
-                    return createBuilder.creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(zkPath);
+                    return createBuilder.creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(path);
                 } else {
-                    return createBuilder.creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(zkPath);
+                    return createBuilder.creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path);
                 }
             }
         } else {
             if (isTemp) {
-                return createBuilder.withMode(CreateMode.EPHEMERAL).forPath(zkPath);
+                return createBuilder.withMode(CreateMode.EPHEMERAL).forPath(path);
             } else {
-                return createBuilder.withMode(CreateMode.PERSISTENT).forPath(zkPath);
+                return createBuilder.withMode(CreateMode.PERSISTENT).forPath(path);
             }
         }
     }
@@ -85,19 +82,17 @@ public class ZkServiceImpl implements ZkService {
 
     @Override
     public void delete(String path, boolean recursive) throws Exception {
-        String zkPath = PathTools.getZkPath(path);
         DeleteBuilder delete = curatorFramework.delete();
         if (recursive) {
-            delete.deletingChildrenIfNeeded().forPath(zkPath);
+            delete.deletingChildrenIfNeeded().forPath(path);
         } else {
-            delete.forPath(zkPath);
+            delete.forPath(path);
         }
     }
 
     @Override
     public boolean checkExist(String path) throws Exception {
-        String zkPath = PathTools.getZkPath(path);
-        Stat stat = curatorFramework.checkExists().forPath(zkPath);
+        Stat stat = curatorFramework.checkExists().forPath(path);
         return stat != null;
     }
 }
