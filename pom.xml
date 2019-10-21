@@ -44,7 +44,7 @@
         <druid.version>1.1.10</druid.version>
         <aspectj.version>1.9.2</aspectj.version>
         <curator.version>4.2.0</curator.version>
-        <zookeeper.version>3.5.5</zookeeper.version>
+        <zookeeper.version>3.4.9</zookeeper.version>
         <guava.version>27.1-jre</guava.version>
     </properties>
 
@@ -238,6 +238,12 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+
             <!--zookeeper-->
             <dependency>
                 <groupId>org.apache.zookeeper</groupId>
