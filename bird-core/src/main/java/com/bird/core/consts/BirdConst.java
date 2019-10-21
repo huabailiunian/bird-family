@@ -22,8 +22,8 @@ public interface BirdConst {
     String SEPARATOR_UNDERLINE = "_";
     String NEW_LINE = "\n";
     String BLACK_STRING = "";
-    String FILE_SEPARATOR_UNIX = "/";
-    String FILE_SEPARATOR_WINDOWS = "\\";
+    String PATH_SEPARATOR_UNIX = "/";
+    String PATH_SEPARATOR_WINDOWS = "\\";
     /**
      * 逻辑值
      */

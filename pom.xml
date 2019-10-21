@@ -15,6 +15,7 @@
         <module>bird-core</module>
         <module>bird-redis</module>
         <module>bird-mybatis</module>
+        <module>bird-zookeeper</module>
     </modules>
 
     <properties>
