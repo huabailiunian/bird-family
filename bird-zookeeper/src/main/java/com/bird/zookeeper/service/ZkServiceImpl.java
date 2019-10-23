@@ -18,16 +18,16 @@ import java.util.List;
  */
 public class ZkServiceImpl implements ZkService {
 
-    private final CuratorFramework curatorFramework;
+    private final CuratorFramework zkClient;
 
-    public ZkServiceImpl(CuratorFramework curatorFramework) {
-        this.curatorFramework = curatorFramework;
+    public ZkServiceImpl(CuratorFramework zkClient) {
+        this.zkClient = zkClient;
     }
 
     @Override
     public List<String> getChildren(String path) throws NoNodeException {
         try {
-            return curatorFramework.getChildren().forPath(path);
+            return zkClient.getChildren().forPath(path);
         } catch (KeeperException.NoNodeException e) {
             throw new NoNodeException("不存在的路径", e);
         } catch (Exception e) {
@@ -51,7 +51,7 @@ public class ZkServiceImpl implements ZkService {
 
     @Override
     public String create(String path, boolean recursive, boolean isContainer, boolean isTemp) throws Exception {
-        CreateBuilder createBuilder = curatorFramework.create();
+        CreateBuilder createBuilder = zkClient.create();
         if (recursive) {
             if (isContainer) {
                 if (isTemp) {
@@ -82,7 +82,7 @@ public class ZkServiceImpl implements ZkService {
 
     @Override
     public void delete(String path, boolean recursive) throws Exception {
-        DeleteBuilder delete = curatorFramework.delete();
+        DeleteBuilder delete = zkClient.delete();
         if (recursive) {
             delete.deletingChildrenIfNeeded().forPath(path);
         } else {
@@ -92,7 +92,7 @@ public class ZkServiceImpl implements ZkService {
 
     @Override
     public boolean checkExist(String path) throws Exception {
-        Stat stat = curatorFramework.checkExists().forPath(path);
+        Stat stat = zkClient.checkExists().forPath(path);
         return stat != null;
     }
 }
