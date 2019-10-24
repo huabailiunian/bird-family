@@ -1,6 +1,7 @@
 package com.bird.core.tools;
 
 import com.bird.core.consts.BirdConst;
+import org.apache.commons.lang3.SystemUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
@@ -33,5 +34,9 @@ public class PathTools {
         } else {
             return "";
         }
+    }
+
+    public static String getTempPath() {
+        return verifyPath(SystemUtils.JAVA_IO_TMPDIR);
     }
 }
