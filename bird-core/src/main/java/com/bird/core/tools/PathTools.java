@@ -26,4 +26,12 @@ public class PathTools {
             return temp;
         }
     }
+
+    public static String verifyPath(String path) {
+        if (StringUtils.hasText(path)) {
+            return path.replace(BirdConst.PATH_SEPARATOR_WINDOWS, BirdConst.PATH_SEPARATOR_UNIX);
+        } else {
+            return "";
+        }
+    }
 }

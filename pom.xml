@@ -46,6 +46,7 @@
         <curator.version>4.2.0</curator.version>
         <zookeeper.version>3.4.9</zookeeper.version>
         <guava.version>27.1-jre</guava.version>
+        <jsch.version>0.1.54</jsch.version>
     </properties>
 
     <dependencyManagement>
@@ -259,6 +260,13 @@
                         <artifactId>log4j</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <!--sftp support-->
+            <dependency>
+                <groupId>com.jcraft</groupId>
+                <artifactId>jsch</artifactId>
+                <version>${jsch.version}</version>
             </dependency>
 
         </dependencies>

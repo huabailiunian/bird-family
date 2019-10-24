@@ -32,6 +32,11 @@ public class FileTools {
         }
     }
 
+    public static String readClassPathFile(String path) throws IOException {
+        InputStream stream = ClassLoader.getSystemResourceAsStream(path);
+        return readFile(stream);
+    }
+
     public static String readFile(InputStream inputStream, Charset charset) throws IOException {
         if (inputStream == null) {
             return "";
