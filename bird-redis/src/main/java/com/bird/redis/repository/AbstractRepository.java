@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author youly
@@ -78,6 +79,16 @@ public abstract class AbstractRepository<T> implements KeyOperation {
         return data;
     }
 
+    @Override
+    public boolean setExpire(String key, long timeToLive, TimeUnit timeUnit) {
+        return this.getClient().getKeys().expire(getKey(key), timeToLive, timeUnit);
+    }
+
+    @Override
+    public boolean setExpireAt(String key, long timestamp) {
+        return this.getClient().getKeys().expireAt(key, timestamp);
+    }
+
     protected String getKey(final String key) {
         if (StringUtils.hasText(keySpace)) {
             return StringUtils.hasText(key) ? redisClient.getKey(keySpace + ":" + key) : redisClient.getKey(keySpace);
@@ -139,7 +150,7 @@ public abstract class AbstractRepository<T> implements KeyOperation {
         return codec;
     }
 
-    public void setCodec(Codec codec) {
+    private void setCodec(Codec codec) {
         this.codec = codec;
     }
 

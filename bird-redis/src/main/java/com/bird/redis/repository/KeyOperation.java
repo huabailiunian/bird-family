@@ -1,6 +1,7 @@
 package com.bird.redis.repository;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author youly
@@ -22,4 +23,14 @@ public interface KeyOperation {
      * search keys
      */
     Set<String> findKeysByPattern(final String patten);
+
+    /**
+     * 设置key的存活时间
+     */
+    boolean setExpire(final String key, long timeToLive, TimeUnit timeUnit);
+
+    /**
+     * 设置key的过期时间
+     */
+    boolean setExpireAt(final String key, long timestamp);
 }
