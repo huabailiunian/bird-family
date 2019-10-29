@@ -7,7 +7,7 @@
     <groupId>com.bird</groupId>
     <artifactId>bird-family</artifactId>
     <packaging>pom</packaging>
-    <version>1.2</version>
+    <version>1.2-SNAPSHOT</version>
     <name>bird</name>
     <description>小鸟家族</description>
 
@@ -25,7 +25,7 @@
         <java.version>1.8</java.version>
 
         <!--this project-->
-        <bird.version>1.2</bird.version>
+        <bird.version>1.2-SNAPSHOT</bird.version>
 
         <!--三方库-->
         <spring.version>5.1.3.RELEASE</spring.version>
