@@ -47,6 +47,7 @@
         <zookeeper.version>3.4.9</zookeeper.version>
         <guava.version>27.1-jre</guava.version>
         <jsch.version>0.1.54</jsch.version>
+        <freemarker.version>2.3.23</freemarker.version>
     </properties>
 
     <dependencyManagement>
@@ -290,6 +291,13 @@
                 <groupId>com.jcraft</groupId>
                 <artifactId>jsch</artifactId>
                 <version>${jsch.version}</version>
+            </dependency>
+
+            <!--模板引擎-->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
             </dependency>
 
         </dependencies>
