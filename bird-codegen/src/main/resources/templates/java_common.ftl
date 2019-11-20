@@ -50,14 +50,17 @@
 <#function resolveInterface data>
     <#if data.interfaces?? && (data.interfaces?size > 0)>
         <#assign faces = data.interfaces />
-        <#assign var = ' implements '/>
+        <#assign varData = ' implements '/>
+        <#if data.interface>
+            <#assign varData = ' extends '/>
+        </#if>
         <#list faces as fa>
-            <#assign var = var + fa/>
+            <#assign varData = varData + fa/>
             <#if fa_has_next>
-                <#assign var = var + ', '/>
+                <#assign varData = varData + ', '/>
             </#if>
         </#list>
-        <#return var/>
+        <#return varData/>
     <#else>
         <#return ''/>
     </#if>

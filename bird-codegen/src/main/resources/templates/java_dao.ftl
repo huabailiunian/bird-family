@@ -3,9 +3,6 @@
     entity = DataObject.class
 -->
 <#include "java_common.ftl">
-<#assign entity = model.entity />
-<#assign primaryKey = model.primaryKey />
-<#assign uniqueKey = model.uniqueKey />
 package ${model.packageName};
 
 import java.util.List;
