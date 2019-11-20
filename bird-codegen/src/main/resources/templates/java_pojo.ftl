@@ -2,17 +2,18 @@
     model = DataObject.class
 -->
 <#include "java_common.ftl">
-package ${model.packageName};
+<#assign varModel = model />
+package ${varModel.packageName};
 
 /**
- * <p>${model.label!}</p>
+ * <p>${varModel.label!}</p>
  *
  * @author code-plugin
  * ${.now?string("yyyy-MM-dd HH:mm:ss")}
  */
-${visibility(model)} ${javaType(model)} ${model.name} {
-<#if model.properties??>
-    <#assign fields = model.properties>
+${visibility(varModel)} ${javaType(varModel)} ${varModel.name}<#if varModel.supperClassName??> extends ${varModel.supperClassName}</#if>${resolveInterface(varModel)} {
+<#if varModel.properties??>
+    <#assign fields = varModel.properties>
 
     <#list fields as field>
     <@property field=field/>
@@ -26,7 +27,7 @@ ${visibility(model)} ${javaType(model)} ${model.name} {
     </#list>
     @Override
     public String toString() {
-        return "${model.name}{" +
+        return "${varModel.name}{" +
                 <#list fields as f>
                 "${f.name}=" + ${f.name} +<#if f_has_next> "," +</#if>
                 </#list>

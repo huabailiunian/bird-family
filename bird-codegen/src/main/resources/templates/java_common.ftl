@@ -46,3 +46,19 @@
         <#return data.visibility?lower_case />
     </#if>
 </#function>
+
+<#function resolveInterface data>
+    <#if data.interfaces?? && (data.interfaces?size > 0)>
+        <#assign faces = data.interfaces />
+        <#assign var = ' implements '/>
+        <#list faces as fa>
+            <#assign var = var + fa/>
+            <#if fa_has_next>
+                <#assign var = var + ', '/>
+            </#if>
+        </#list>
+        <#return var/>
+    <#else>
+        <#return ''/>
+    </#if>
+</#function>
