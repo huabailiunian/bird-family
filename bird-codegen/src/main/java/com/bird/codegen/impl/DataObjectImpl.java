@@ -2,7 +2,6 @@ package com.bird.codegen.impl;
 
 import com.bird.codegen.DataObject;
 import com.bird.codegen.ObjectProperty;
-import com.bird.codegen.enums.JavaTypeKind;
 import com.bird.codegen.enums.Visibility;
 import org.apache.commons.lang3.StringUtils;
 
@@ -13,60 +12,20 @@ import java.util.List;
  * @author youly
  * 2019/11/20 11:41
  */
-public class DataObjectImpl extends AbstractJavaType implements DataObject {
+public class DataObjectImpl extends JavaClassImpl implements DataObject {
 
     private List<ObjectProperty> properties = new ArrayList<>();
 
-    private boolean _static = false;
-    private boolean _final = false;
-    private boolean _abstract = false;
-
     public DataObjectImpl(String packageName, String name, String label) {
-        super(packageName, name, label, Visibility.PUBLIC);
-    }
-
-    public DataObjectImpl(String packageName, String name, String label, boolean isStatic, boolean isFinal, boolean isAbstract) {
-        super(packageName, name, label, Visibility.PUBLIC);
-        this._static = isStatic;
-        this._final = isFinal;
-        this._abstract = isAbstract;
+        super(packageName, name, label);
     }
 
     public DataObjectImpl(String packageName, String name, String label, Visibility visibility) {
         super(packageName, name, label, visibility);
     }
 
-    public DataObjectImpl(String packageName, String name, String label, Visibility visibility, JavaTypeKind typeKind) {
-        super(packageName, name, label, visibility, typeKind);
-    }
-
     public DataObjectImpl(String packageName, String name, String label, Visibility visibility, boolean isStatic, boolean isFinal, boolean isAbstract) {
-        super(packageName, name, label, visibility, JavaTypeKind.CLASS);
-        this._static = isStatic;
-        this._final = isFinal;
-        this._abstract = isAbstract;
-    }
-
-    public DataObjectImpl(String packageName, String name, String label, Visibility visibility, JavaTypeKind typeKind, boolean isStatic, boolean isFinal, boolean isAbstract) {
-        super(packageName, name, label, visibility, typeKind);
-        this._static = isStatic;
-        this._final = isFinal;
-        this._abstract = isAbstract;
-    }
-
-    @Override
-    public boolean isAbstract() {
-        return this._abstract;
-    }
-
-    @Override
-    public boolean isFinal() {
-        return this._final;
-    }
-
-    @Override
-    public boolean isStatic() {
-        return this._static;
+        super(packageName, name, label, visibility, isStatic, isFinal, isAbstract);
     }
 
     @Override
@@ -150,9 +109,6 @@ public class DataObjectImpl extends AbstractJavaType implements DataObject {
 
         DataObjectImpl that = (DataObjectImpl) o;
 
-        if (_static != that._static) return false;
-        if (_final != that._final) return false;
-        if (_abstract != that._abstract) return false;
         return properties != null ? properties.equals(that.properties) : that.properties == null;
     }
 
@@ -160,9 +116,6 @@ public class DataObjectImpl extends AbstractJavaType implements DataObject {
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (properties != null ? properties.hashCode() : 0);
-        result = 31 * result + (_static ? 1 : 0);
-        result = 31 * result + (_final ? 1 : 0);
-        result = 31 * result + (_abstract ? 1 : 0);
         return result;
     }
 }

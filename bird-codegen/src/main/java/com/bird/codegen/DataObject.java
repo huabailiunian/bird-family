@@ -8,13 +8,7 @@ import java.util.List;
  * @author youly
  * 2019/11/20 11:34
  */
-public interface DataObject extends JavaType {
-
-    boolean isAbstract();
-
-    boolean isFinal();
-
-    boolean isStatic();
+public interface DataObject extends JavaClass {
 
     List<ObjectProperty> getProperties();
 

@@ -30,6 +30,10 @@ public class JavaClassImpl extends AbstractJavaType implements JavaClass {
         super(packageName, name, label, Visibility.PUBLIC, JavaTypeKind.CLASS);
     }
 
+    public JavaClassImpl(String packageName, String name, String label, Visibility visibility) {
+        super(packageName, name, label, visibility, JavaTypeKind.CLASS);
+    }
+
     public JavaClassImpl(String packageName, String name, String label, boolean isStatic, boolean isFinal, boolean isAbstract) {
         super(packageName, name, label, Visibility.PUBLIC, JavaTypeKind.CLASS);
         this._static = isStatic;
