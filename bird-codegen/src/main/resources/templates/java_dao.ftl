@@ -1,25 +1,27 @@
-<#assign entityName = engine.entityNameGen(model.name)>
-<#assign daoName = engine.daoNameGen(model.name)>
-<#assign columns = model.columns>
-<#assign keys = engine.keys(columns)>
-package ${engine.daoPkg};
+<#--
+    model = DataDao.class
+    entity = DataObject.class
+-->
+<#include "java_common.ftl">
+<#assign entity = model.entity />
+package ${model.packageName};
 
 import java.util.List;
 
-import ${engine.entityPkg}.${entityName};
+import ${entity.className};
 import org.apache.ibatis.annotations.Param;
 
 /**
- * @author maven-plugin
+ * @author code-plugin
  * ${.now?string("yyyy/MM/dd HH:mm:ss")}
  */
-public interface ${daoName} {
+public interface ${model.name} {
 
-    int insert(${entityName} object);
+    int insert(${entity.name} object);
 
-    int insertList(List<${entityName}> list);
+    int insertList(List<${entity.name}> list);
 
-    int insertSelective(${entityName} object);
+    int insertSelective(${entity.name} object);
 
     int deleteByPK(<#list keys as key>@Param("${key.name}") ${engine.fieldType(key.type)} ${engine.fieldNameGen(key.name)}<#if key_has_next>, </#if></#list>);
 

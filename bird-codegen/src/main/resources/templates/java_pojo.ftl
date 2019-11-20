@@ -10,7 +10,7 @@ package ${model.packageName};
  * @author code-plugin
  * ${.now?string("yyyy-MM-dd HH:mm:ss")}
  */
-${visibility(model)} ${javaType(model)} ${model.name?cap_first} {
+${visibility(model)} ${javaType(model)} ${model.name} {
 <#if model.properties??>
     <#assign fields = model.properties>
 
@@ -26,7 +26,7 @@ ${visibility(model)} ${javaType(model)} ${model.name?cap_first} {
     </#list>
     @Override
     public String toString() {
-        return "${model.name?cap_first}{" +
+        return "${model.name}{" +
                 <#list fields as f>
                 "${f.name}=" + ${f.name} +<#if f_has_next> "," +</#if>
                 </#list>
