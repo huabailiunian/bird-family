@@ -21,34 +21,34 @@ public class DataObjectImpl extends AbstractJavaType implements DataObject {
     private boolean _final = false;
     private boolean _abstract = false;
 
-    public DataObjectImpl(String name, String label, String packageName) {
-        super(name, label, packageName, Visibility.PUBLIC);
+    public DataObjectImpl(String packageName, String name, String label) {
+        super(packageName, name, label, Visibility.PUBLIC);
     }
 
-    public DataObjectImpl(String name, String label, String packageName, boolean isStatic, boolean isFinal, boolean isAbstract) {
-        super(name, label, packageName, Visibility.PUBLIC);
+    public DataObjectImpl(String packageName, String name, String label, boolean isStatic, boolean isFinal, boolean isAbstract) {
+        super(packageName, name, label, Visibility.PUBLIC);
         this._static = isStatic;
         this._final = isFinal;
         this._abstract = isAbstract;
     }
 
-    public DataObjectImpl(String name, String label, String packageName, Visibility visibility) {
-        super(name, label, packageName, visibility);
+    public DataObjectImpl(String packageName, String name, String label, Visibility visibility) {
+        super(packageName, name, label, visibility);
     }
 
-    public DataObjectImpl(String name, String label, String packageName, Visibility visibility, JavaTypeKind typeKind) {
-        super(name, label, packageName, visibility, typeKind);
+    public DataObjectImpl(String packageName, String name, String label, Visibility visibility, JavaTypeKind typeKind) {
+        super(packageName, name, label, visibility, typeKind);
     }
 
-    public DataObjectImpl(String name, String label, String packageName, Visibility visibility, boolean isStatic, boolean isFinal, boolean isAbstract) {
-        super(name, label, packageName, visibility, JavaTypeKind.CLASS);
+    public DataObjectImpl(String packageName, String name, String label, Visibility visibility, boolean isStatic, boolean isFinal, boolean isAbstract) {
+        super(packageName, name, label, visibility, JavaTypeKind.CLASS);
         this._static = isStatic;
         this._final = isFinal;
         this._abstract = isAbstract;
     }
 
-    public DataObjectImpl(String name, String label, String packageName, Visibility visibility, JavaTypeKind typeKind, boolean isStatic, boolean isFinal, boolean isAbstract) {
-        super(name, label, packageName, visibility, typeKind);
+    public DataObjectImpl(String packageName, String name, String label, Visibility visibility, JavaTypeKind typeKind, boolean isStatic, boolean isFinal, boolean isAbstract) {
+        super(packageName, name, label, visibility, typeKind);
         this._static = isStatic;
         this._final = isFinal;
         this._abstract = isAbstract;

@@ -24,21 +24,21 @@ public abstract class AbstractJavaType implements JavaType {
     public AbstractJavaType() {
     }
 
-    public AbstractJavaType(String name, String label, String packageName) {
+    public AbstractJavaType(String packageName, String name, String label) {
         this.name = name;
         this.label = label;
         this.packageName = packageName;
         this.visibility = Visibility.PUBLIC;
     }
 
-    public AbstractJavaType(String name, String label, String packageName, Visibility visibility) {
+    public AbstractJavaType(String packageName, String name, String label, Visibility visibility) {
         this.name = name;
         this.label = label;
         this.packageName = packageName;
         this.visibility = visibility;
     }
 
-    public AbstractJavaType(String name, String label, String packageName, Visibility visibility, JavaTypeKind typeKind) {
+    public AbstractJavaType(String packageName, String name, String label, Visibility visibility, JavaTypeKind typeKind) {
         this.name = name;
         this.label = label;
         this.packageName = packageName;
