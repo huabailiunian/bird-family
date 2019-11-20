@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<#assign entityName = engine.entityPkg + "." + engine.entityNameGen(model.name)>
-<#assign daoName = engine.daoPkg + "." + engine.daoNameGen(model.name)>
+<#assign entity = model.entity>
+<#assign daoName = model.className>
+<#assign entityName = entity.className>
 <mapper namespace="${daoName}">
-<#if model.columns??>
-    <#assign columns = model.columns>
-    <#assign keys = engine.keys(columns)>
+<#if entity.properties??>
+    <#assign columns = entity.columns>
+    <#assign keys = model.primaryKey>
     <#assign tableName = model.name>
 
     <resultMap id="base_result_map" type="${entityName}">
         <#list columns as col>
-        <result column="${col.name}" jdbcType="${engine.jdbcType(col.type)}" property="${engine.fieldNameGen(col.name)}" />
+        <result column="${col.name}" jdbcType="${engine.jdbcType(col.type)}" property="${col.name}" />
         </#list>
     </resultMap>
 

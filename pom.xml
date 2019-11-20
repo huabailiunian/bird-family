@@ -74,6 +74,11 @@
                 <artifactId>bird-zookeeper</artifactId>
                 <version>${this.bird.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.bird</groupId>
+                <artifactId>bird-codegen</artifactId>
+                <version>${this.bird.version}</version>
+            </dependency>
 
 
             <!--加密相关-->
