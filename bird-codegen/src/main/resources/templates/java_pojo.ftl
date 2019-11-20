@@ -7,10 +7,10 @@ package ${model.packageName};
 /**
  * <p>${model.label!}</p>
  *
- * @author maven-plugin
+ * @author code-plugin
  * ${.now?string("yyyy-MM-dd HH:mm:ss")}
  */
-${visibility(model)} class ${model.name} {
+${visibility(model)} ${javaType(model)} ${model.name?cap_first} {
 <#if model.properties??>
     <#assign fields = model.properties>
 
@@ -26,7 +26,7 @@ ${visibility(model)} class ${model.name} {
     </#list>
     @Override
     public String toString() {
-        return "${model.name}{" +
+        return "${model.name?cap_first}{" +
                 <#list fields as f>
                 "${f.name}=" + ${f.name} +<#if f_has_next> "," +</#if>
                 </#list>

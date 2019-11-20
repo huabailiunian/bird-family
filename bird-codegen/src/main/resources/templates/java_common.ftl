@@ -22,6 +22,14 @@
     }
 </#macro>
 
+<#function javaType data>
+    <#if data.annotation>
+        <#return '@interface'/>
+    <#else>
+        <#return data.typeKind?lower_case />
+    </#if>
+</#function>
+
 <#function multipleType field>
     <#assign varBag = field.bag!'java.util.List'/>
     <#if field.multiple>
