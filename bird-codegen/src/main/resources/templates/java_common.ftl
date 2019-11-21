@@ -22,6 +22,18 @@
     }
 </#macro>
 
+<#macro toString data>
+    <#assign fields = data.properties>
+    @Override
+    public String toString() {
+        return "${data.name}{" +
+                <#list fields as f>
+                "${f.name}=" + ${f.name} +<#if f_has_next> "," +</#if>
+                </#list>
+                "}";
+    }
+</#macro>
+
 <#function javaType data>
     <#if data.annotation>
         <#return '@interface'/>

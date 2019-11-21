@@ -25,13 +25,6 @@ ${visibility(varModel)} ${javaType(varModel)} ${varModel.name}<#if varModel.supp
     <@getter field=field/>
 
     </#list>
-    @Override
-    public String toString() {
-        return "${varModel.name}{" +
-                <#list fields as f>
-                "${f.name}=" + ${f.name} +<#if f_has_next> "," +</#if>
-                </#list>
-                "}";
-    }
+    <@toString data=varModel/>
 </#if>
 }
