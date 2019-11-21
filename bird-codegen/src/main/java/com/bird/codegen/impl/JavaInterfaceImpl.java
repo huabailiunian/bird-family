@@ -1,10 +1,13 @@
 package com.bird.codegen.impl;
 
 import com.bird.codegen.JavaInterface;
+import com.bird.codegen.ObjectMethod;
 import com.bird.codegen.enums.JavaTypeKind;
 import com.bird.codegen.enums.Visibility;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,6 +17,8 @@ import java.util.Set;
 public class JavaInterfaceImpl extends AbstractJavaType implements JavaInterface {
 
     private Set<String> interfaces = new HashSet<>();
+
+    private List<ObjectMethod> methods = new ArrayList<>();
 
     public JavaInterfaceImpl() {
     }
@@ -37,6 +42,19 @@ public class JavaInterfaceImpl extends AbstractJavaType implements JavaInterface
     }
 
     @Override
+    public List<ObjectMethod> getMethods() {
+        return this.methods;
+    }
+
+    @Override
+    public ObjectMethod addMethod(ObjectMethod method) {
+        if (method != null) {
+            this.methods.add(method);
+        }
+        return method;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -44,13 +62,15 @@ public class JavaInterfaceImpl extends AbstractJavaType implements JavaInterface
 
         JavaInterfaceImpl that = (JavaInterfaceImpl) o;
 
-        return interfaces != null ? interfaces.equals(that.interfaces) : that.interfaces == null;
+        if (interfaces != null ? !interfaces.equals(that.interfaces) : that.interfaces != null) return false;
+        return methods != null ? methods.equals(that.methods) : that.methods == null;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (interfaces != null ? interfaces.hashCode() : 0);
+        result = 31 * result + (methods != null ? methods.hashCode() : 0);
         return result;
     }
 }

@@ -1,14 +1,17 @@
 package com.bird.codegen.impl;
 
+import com.bird.codegen.ObjectMethod;
 import com.bird.codegen.ObjectProperty;
 import com.bird.codegen.enums.Visibility;
-import com.bird.codegen.utils.TypeUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author youly
- * 2019/11/20 11:01
+ * 2019/11/21 11:27
  */
-public class ObjectPropertyImpl implements ObjectProperty {
+public class ObjectMethodImpl implements ObjectMethod {
 
     private String name;
 
@@ -20,17 +23,29 @@ public class ObjectPropertyImpl implements ObjectProperty {
 
     private String bag;
 
-    private Visibility visibility = Visibility.PRIVATE;
+    private Visibility visibility = Visibility.PUBLIC;
+
+    private List<ObjectProperty> params = new ArrayList<>();
 
     private boolean _static = false;
 
     private boolean _final = false;
 
-    public ObjectPropertyImpl(String name, String label, String className) {
-        this(name, label, className, Boolean.FALSE);
+    public ObjectMethodImpl(String name, String label) {
+        this.name = name;
+        this.label = label;
+        this.className = DEFAULT_METHOD_CLASS;
+        this.multiple = false;
     }
 
-    public ObjectPropertyImpl(String name, String label, String className, Visibility visibility) {
+    public ObjectMethodImpl(String name, String label, String className) {
+        this.name = name;
+        this.label = label;
+        this.className = className;
+        this.multiple = false;
+    }
+
+    public ObjectMethodImpl(String name, String label, String className, Visibility visibility) {
         this.name = name;
         this.label = label;
         this.className = className;
@@ -38,17 +53,15 @@ public class ObjectPropertyImpl implements ObjectProperty {
         this.multiple = false;
     }
 
-    public ObjectPropertyImpl(String name, String label, String className, boolean multiple) {
+    public ObjectMethodImpl(String name, String label, String className, boolean multiple) {
         this.name = name;
         this.label = label;
         this.className = className;
         this.multiple = multiple;
-        if (multiple) {
-            this.bag = DEFAULT_PROPERTY_BAG;
-        }
+        this.bag = DEFAULT_METHOD_BAG;
     }
 
-    public ObjectPropertyImpl(String name, String label, String className, boolean multiple, String bag) {
+    public ObjectMethodImpl(String name, String label, String className, boolean multiple, String bag) {
         this.name = name;
         this.label = label;
         this.className = className;
@@ -56,7 +69,7 @@ public class ObjectPropertyImpl implements ObjectProperty {
         this.bag = bag;
     }
 
-    public ObjectPropertyImpl(String name, String label, String className, boolean multiple, String bag, Visibility visibility) {
+    public ObjectMethodImpl(String name, String label, String className, boolean multiple, String bag, Visibility visibility) {
         this.name = name;
         this.label = label;
         this.className = className;
@@ -65,7 +78,16 @@ public class ObjectPropertyImpl implements ObjectProperty {
         this.visibility = visibility;
     }
 
-    public ObjectPropertyImpl(String name, String label, String className, boolean multiple, String bag, Visibility visibility, boolean isStatic, boolean isFinal) {
+    public ObjectMethodImpl(String name, String label, String className, Visibility visibility, boolean isStatic, boolean isFinal) {
+        this.name = name;
+        this.label = label;
+        this.className = className;
+        this.visibility = visibility;
+        this._static = isStatic;
+        this._final = isFinal;
+    }
+
+    public ObjectMethodImpl(String name, String label, String className, boolean multiple, String bag, Visibility visibility, boolean isStatic, boolean isFinal) {
         this.name = name;
         this.label = label;
         this.className = className;
@@ -90,21 +112,6 @@ public class ObjectPropertyImpl implements ObjectProperty {
     }
 
     @Override
-    public boolean isArray() {
-        return this.className.endsWith("[]");
-    }
-
-    @Override
-    public boolean isBaseType() {
-        return TypeUtils.isBaseType(this.className);
-    }
-
-    @Override
-    public boolean isPrimitiveType() {
-        return TypeUtils.isPrimitiveTypeClass(this.className);
-    }
-
-    @Override
     public String getBag() {
         return this.bag;
     }
@@ -112,6 +119,11 @@ public class ObjectPropertyImpl implements ObjectProperty {
     @Override
     public void setBag(String bag) {
         this.bag = bag;
+    }
+
+    @Override
+    public boolean isArray() {
+        return this.className.endsWith("[]");
     }
 
     @Override
@@ -127,6 +139,18 @@ public class ObjectPropertyImpl implements ObjectProperty {
     @Override
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    @Override
+    public List<ObjectProperty> getParams() {
+        return this.params;
+    }
+
+    @Override
+    public void addParam(ObjectProperty param) {
+        if (param != null) {
+            this.params.add(param);
+        }
     }
 
     @Override
@@ -156,22 +180,22 @@ public class ObjectPropertyImpl implements ObjectProperty {
 
     @Override
     public boolean isPackagePrivate() {
-        return visibility == Visibility.PACKAGE_PRIVATE;
+        return this.visibility == Visibility.PACKAGE_PRIVATE;
     }
 
     @Override
     public boolean isPublic() {
-        return visibility == Visibility.PUBLIC;
+        return this.visibility == Visibility.PUBLIC;
     }
 
     @Override
     public boolean isPrivate() {
-        return visibility == Visibility.PRIVATE;
+        return this.visibility == Visibility.PRIVATE;
     }
 
     @Override
     public boolean isProtected() {
-        return visibility == Visibility.PROTECTED;
+        return this.visibility == Visibility.PROTECTED;
     }
 
     @Override
@@ -180,25 +204,11 @@ public class ObjectPropertyImpl implements ObjectProperty {
     }
 
     @Override
-    public String toString() {
-        return "ObjectPropertyImpl{" +
-                "name='" + name + '\'' +
-                ", label='" + label + '\'' +
-                ", className='" + className + '\'' +
-                ", multiple=" + multiple +
-                ", bag='" + bag + '\'' +
-                ", visibility=" + visibility +
-                ", _static=" + _static +
-                ", _final=" + _final +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ObjectPropertyImpl that = (ObjectPropertyImpl) o;
+        ObjectMethodImpl that = (ObjectMethodImpl) o;
 
         if (multiple != that.multiple) return false;
         if (_static != that._static) return false;
@@ -207,7 +217,8 @@ public class ObjectPropertyImpl implements ObjectProperty {
         if (label != null ? !label.equals(that.label) : that.label != null) return false;
         if (className != null ? !className.equals(that.className) : that.className != null) return false;
         if (bag != null ? !bag.equals(that.bag) : that.bag != null) return false;
-        return visibility == that.visibility;
+        if (visibility != that.visibility) return false;
+        return params != null ? params.equals(that.params) : that.params == null;
     }
 
     @Override
@@ -218,6 +229,7 @@ public class ObjectPropertyImpl implements ObjectProperty {
         result = 31 * result + (multiple ? 1 : 0);
         result = 31 * result + (bag != null ? bag.hashCode() : 0);
         result = 31 * result + (visibility != null ? visibility.hashCode() : 0);
+        result = 31 * result + (params != null ? params.hashCode() : 0);
         result = 31 * result + (_static ? 1 : 0);
         result = 31 * result + (_final ? 1 : 0);
         return result;

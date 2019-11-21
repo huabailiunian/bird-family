@@ -9,7 +9,7 @@ import com.bird.codegen.exception.CodeGenException;
 public interface CodeGenEngine {
 
     String DEFAULT_TEMPLATE_POJO = "java_pojo.ftl";
-    String DEFAULT_TEMPLATE_DAO = "java_dao.ftl";
+    String DEFAULT_TEMPLATE_INTERFACE = "java_interface.ftl";
 
     String generator(Context context, String templateName) throws CodeGenException;
 
