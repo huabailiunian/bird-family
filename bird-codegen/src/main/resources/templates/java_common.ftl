@@ -40,7 +40,7 @@
 -->
 <#macro genMethod method>
     <#assign params = method.params />
-    ${visibility(method)}<#if method.static> static</#if><#if method.final> final</#if> ${method.className} ${method.name}(<#list params as param>${multipleType(param)} ${param.name}<#if param_has_next>, </#if></#list>);
+    ${visibility(method)}<#if method.static> static</#if><#if method.final> final</#if> ${multipleType(method)} ${method.name}(<#list params as param>${multipleType(param)} ${param.name}<#if param_has_next>, </#if></#list>);
 </#macro>
 
 <#--data = JavaType.class-->
