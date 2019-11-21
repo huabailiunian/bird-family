@@ -10,7 +10,7 @@ package ${varModel.packageName};
 * @author code-plugin
 * ${.now?string("yyyy/MM/dd HH:mm:ss")}
 */
-${visibility(varModel)} interface ${varModel.name}${resolveInterface(varModel)} {
+${visibility(varModel)} interface ${varModel.name?cap_first}${resolveInterface(varModel)} {
 
 <#if varModel.methods??>
 <#assign methods = varModel.methods />

@@ -4,11 +4,11 @@
     /**
      * <p>${field.label!}</p>
      */
-    ${visibility(field)}<#if field.static> static</#if><#if field.final> final</#if> ${varType} ${field.name};
+    ${visibility(field)}<#if field.static> static</#if><#if field.final> final</#if> ${varType} ${field.name?uncap_first};
 </#macro>
 
 <#macro setter field>
-    <#assign varName = field.name>
+    <#assign varName = field.name?uncap_first>
     <#assign varType = multipleType(field)>
     public void set${varName?cap_first}(${varType} ${varName}) {
         this.${varName} = ${varName}
@@ -16,7 +16,7 @@
 </#macro>
 
 <#macro getter field>
-    <#assign varName = field.name>
+    <#assign varName = field.name?uncap_first>
     <#assign varType = multipleType(field)>
     public ${varType} get${varName?cap_first}() {
         return this.${varName}
@@ -27,9 +27,9 @@
     <#assign fields = data.properties>
     @Override
     public String toString() {
-        return "${data.name}{" +
+        return "${data.name?cap_first}{" +
                 <#list fields as f>
-                "${f.name}=" + ${f.name} +<#if f_has_next> "," +</#if>
+                "${f.name?uncap_first}=" + ${f.name?uncap_first} +<#if f_has_next> "," +</#if>
                 </#list>
                 "}";
     }
@@ -40,7 +40,7 @@
 -->
 <#macro genMethod method>
     <#assign params = method.params />
-    ${visibility(method)}<#if method.static> static</#if><#if method.final> final</#if> ${multipleType(method)} ${method.name}(<#list params as param>${multipleType(param)} ${param.name}<#if param_has_next>, </#if></#list>);
+    ${visibility(method)}<#if method.static> static</#if><#if method.final> final</#if> ${multipleType(method)} ${method.name}(<#list params as param>${multipleType(param)} ${param.name?uncap_first}<#if param_has_next>, </#if></#list>);
 </#macro>
 
 <#--data = JavaType.class-->

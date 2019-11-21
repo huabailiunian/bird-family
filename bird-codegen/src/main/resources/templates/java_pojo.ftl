@@ -11,7 +11,7 @@ package ${varModel.packageName};
  * @author code-plugin
  * ${.now?string("yyyy-MM-dd HH:mm:ss")}
  */
-${visibility(varModel)} ${javaType(varModel)} ${varModel.name}<#if varModel.supperClassName??> extends ${varModel.supperClassName}</#if>${resolveInterface(varModel)} {
+${visibility(varModel)} ${javaType(varModel)} ${varModel.name?cap_first}<#if varModel.supperClassName??> extends ${varModel.supperClassName}</#if>${resolveInterface(varModel)} {
 <#if varModel.properties??>
     <#assign fields = varModel.properties>
 
