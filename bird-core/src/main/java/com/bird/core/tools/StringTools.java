@@ -1,5 +1,6 @@
 package com.bird.core.tools;
 
+import com.google.common.base.CaseFormat;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -14,6 +15,22 @@ public class StringTools {
     private static final String SPLIT_REGEX = "\\\\u";
     private static final int HEX16_RADIX = 16;
     private static final String UNICODE_TEMP = "0000";
+
+    public static String underlinToLowerCamel(String string) {
+        return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, string);
+    }
+
+    public static String underlinToUpperCamel(String string) {
+        return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, string);
+    }
+
+    public static String camelToLowerUnderline(String string) {
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, string);
+    }
+
+    public static String camelToUpperUnderline(String string) {
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, string);
+    }
 
     public static String upperCaseFirst(String str) {
         if (StringUtils.isBlank(str)) {
