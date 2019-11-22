@@ -16,11 +16,11 @@ public class StringTools {
     private static final int HEX16_RADIX = 16;
     private static final String UNICODE_TEMP = "0000";
 
-    public static String underlinToLowerCamel(String string) {
+    public static String underlineToLowerCamel(String string) {
         return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, string);
     }
 
-    public static String underlinToUpperCamel(String string) {
+    public static String underlineToUpperCamel(String string) {
         return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, string);
     }
 
