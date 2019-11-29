@@ -11,12 +11,19 @@ import java.util.Map;
  */
 public class AnnotationImpl implements Annotation {
 
+    private static final String DEFAULT_MEMBER_NAME = "value";
+
     private String className;
 
     private Map<String, Object> values = new HashMap<>();
 
     public AnnotationImpl(String className) {
         this.className = className;
+    }
+
+    public AnnotationImpl(String className, String value) {
+        this.className = className;
+        this.setValue(DEFAULT_MEMBER_NAME, value);
     }
 
     @Override
@@ -60,5 +67,13 @@ public class AnnotationImpl implements Annotation {
         int result = className != null ? className.hashCode() : 0;
         result = 31 * result + (values != null ? values.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AnnotationImpl{" +
+                "className='" + className + '\'' +
+                ", values=" + values +
+                '}';
     }
 }
