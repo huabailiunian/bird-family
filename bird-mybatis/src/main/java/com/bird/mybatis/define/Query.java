@@ -63,7 +63,7 @@ public class Query {
     }
 
     public List<String> getParamList() {
-        return Arrays.asList(StringUtils.split(params, BirdConst.SEPARATOR_DEFAULT));
+        return Arrays.asList(StringUtils.split(params, BirdConst.DELIMITER_DEFAULT));
     }
 
     public String getParams() {

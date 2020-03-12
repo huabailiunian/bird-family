@@ -63,7 +63,7 @@ public class Index {
     }
 
     public List<String> getColumnList() {
-        return Arrays.asList(StringUtils.split(this.columns, BirdConst.SEPARATOR_DEFAULT));
+        return Arrays.asList(StringUtils.split(this.columns, BirdConst.DELIMITER_DEFAULT));
     }
 
     @Override

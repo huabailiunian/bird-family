@@ -4,6 +4,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * 常量类
+ *
  * @author youly
  * 2019/6/25 17:51
  */
@@ -19,8 +21,6 @@ public interface BirdConst {
      */
     String DELIMITER_DEFAULT = ",";
     String DELIMITER_UNDERLINE = "_";
-    String SEPARATOR_DEFAULT = ",";
-    String SEPARATOR_UNDERLINE = "_";
     String NEW_LINE = "\n";
     String BLACK_STRING = "";
     String PATH_SEPARATOR_UNIX = "/";
@@ -30,8 +30,8 @@ public interface BirdConst {
      */
     boolean BOOLEAN_TRUE = true;
     boolean BOOLEAN_FALSE = false;
-    int INT_BOOLEAN_TRUE = 1;
-    int INT_BOOLEAN_FALSE = 0;
+    int BOOLEAN_TRUE_INT = 1;
+    int BOOLEAN_FALSE_INT = 0;
     /**
      * 脱敏后字符
      */
