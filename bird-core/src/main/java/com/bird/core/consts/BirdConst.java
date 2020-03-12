@@ -1,6 +1,7 @@
 package com.bird.core.consts;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author youly
@@ -11,7 +12,7 @@ public interface BirdConst {
     /**
      * 字符编码
      */
-    Charset CHARSET_UTF8 = Charset.forName("UTF-8");
+    Charset CHARSET_UTF8 = StandardCharsets.UTF_8;
     Charset CHARSET_GBK = Charset.forName("GBK");
     /**
      * 定界、分隔等字符

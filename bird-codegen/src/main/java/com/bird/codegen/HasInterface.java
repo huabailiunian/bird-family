@@ -8,7 +8,17 @@ import java.util.Set;
  */
 public interface HasInterface {
 
+    /**
+     * 获取所有接口
+     *
+     * @return
+     */
     Set<String> getInterfaces();
 
+    /**
+     * 添加接口
+     *
+     * @param interfaceName
+     */
     void addInterface(String interfaceName);
 }

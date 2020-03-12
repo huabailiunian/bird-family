@@ -5,15 +5,35 @@ import com.bird.codegen.enums.Visibility;
 import java.util.List;
 
 /**
+ * 数据对象
  * @author youly
  * 2019/11/20 11:34
  */
 public interface DataObject extends JavaClass {
 
+    /**
+     * 获取属性字段
+     * @return
+     */
     List<ObjectProperty> getProperties();
 
+    /**
+     * 添加属性字段
+     * @param name
+     * @param label
+     * @param className
+     * @return
+     */
     ObjectProperty addProperty(String name, String label, String className);
 
+    /**
+     * 添加属性字段
+     * @param name
+     * @param label
+     * @param className
+     * @param visibility
+     * @return
+     */
     ObjectProperty addProperty(String name, String label, String className, Visibility visibility);
 
     ObjectProperty addProperty(String name, String label, String className, boolean multiple);

@@ -5,11 +5,15 @@ import java.math.BigInteger;
 import java.util.Date;
 
 /**
+ * 类型枚举
  * @author youly
  * 2019/11/21 14:17
  */
 public enum TypeEnum {
 
+    /**
+     * 数据类型
+     */
     BYTE("Byte", Byte.class.getName()),
     SHORT("Short", Short.class.getName()),
     INTEGER("Integer", Integer.class.getName()),

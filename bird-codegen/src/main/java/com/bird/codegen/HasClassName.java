@@ -6,6 +6,10 @@ package com.bird.codegen;
  */
 public interface HasClassName {
 
+    /**
+     * 获取类名
+     * @return name
+     */
     String getClassName();
 
 }

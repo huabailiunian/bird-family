@@ -40,6 +40,7 @@ public class RedisMQClient implements MQClient {
         this.timeout = timeout;
     }
 
+    @Override
     public boolean send(String queue, Object msg) {
         try {
             if (this.redisClient.getBlockingQueue(queue).offer(msg, this.timeout, TimeUnit.MILLISECONDS)) {

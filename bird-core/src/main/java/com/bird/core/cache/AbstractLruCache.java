@@ -11,7 +11,7 @@ import java.util.Set;
  * @author youly
  * 2019/5/9 15:59
  */
-public abstract class LRUCache<K, V> implements ICache<K, V> {
+public abstract class AbstractLruCache<K, V> implements ICache<K, V> {
 
     private static final int DEFAULT_CACHE_SIZE = 16;
 
@@ -21,11 +21,11 @@ public abstract class LRUCache<K, V> implements ICache<K, V> {
 
     private Map<K, V> cache;
 
-    public LRUCache() {
+    public AbstractLruCache() {
         this(DEFAULT_CACHE_SIZE);
     }
 
-    public LRUCache(Integer cacheSize) {
+    public AbstractLruCache(Integer cacheSize) {
         int initCapacity = cacheSize + 1;
         this.cache = new LinkedHashMap<K, V>(initCapacity, LOAD_FACTOR, ACCESS_ORDER) {
             @Override
