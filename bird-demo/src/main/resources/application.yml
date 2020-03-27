@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: demo
+
+bird:
+  redis:
+    enable: true
+    key-group: dev:demo
+    single:
+      host: 10.10.203.101:6379
+  zk:
+    enable: true
+    address: 10.10.203.101:2181
+
+logging:
+  config: classpath:logback.xml

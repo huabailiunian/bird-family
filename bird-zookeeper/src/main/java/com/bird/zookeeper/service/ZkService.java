@@ -15,12 +15,13 @@ public interface ZkService {
      *
      * @param path 路径
      * @return
-     * @throws Exception
+     * @throws NoNodeException
      */
     List<String> getChildren(String path) throws NoNodeException;
 
     /**
      * 创建永久路径
+     *
      * @param path
      * @return
      * @throws Exception
@@ -29,19 +30,21 @@ public interface ZkService {
 
     /**
      * 创建路径，父路径若不存在也会被创建，如果为临时路径，父路径为 Container
+     *
      * @param path
-     * @param isTemp 是否为临时路径，临时路径在与 zk 端口连接后会被自动删除
+     * @param isTemp 是否为临时路径，临时路径在与 zk 断开连接后会被自动删除
      * @return
      * @throws Exception
      */
     String create(String path, boolean isTemp) throws Exception;
 
     /**
+     * 创建节点路径
      *
-     * @param path
-     * @param recursive 是否创建父路径
+     * @param path        URL
+     * @param recursive   是否创建父路径
      * @param isContainer 父路径是否为 Container，如果为 Container，当子路径均被删除时，Container 也会被删除
-     * @param isTemp 临时路径在与 zk 端口连接后会被自动删除
+     * @param isTemp      临时路径在与 zk 断开连接后会被自动删除
      * @return
      * @throws Exception
      */
@@ -49,13 +52,15 @@ public interface ZkService {
 
     /**
      * 删除路径，默认不处理子路径
-     * @param path
+     *
+     * @param path URL
      * @throws Exception
      */
     void delete(String path) throws Exception;
 
     /**
      * 删除路径
+     *
      * @param path
      * @param recursive 是否删除子路径
      * @throws Exception
@@ -64,6 +69,7 @@ public interface ZkService {
 
     /**
      * 检查指定路径是否存在
+     *
      * @param path
      * @return true-存在，false-不存在
      * @throws Exception
