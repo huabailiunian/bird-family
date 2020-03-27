@@ -15,7 +15,7 @@ import java.security.Security;
  */
 public final class DigestTools {
 
-    private static final BouncyCastleProvider provider = new BouncyCastleProvider();
+    private static final BouncyCastleProvider PROVIDER = new BouncyCastleProvider();
 
 
     public static String sm3Hex(final String data) {
@@ -68,14 +68,14 @@ public final class DigestTools {
 
     private static MessageDigest getDigest(String algorithm) {
         try {
-            return MessageDigest.getInstance(algorithm, provider);
+            return MessageDigest.getInstance(algorithm, PROVIDER);
         } catch (final NoSuchAlgorithmException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
     public static Provider provider() {
-        return provider;
+        return PROVIDER;
     }
 
     public static String providerName() {
@@ -83,6 +83,6 @@ public final class DigestTools {
     }
 
     public static void registerProvider() {
-        Security.addProvider(provider);
+        Security.addProvider(PROVIDER);
     }
 }

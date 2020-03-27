@@ -11,5 +11,11 @@ import java.io.IOException;
  */
 public interface FreemarkerGenerator extends Generator {
 
+    /**
+     * 获取 freemarker 模板
+     *
+     * @return 模板
+     * @throws IOException
+     */
     Template getTemplate() throws IOException;
 }

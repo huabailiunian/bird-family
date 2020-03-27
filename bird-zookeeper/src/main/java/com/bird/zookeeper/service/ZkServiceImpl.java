@@ -2,7 +2,7 @@ package com.bird.zookeeper.service;
 
 import com.bird.core.consts.BirdConst;
 import com.bird.zookeeper.exception.NoNodeException;
-import com.bird.zookeeper.exception.ZKException;
+import com.bird.zookeeper.exception.ZkException;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.api.CreateBuilder;
 import org.apache.curator.framework.api.DeleteBuilder;
@@ -29,9 +29,9 @@ public class ZkServiceImpl implements ZkService {
         try {
             return zkClient.getChildren().forPath(path);
         } catch (KeeperException.NoNodeException e) {
-            throw new NoNodeException("不存在的路径", e);
+            throw new NoNodeException("路径不存在", e);
         } catch (Exception e) {
-            throw new ZKException("未处理异常", e);
+            throw new ZkException("未知异常", e);
         }
     }
 

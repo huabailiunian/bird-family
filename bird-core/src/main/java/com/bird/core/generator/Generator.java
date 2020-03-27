@@ -8,5 +8,12 @@ import java.io.IOException;
  */
 public interface Generator {
 
+    /**
+     * 处理
+     *
+     * @param object
+     * @return
+     * @throws IOException
+     */
     String process(Object object) throws IOException;
 }
