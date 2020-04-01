@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author youly
@@ -103,13 +104,19 @@ public class DataObjectImpl extends JavaClassImpl implements DataObject {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
         DataObjectImpl that = (DataObjectImpl) o;
 
-        return properties != null ? properties.equals(that.properties) : that.properties == null;
+        return Objects.equals(properties, that.properties);
     }
 
     @Override

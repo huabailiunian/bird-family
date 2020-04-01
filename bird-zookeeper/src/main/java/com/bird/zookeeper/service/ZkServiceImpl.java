@@ -1,6 +1,6 @@
 package com.bird.zookeeper.service;
 
-import com.bird.core.consts.BirdConst;
+import com.bird.core.consts.GlobalConst;
 import com.bird.zookeeper.exception.NoNodeException;
 import com.bird.zookeeper.exception.ZkException;
 import org.apache.curator.framework.CuratorFramework;
@@ -37,15 +37,15 @@ public class ZkServiceImpl implements ZkService {
 
     @Override
     public String create(String path) throws Exception {
-        return create(path, BirdConst.BOOLEAN_FALSE);
+        return create(path, GlobalConst.FALSE);
     }
 
     @Override
     public String create(String path, boolean isTemp) throws Exception {
         if (isTemp) {
-            return create(path, BirdConst.BOOLEAN_TRUE, BirdConst.BOOLEAN_TRUE, BirdConst.BOOLEAN_TRUE);
+            return create(path, GlobalConst.TRUE, GlobalConst.TRUE, GlobalConst.TRUE);
         } else {
-            return create(path, BirdConst.BOOLEAN_TRUE, BirdConst.BOOLEAN_FALSE, BirdConst.BOOLEAN_FALSE);
+            return create(path, GlobalConst.FALSE, GlobalConst.FALSE, GlobalConst.FALSE);
         }
     }
 
@@ -77,7 +77,7 @@ public class ZkServiceImpl implements ZkService {
 
     @Override
     public void delete(String path) throws Exception {
-        delete(path, BirdConst.BOOLEAN_FALSE);
+        delete(path, GlobalConst.FALSE);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.bird.core.tools;
 
-import com.bird.core.consts.BirdConst;
+import com.bird.core.consts.GlobalConst;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -34,16 +34,16 @@ public class ZipTools {
 
     public static String gzipBase64(String data) throws IOException {
         if (StringUtils.isBlank(data)) {
-            return BirdConst.BLACK_STRING;
+            return GlobalConst.BLACK_STRING;
         }
-        byte[] bytes = gzip(data.getBytes(BirdConst.CHARSET_UTF8));
+        byte[] bytes = gzip(data.getBytes(GlobalConst.CHARSET_UTF8));
         return Base64.encodeBase64String(bytes);
     }
 
 
     public static String unGzip(byte[] data) throws IOException {
         if (ArrayUtils.isEmpty(data)) {
-            return BirdConst.BLACK_STRING;
+            return GlobalConst.BLACK_STRING;
         }
         int off = 0;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -57,7 +57,7 @@ public class ZipTools {
         }
         gzip.close();
         input.close();
-        String result = out.toString(BirdConst.CHARSET_UTF8.name());
+        String result = out.toString(GlobalConst.CHARSET_UTF8.name());
         out.close();
         return result;
     }

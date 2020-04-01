@@ -1,6 +1,6 @@
 package com.bird.demo.bean.factory;
 
-import com.bird.core.consts.BirdConst;
+import com.bird.core.consts.GlobalConst;
 import com.bird.core.tools.IdWorker;
 import com.bird.core.tools.PathTools;
 import com.bird.redis.client.RedisClient;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020-03-25 14:24
  */
 @Slf4j
-public class IdWorkBeanFactory implements FactoryBean<IdWorker> {
+public class IdWorkFactoryBean implements FactoryBean<IdWorker> {
 
     private static final long MAX_WORKER_ID = IdWorker.maxWorkerId;
 
@@ -41,7 +41,7 @@ public class IdWorkBeanFactory implements FactoryBean<IdWorker> {
     private long nextWorkId() throws Exception {
         RLock lock = redisClient.getClient().getLock(lockKey);
         try {
-            lock.tryLock(BirdConst.CONNECT_TIME_OUT, TimeUnit.MILLISECONDS);
+            lock.tryLock(GlobalConst.CONNECT_TIME_OUT, TimeUnit.MILLISECONDS);
             List<String> children = Collections.emptyList();
             String zkPath = PathTools.getZkPath(this.zkPath);
             boolean exist = zkService.checkExist(zkPath);
@@ -54,7 +54,7 @@ public class IdWorkBeanFactory implements FactoryBean<IdWorker> {
                     continue;
                 }
                 String node = PathTools.getPath(zkPath, id);
-                String path = zkService.create(node, BirdConst.BOOLEAN_TRUE, BirdConst.BOOLEAN_TRUE, BirdConst.BOOLEAN_TRUE);
+                String path = zkService.create(node, GlobalConst.TRUE, GlobalConst.TRUE, GlobalConst.TRUE);
                 log.info("分布式ID生成器建立zk节点path:{}, workerId:{}", path, i);
                 return i;
             }

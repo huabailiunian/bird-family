@@ -4,6 +4,7 @@ import com.bird.codegen.Annotation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author youly
@@ -53,13 +54,19 @@ public class AnnotationImpl implements Annotation {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         AnnotationImpl that = (AnnotationImpl) o;
 
-        if (className != null ? !className.equals(that.className) : that.className != null) return false;
-        return values != null ? values.equals(that.values) : that.values == null;
+        if (!Objects.equals(className, that.className)) {
+            return false;
+        }
+        return Objects.equals(values, that.values);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.bird.mybatis.define;
 
-import com.bird.core.consts.BirdConst;
+import com.bird.core.consts.GlobalConst;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import org.apache.commons.lang3.StringUtils;
@@ -63,7 +63,7 @@ public class Index {
     }
 
     public List<String> getColumnList() {
-        return Arrays.asList(StringUtils.split(this.columns, BirdConst.DELIMITER_DEFAULT));
+        return Arrays.asList(StringUtils.split(this.columns, GlobalConst.DELIMITER_DEFAULT));
     }
 
     @Override

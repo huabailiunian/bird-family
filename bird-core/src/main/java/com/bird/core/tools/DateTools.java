@@ -1,6 +1,6 @@
 package com.bird.core.tools;
 
-import com.bird.core.consts.BirdConst;
+import com.bird.core.consts.GlobalConst;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -17,39 +17,39 @@ import java.util.Date;
 public class DateTools {
 
     public static String formatDate(Date date) {
-        return DateFormatUtils.format(date, BirdConst.FORMAT_DATE);
+        return DateFormatUtils.format(date, GlobalConst.FORMAT_DATE);
     }
 
     public static String formatDate(long millis) {
-        return DateFormatUtils.format(millis, BirdConst.FORMAT_DATE);
+        return DateFormatUtils.format(millis, GlobalConst.FORMAT_DATE);
     }
 
     public static String formatTime(Date date) {
-        return DateFormatUtils.format(date, BirdConst.FORMAT_TIME);
+        return DateFormatUtils.format(date, GlobalConst.FORMAT_TIME);
     }
 
     public static String formatTime(long millis) {
-        return DateFormatUtils.format(millis, BirdConst.FORMAT_TIME);
+        return DateFormatUtils.format(millis, GlobalConst.FORMAT_TIME);
     }
 
     public static String formatDateTime(long millis) {
-        return DateFormatUtils.format(millis, BirdConst.FORMAT_DATETIME);
+        return DateFormatUtils.format(millis, GlobalConst.FORMAT_DATETIME);
     }
 
     public static String formatTimestamp(long millis) {
-        return DateFormatUtils.format(millis, BirdConst.FORMAT_DATETIME);
+        return DateFormatUtils.format(millis, GlobalConst.FORMAT_DATETIME);
     }
 
     public static Date parseTimestamp(String source) throws ParseException {
-        return DateUtils.parseDate(source, BirdConst.FORMAT_TIMESTAMP);
+        return DateUtils.parseDate(source, GlobalConst.FORMAT_TIMESTAMP);
     }
 
     public static Date parseDateTime(String source) throws ParseException {
-        return DateUtils.parseDate(source, BirdConst.FORMAT_DATETIME);
+        return DateUtils.parseDate(source, GlobalConst.FORMAT_DATETIME);
     }
 
     public static Date parseDate(String source) throws ParseException {
-        return DateUtils.parseDate(source, BirdConst.FORMAT_DATE);
+        return DateUtils.parseDate(source, GlobalConst.FORMAT_DATE);
     }
 
     public static Date startOfDay(Date date) {

@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
  * @author youly
  * 2019/6/25 17:51
  */
-public interface BirdConst {
+public interface GlobalConst {
 
     /**
      * 字符编码
@@ -28,10 +28,10 @@ public interface BirdConst {
     /**
      * 逻辑值
      */
-    boolean BOOLEAN_TRUE = true;
-    boolean BOOLEAN_FALSE = false;
-    int BOOLEAN_TRUE_INT = 1;
-    int BOOLEAN_FALSE_INT = 0;
+    boolean TRUE = true;
+    boolean FALSE = false;
+    int TRUE_INT = 1;
+    int FALSE_INT = 0;
     /**
      * 脱敏后字符
      */
@@ -55,12 +55,4 @@ public interface BirdConst {
      */
     int NUM_ZERO = 0;
     int NUM_ONE = 1;
-    int NUM_TWO = 2;
-    int NUM_THREE = 3;
-    int NUM_FOUR = 4;
-    int NUM_FIVE = 5;
-    int NUM_SIX = 6;
-    int NUM_SEVEN = 7;
-    int NUM_EIGHT = 8;
-    int NUM_NINE = 9;
 }

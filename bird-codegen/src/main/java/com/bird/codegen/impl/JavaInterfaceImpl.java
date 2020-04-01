@@ -5,10 +5,7 @@ import com.bird.codegen.ObjectMethod;
 import com.bird.codegen.enums.JavaTypeKind;
 import com.bird.codegen.enums.Visibility;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author youly
@@ -56,14 +53,22 @@ public class JavaInterfaceImpl extends AbstractJavaType implements JavaInterface
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
         JavaInterfaceImpl that = (JavaInterfaceImpl) o;
 
-        if (interfaces != null ? !interfaces.equals(that.interfaces) : that.interfaces != null) return false;
-        return methods != null ? methods.equals(that.methods) : that.methods == null;
+        if (!Objects.equals(interfaces, that.interfaces)) {
+            return false;
+        }
+        return Objects.equals(methods, that.methods);
     }
 
     @Override

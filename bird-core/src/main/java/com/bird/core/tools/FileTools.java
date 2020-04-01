@@ -1,6 +1,6 @@
 package com.bird.core.tools;
 
-import com.bird.core.consts.BirdConst;
+import com.bird.core.consts.GlobalConst;
 
 import java.io.*;
 import java.nio.channels.FileChannel;
@@ -47,7 +47,7 @@ public class FileTools {
 
             String tmp;
             while ((tmp = reader.readLine()) != null) {
-                builder.append(tmp).append(BirdConst.NEW_LINE);
+                builder.append(tmp).append(GlobalConst.NEW_LINE);
             }
 
             reader.close();
@@ -58,7 +58,7 @@ public class FileTools {
     }
 
     public static String readFile(InputStream inputStream) throws IOException {
-        return readFile(inputStream, BirdConst.CHARSET_UTF8);
+        return readFile(inputStream, GlobalConst.CHARSET_UTF8);
     }
 
     public static String readFile(File file) throws IOException {
@@ -71,7 +71,7 @@ public class FileTools {
 
     public static void writeFile(File target, String data, boolean append) throws IOException {
         FileOutputStream stream = new FileOutputStream(target, append);
-        OutputStreamWriter writer = new OutputStreamWriter(stream, BirdConst.CHARSET_UTF8);
+        OutputStreamWriter writer = new OutputStreamWriter(stream, GlobalConst.CHARSET_UTF8);
         writer.write(data);
         writer.flush();
         writer.close();
@@ -79,7 +79,7 @@ public class FileTools {
     }
 
     public static void writeFile(String file, String data) throws IOException {
-        writeFile(new File(file), data, BirdConst.BOOLEAN_FALSE);
+        writeFile(new File(file), data, GlobalConst.FALSE);
     }
 
     /**
@@ -91,7 +91,7 @@ public class FileTools {
     public static void zeroCopy(File source, File target) throws IOException {
         FileChannel input = new FileInputStream(source).getChannel();
         FileChannel output = new FileOutputStream(target).getChannel();
-        input.transferTo(BirdConst.NUM_ZERO, input.size(), output);
+        input.transferTo(GlobalConst.NUM_ZERO, input.size(), output);
         input.close();
         output.close();
     }

@@ -1,6 +1,6 @@
 package com.bird.mybatis.generator;
 
-import com.bird.core.consts.BirdConst;
+import com.bird.core.consts.GlobalConst;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -23,7 +23,7 @@ public class FreemarkerConfiguration {
     private FreemarkerConfiguration() {
         this.config = new Configuration(Configuration.VERSION_2_3_23);
         this.config.setTemplateLoader(new ClassTemplateLoader(FreemarkerConfiguration.class, TEMPLATE_PATH));
-        this.config.setDefaultEncoding(BirdConst.CHARSET_UTF8.name());
+        this.config.setDefaultEncoding(GlobalConst.CHARSET_UTF8.name());
     }
 
     public Template getTemplate(String name) throws IOException {

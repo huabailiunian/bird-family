@@ -5,6 +5,7 @@ import com.bird.codegen.enums.JavaTypeKind;
 import com.bird.codegen.enums.Visibility;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -85,18 +86,31 @@ public class JavaClassImpl extends AbstractJavaType implements JavaClass {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
         JavaClassImpl javaClass = (JavaClassImpl) o;
 
-        if (_static != javaClass._static) return false;
-        if (_final != javaClass._final) return false;
-        if (_abstract != javaClass._abstract) return false;
-        if (supperClassName != null ? !supperClassName.equals(javaClass.supperClassName) : javaClass.supperClassName != null)
+        if (_static != javaClass._static) {
             return false;
-        return interfaces != null ? interfaces.equals(javaClass.interfaces) : javaClass.interfaces == null;
+        }
+        if (_final != javaClass._final) {
+            return false;
+        }
+        if (javaClass._abstract != _abstract) {
+            return false;
+        }
+        if (!Objects.equals(supperClassName, javaClass.supperClassName)) {
+            return false;
+        }
+        return Objects.equals(interfaces, javaClass.interfaces);
     }
 
     @Override

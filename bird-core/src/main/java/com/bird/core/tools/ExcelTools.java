@@ -1,6 +1,6 @@
 package com.bird.core.tools;
 
-import com.bird.core.consts.BirdConst;
+import com.bird.core.consts.GlobalConst;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +21,7 @@ import java.util.*;
 public class ExcelTools {
 
     private static Logger logger = LoggerFactory.getLogger(ExcelTools.class);
-    private static final SimpleDateFormat sdf = new SimpleDateFormat(BirdConst.FORMAT_DATE);
+    private static final SimpleDateFormat sdf = new SimpleDateFormat(GlobalConst.FORMAT_DATE);
 
 
     /**
@@ -46,7 +46,7 @@ public class ExcelTools {
         }
         if (logger.isDebugEnabled()) {
             int rowNum = row.getRowNum() + 1;
-            logger.debug("Read Row[rowNum:{}]-Data[{}]", rowNum, String.join(BirdConst.DELIMITER_DEFAULT, data));
+            logger.debug("Read Row[rowNum:{}]-Data[{}]", rowNum, String.join(GlobalConst.DELIMITER_DEFAULT, data));
         }
         return dataNum > 0 ? data : new String[0];
     }

@@ -1,6 +1,6 @@
 package com.bird.redis.spring;
 
-import com.bird.core.consts.BirdConst;
+import com.bird.core.consts.GlobalConst;
 import com.bird.redis.annotation.MQConsumer;
 import com.bird.redis.annotation.RedisRepository;
 import org.slf4j.Logger;
@@ -37,7 +37,7 @@ public class RedisSourceScannerRegistrar implements ImportBeanDefinitionRegistra
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         AnnotationAttributes attributes = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(RedisSourceScan.class.getName()));
-        ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry, BirdConst.BOOLEAN_FALSE);
+        ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry, GlobalConst.FALSE);
         if (null != resourceLoader) {
             scanner.setResourceLoader(resourceLoader);
         }

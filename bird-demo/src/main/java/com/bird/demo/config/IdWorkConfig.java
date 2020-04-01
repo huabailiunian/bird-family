@@ -1,6 +1,9 @@
 package com.bird.demo.config;
 
 import com.bird.core.tools.IdWorker;
+import com.bird.demo.bean.factory.IdWorkFactoryBean;
+import com.bird.redis.client.RedisClient;
+import com.bird.zookeeper.service.ZkService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,8 +15,12 @@ import org.springframework.context.annotation.Configuration;
 public class IdWorkConfig {
 
     @Bean
-    public IdWorker idWorker(){
-        return new IdWorker(0,1);
+    public IdWorker idWorker(RedisClient redisClient, ZkService zkService) throws Exception {
+        IdWorkFactoryBean factoryBean = new IdWorkFactoryBean();
+        factoryBean.setCenterId(0);
+        factoryBean.setRedisClient(redisClient);
+        factoryBean.setZkService(zkService);
+        return factoryBean.getObject();
     }
 
 }

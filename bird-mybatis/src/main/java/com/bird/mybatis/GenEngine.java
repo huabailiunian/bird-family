@@ -1,7 +1,7 @@
 package com.bird.mybatis;
 
 
-import com.bird.core.consts.BirdConst;
+import com.bird.core.consts.GlobalConst;
 import com.bird.core.tools.StringTools;
 import com.bird.mybatis.define.Column;
 import com.bird.mybatis.jdbc.JdbcTypeMapper;
@@ -173,7 +173,7 @@ public class GenEngine {
         if (StringUtils.isBlank(params)) {
             return Collections.emptyList();
         }
-        List<String> strings = Arrays.asList(StringUtils.split(params, BirdConst.DELIMITER_DEFAULT));
+        List<String> strings = Arrays.asList(StringUtils.split(params, GlobalConst.DELIMITER_DEFAULT));
         return columns.stream().filter(col -> strings.contains(col.getName())).collect(Collectors.toList());
     }
 

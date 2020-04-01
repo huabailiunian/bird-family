@@ -25,7 +25,7 @@ public abstract class AbstractLruCache<K, V> implements ICache<K, V> {
         this(DEFAULT_CACHE_SIZE);
     }
 
-    public AbstractLruCache(Integer cacheSize) {
+    private AbstractLruCache(Integer cacheSize) {
         int initCapacity = cacheSize + 1;
         this.cache = new LinkedHashMap<K, V>(initCapacity, LOAD_FACTOR, ACCESS_ORDER) {
             @Override

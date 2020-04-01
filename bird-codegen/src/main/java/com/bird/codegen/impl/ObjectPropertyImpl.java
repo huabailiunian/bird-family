@@ -4,6 +4,8 @@ import com.bird.codegen.ObjectProperty;
 import com.bird.codegen.enums.Visibility;
 import com.bird.codegen.utils.TypeUtils;
 
+import java.util.Objects;
+
 /**
  * @author youly
  * 2019/11/20 11:01
@@ -195,18 +197,36 @@ public class ObjectPropertyImpl implements ObjectProperty {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         ObjectPropertyImpl that = (ObjectPropertyImpl) o;
 
-        if (multiple != that.multiple) return false;
-        if (_static != that._static) return false;
-        if (_final != that._final) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (label != null ? !label.equals(that.label) : that.label != null) return false;
-        if (className != null ? !className.equals(that.className) : that.className != null) return false;
-        if (bag != null ? !bag.equals(that.bag) : that.bag != null) return false;
+        if (multiple != that.multiple) {
+            return false;
+        }
+        if (_static != that._static) {
+            return false;
+        }
+        if (_final != that._final) {
+            return false;
+        }
+        if (!Objects.equals(name, that.name)) {
+            return false;
+        }
+        if (!Objects.equals(label, that.label)) {
+            return false;
+        }
+        if (!Objects.equals(className, that.className)) {
+            return false;
+        }
+        if (!Objects.equals(bag, that.bag)) {
+            return false;
+        }
         return visibility == that.visibility;
     }
 

@@ -5,6 +5,8 @@ import com.bird.codegen.enums.JavaTypeKind;
 import com.bird.codegen.enums.Visibility;
 import com.bird.codegen.utils.NamingUtils;
 
+import java.util.Objects;
+
 /**
  * @author youly
  * 2019/11/19 17:41
@@ -133,15 +135,27 @@ public abstract class AbstractJavaType implements JavaType {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         AbstractJavaType that = (AbstractJavaType) o;
 
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (label != null ? !label.equals(that.label) : that.label != null) return false;
-        if (packageName != null ? !packageName.equals(that.packageName) : that.packageName != null) return false;
-        if (visibility != that.visibility) return false;
+        if (!Objects.equals(name, that.name)) {
+            return false;
+        }
+        if (!Objects.equals(label, that.label)) {
+            return false;
+        }
+        if (!Objects.equals(packageName, that.packageName)) {
+            return false;
+        }
+        if (visibility != that.visibility) {
+            return false;
+        }
         return typeKind == that.typeKind;
     }
 
