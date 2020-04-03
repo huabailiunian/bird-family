@@ -1,4 +1,4 @@
-package com.bird.demo.bean.factory;
+package com.bird.demo.factory.bean;
 
 import com.bird.core.consts.GlobalConst;
 import com.bird.core.tools.IdWorker;
@@ -22,14 +22,29 @@ public class IdWorkFactoryBean implements FactoryBean<IdWorker> {
 
     private static final long MAX_WORKER_ID = IdWorker.maxWorkerId;
 
+    /**
+     * 数据中心ID
+     */
     private long centerId;
 
+    /**
+     * zk服务
+     */
     private ZkService zkService;
 
+    /**
+     * redis服务
+     */
     private RedisClient redisClient;
 
+    /**
+     * zk id路径
+     */
     private String zkPath = "temp/worker/id";
 
+    /**
+     * redis 锁key
+     */
     private String lockKey = "temp:worker:id:lock";
 
     @Override
