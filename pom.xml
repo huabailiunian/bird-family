@@ -18,6 +18,7 @@
         <module>bird-zookeeper</module>
         <module>bird-codegen</module>
         <module>bird-demo</module>
+        <module>code-maven-plugin</module>
     </modules>
 
     <properties>
@@ -28,6 +29,10 @@
 
         <!--this project-->
         <this.bird.version>1.0.0</this.bird.version>
+
+        <!--maven plugin-->
+        <maven.plugin.api.version>3.5.0</maven.plugin.api.version>
+        <maven.plugin.annotations.version>3.5</maven.plugin.annotations.version>
 
         <!--三方库-->
         <spring.version>5.1.3.RELEASE</spring.version>
@@ -313,6 +318,18 @@
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>okhttp</artifactId>
                 <version>${okhttp.version}</version>
+            </dependency>
+
+            <!--maven plugin-->
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>${maven.plugin.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugin-tools</groupId>
+                <artifactId>maven-plugin-annotations</artifactId>
+                <version>${maven.plugin.annotations.version}</version>
             </dependency>
 
         </dependencies>

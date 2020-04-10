@@ -6,46 +6,29 @@ package com.bird.mybatis.jdbc;
  */
 public enum JdbcTypeMapper {
 
+    /**
+     * jdbc 类型
+     */
     TINYINT("Integer", "TINYINT"),
-
     SMALLINT("Integer", "SMALLINT"),
-
     INT("Integer", "INTEGER"),
-
     INTEGER("Integer", "INTEGER"),
-
     BIGINT("Long", "BIGINT"),
-
     FLOAT("Float", "FLOAT"),
-
     DOUBLE("Double", "DOUBLE"),
-
     DECIMAL("java.math.BigDecimal", "DECIMAL"),
-
     DATE("java.util.Date", "DATE"),
-
     TIME("java.util.Date", "TIME"),
-
     DATETIME("java.util.Date", "TIMESTAMP"),
-
     TIMESTAMP("java.util.Date", "TIMESTAMP"),
-
     CHAR("String", "CHAR"),
-
     VARCHAR("String", "VARCHAR"),
-
     CHARACTER("String", "CHAR"),
-
     TEXT("String", "CLOB"),
-
     MEDIUMTEXT("String", "CLOB"),
-
     LONGTEXT("String", "CLOB"),
-
     BLOB("byte[]", "BLOB"),
-
     MEDIUMBLOB("byte[]", "BLOB"),
-
     LONGBLOB("byte[]", "BLOB");
 
     private String objectType;
