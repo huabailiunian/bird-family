@@ -56,6 +56,7 @@
         <jsch.version>0.1.54</jsch.version>
         <freemarker.version>2.3.23</freemarker.version>
         <okhttp.version>4.4.0</okhttp.version>
+        <etcd.core.version>0.5.0</etcd.core.version>
     </properties>
 
     <dependencyManagement>
@@ -298,6 +299,13 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <!-- etcd client -->
+            <dependency>
+                <groupId>io.etcd</groupId>
+                <artifactId>jetcd-core</artifactId>
+                <version>${etcd.core.version}</version>
+            </dependency>
+
 
             <!--sftp support-->
             <dependency>
