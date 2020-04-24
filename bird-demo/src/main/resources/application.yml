@@ -12,7 +12,7 @@ bird:
     enable: true
     group: dev/demo
     address: 127.0.0.1:2181
-    connection-timeout: 10000
+    connection-timeout: 5000
     session-timeout: 30000
 
 logging:
