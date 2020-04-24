@@ -1,6 +1,6 @@
 package com.bird.redis.message.impl;
 
-import com.bird.core.tools.CollectionTools;
+import com.bird.commons.tools.CollectionTools;
 import com.bird.redis.client.RedisClient;
 import com.bird.redis.message.RedisConsumer;
 import org.apache.commons.lang3.StringUtils;

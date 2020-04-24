@@ -38,11 +38,6 @@
             <artifactId>zookeeper</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.bird</groupId>
-            <artifactId>bird-core</artifactId>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
     <build>

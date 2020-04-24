@@ -1,6 +1,5 @@
 package com.bird.redis.spring;
 
-import com.bird.core.consts.GlobalConst;
 import com.bird.redis.annotation.MQConsumer;
 import com.bird.redis.annotation.RedisRepository;
 import org.slf4j.Logger;
@@ -18,6 +17,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author youly
@@ -37,12 +37,12 @@ public class RedisSourceScannerRegistrar implements ImportBeanDefinitionRegistra
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         AnnotationAttributes attributes = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(RedisSourceScan.class.getName()));
-        ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry, GlobalConst.FALSE);
-        if (null != resourceLoader) {
+        ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry, Boolean.FALSE);
+        if (Objects.nonNull(resourceLoader)) {
             scanner.setResourceLoader(resourceLoader);
         }
         List<String> packages = new ArrayList<>();
-        if (null != attributes) {
+        if (Objects.nonNull(attributes)) {
             boolean scanRepository = attributes.getBoolean("scanRepository");
             if (scanRepository) {
                 logger.info("Searching for repository annotated with @RedisRepository");
@@ -70,7 +70,7 @@ public class RedisSourceScannerRegistrar implements ImportBeanDefinitionRegistra
                 packages.add(ClassUtils.getPackageName(cls));
             }
             if (logger.isDebugEnabled()) {
-                logger.debug("Searching for redis source base package '{}'", packages);
+                logger.debug("Searching for redis source base package {}", packages);
             }
             scanner.scan(StringUtils.toStringArray(packages));
         }

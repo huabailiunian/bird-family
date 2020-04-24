@@ -1,6 +1,6 @@
 package com.bird.redis.codec;
 
-import com.bird.core.consts.GlobalConst;
+import com.bird.commons.constant.Const;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import org.redisson.client.codec.BaseCodec;
@@ -17,7 +17,7 @@ public class StringCodec extends BaseCodec {
 
     static final StringCodec INSTANCE = new StringCodec();
 
-    private final Charset charset = GlobalConst.CHARSET_UTF8;
+    private final Charset charset = Const.CHARSET_UTF8;
     private final Encoder encoder;
     private final Decoder<Object> decoder;
 
