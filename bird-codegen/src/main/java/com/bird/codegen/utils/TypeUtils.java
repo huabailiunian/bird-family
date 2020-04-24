@@ -1,6 +1,7 @@
 package com.bird.codegen.utils;
 
-import com.bird.core.enums.TypeEnum;
+
+import com.bird.commons.enums.TypeEnum;
 
 import java.util.HashMap;
 
