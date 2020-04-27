@@ -1,8 +1,7 @@
 package com.bird.mybatis;
 
 
-import com.bird.core.consts.GlobalConst;
-import com.bird.core.tools.StringTools;
+import com.bird.commons.constant.Const;
 import com.bird.mybatis.define.Column;
 import com.bird.mybatis.jdbc.JdbcTypeMapper;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
  * @author youly
  * 2018/9/29 18:09
  */
-public class GenEngine {
+public class GenConfig {
 
     private String sourcePath;
     private String resourcesPath;
@@ -144,19 +143,6 @@ public class GenEngine {
         return this.basePackage + "." + entityDirectory;
     }
 
-    public String entityNameGen(String tableName) {
-        return StringTools.camelCase(tableName, regex) + entitySuffix;
-    }
-
-    public String daoNameGen(String tableName) {
-        return StringTools.camelCase(tableName, regex) + daoSuffix;
-    }
-
-    public String fieldNameGen(String columnName) {
-        String camelCase = StringTools.camelCase(columnName, regex);
-        return StringTools.lowerCaseFirst(camelCase);
-    }
-
     public String fieldType(String type) {
         return JdbcTypeMapper.valueOf(type.toUpperCase()).objectType();
     }
@@ -173,13 +159,13 @@ public class GenEngine {
         if (StringUtils.isBlank(params)) {
             return Collections.emptyList();
         }
-        List<String> strings = Arrays.asList(StringUtils.split(params, GlobalConst.DELIMITER_DEFAULT));
+        List<String> strings = Arrays.asList(StringUtils.split(params, Const.DEFAULT_SEPARATOR));
         return columns.stream().filter(col -> strings.contains(col.getName())).collect(Collectors.toList());
     }
 
     @Override
     public String toString() {
-        return "GenEngine{" +
+        return "GenConfig{" +
                 "sourcePath='" + sourcePath + '\'' +
                 ", resourcesPath='" + resourcesPath + '\'' +
                 ", basePackage='" + basePackage + '\'' +

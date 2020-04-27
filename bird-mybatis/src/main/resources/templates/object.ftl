@@ -1,4 +1,4 @@
-<#assign entityName = engine.entityNameGen(model.name)>
+<#assign entityName = config.entityNameGen(model.name)>
 package ${engine.entityPkg};
 
 /**
@@ -15,7 +15,7 @@ public class ${entityName} {
     /**
      * <p>${field.display!}</p>
      */
-    private ${engine.fieldType(field.type)} ${engine.fieldNameGen(field.name)};
+    private ${engine.fieldType(field.type)} ${config.fieldNameGen(field.name)};
 
     </#list>
     <#list fields as field>

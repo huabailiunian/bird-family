@@ -11,7 +11,6 @@ import java.io.StringWriter;
  */
 public abstract class BaseFreemarkerGenerator implements FreemarkerGenerator {
 
-    @Override
     public String process(Object model) throws IOException {
         StringWriter writer = new StringWriter();
         try {

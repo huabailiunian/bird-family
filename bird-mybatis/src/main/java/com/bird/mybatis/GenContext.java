@@ -6,16 +6,16 @@ package com.bird.mybatis;
  */
 public class GenContext {
 
-    private GenEngine engine;
+    private GenConfig config;
 
     private Object model;
 
-    public GenEngine getEngine() {
-        return engine;
+    public GenConfig getConfig() {
+        return config;
     }
 
-    public void setEngine(GenEngine engine) {
-        this.engine = engine;
+    public void setConfig(GenConfig engine) {
+        this.config = engine;
     }
 
     public Object getModel() {

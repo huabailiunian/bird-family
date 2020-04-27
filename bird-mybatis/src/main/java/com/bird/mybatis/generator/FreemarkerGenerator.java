@@ -1,6 +1,5 @@
 package com.bird.mybatis.generator;
 
-import com.bird.core.generator.Generator;
 import freemarker.template.Template;
 
 import java.io.IOException;
@@ -9,7 +8,7 @@ import java.io.IOException;
  * @author youly
  * 2019/1/18 17:29
  */
-public interface FreemarkerGenerator extends Generator {
+public interface FreemarkerGenerator {
 
     /**
      * 获取 freemarker 模板

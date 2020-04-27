@@ -1,6 +1,6 @@
 package com.bird.mybatis.define;
 
-import com.bird.core.consts.GlobalConst;
+import com.bird.commons.constant.Const;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import org.apache.commons.lang3.StringUtils;
@@ -63,7 +63,7 @@ public class Query {
     }
 
     public List<String> getParamList() {
-        return Arrays.asList(StringUtils.split(params, GlobalConst.DELIMITER_DEFAULT));
+        return Arrays.asList(StringUtils.split(params, Const.DEFAULT_SEPARATOR));
     }
 
     public String getParams() {
