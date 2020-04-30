@@ -60,6 +60,17 @@ services:
       - mysql
       - redis
       - zk
+  etcd:
+    image: etcd:3.4
+    container_name: etcd
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    environment:
+      TZ: "Asia/Shanghai"
+      ALLOW_NONE_AUTHENTICATION: "yes"
+    networks:
+      - default
 
 networks:
   default:
