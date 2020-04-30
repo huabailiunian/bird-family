@@ -18,7 +18,6 @@
         <module>bird-zookeeper</module>
         <module>bird-codegen</module>
         <module>bird-demo</module>
-        <module>code-maven-plugin</module>
     </modules>
 
     <properties>
