@@ -32,6 +32,12 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <scope>provided</scope>
@@ -46,6 +52,7 @@
             <artifactId>commons-codec</artifactId>
             <scope>provided</scope>
         </dependency>
+
     </dependencies>
 
 </project>
