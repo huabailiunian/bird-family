@@ -32,6 +32,30 @@ public class StringTools {
         return CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, string);
     }
 
+    public static String upperCaseFirst(String str) {
+        if (StringUtils.isBlank(str)) {
+            return str;
+        }
+        String substring = str.substring(0, 1);
+        return str.replaceFirst(substring, substring.toUpperCase());
+    }
+
+    public static String lowerCaseFirst(String str) {
+        if (StringUtils.isBlank(str)) {
+            return str;
+        }
+        String substring = str.substring(0, 1);
+        return str.replaceFirst(substring, substring.toLowerCase());
+    }
+
+    public static String camelCase(String src, String regex) {
+        if (StringUtils.isAnyBlank(src, regex)) {
+            return src;
+        }
+        String[] split = src.split(regex);
+        return Arrays.stream(split).filter(StringUtils::isNotBlank).map(StringTools::upperCaseFirst).collect(Collectors.joining());
+    }
+
     public static String unicode(String str) {
         if (StringUtils.isBlank(str)) {
             return str;
