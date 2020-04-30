@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database xmlns="http://www.bird.com/schema/database">
+    <setting>
+        <database>demo</database>
+    </setting>
+
+
+    <table name="workflow_history" display="调用历史表">
+        <column name="id" type="bigint" length="20" primaryKey="true" autoIncrement="true" unsigned="true" display="主键"/>
+        <column name="partner_code" type="varchar" length="128" display="合作方标识"/>
+        <column name="app_name" type="varchar" length="128" display="应用标识"/>
+        <column name="custom_id" type="varchar" length="128" display="保镖ID"/>
+        <column name="biz_code" type="varchar" length="128" display="工作流标识"/>
+        <column name="gmt_create" type="timestamp" display="创建时间" default="CURRENT_TIMESTAMP"/>
+        <column name="gmt_modify" type="timestamp" display="修改时间" default="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"/>
+
+        <query name="selectByKey" params="custom_id" useRowMap="true" extSql="limit 1"/>
+    </table>
+
+    <table name="vision_policy_set_output" display="策略集自定义出参">
+        <column name="id" type="bigint" length="20" primaryKey="true" autoIncrement="true" unsigned="true" display="主键"/>
+        <column name="property" type="varchar" length="200" allowNull="true" display="字段名"/>
+        <column name="property_data_type" type="varchar" length="52" allowNull="true" display="数据类型"/>
+        <column name="policy_set_uuid" type="varchar" length="32" allowNull="true" display="策略集uuid"/>
+        <column name="condition_uuid" type="varchar" length="32" allowNull="true" display="条件uuid"/>
+        <column name="can_null" type="tinyint" length="2" default="1" display="是否能为null"/>
+        <column name="gmt_create" type="datetime" display="创建时间"/>
+    </table>
+</database>
