@@ -12,14 +12,13 @@
     <description>小鸟家族</description>
 
     <modules>
-        <module>bird-core</module>
+        <module>bird-commons</module>
         <module>bird-redis</module>
         <module>bird-mybatis</module>
         <module>bird-zookeeper</module>
         <module>bird-codegen</module>
         <module>bird-demo</module>
         <module>code-maven-plugin</module>
-        <module>bird-commons</module>
     </modules>
 
     <properties>
@@ -65,11 +64,6 @@
     <dependencyManagement>
         <dependencies>
             <!--this project-->
-            <dependency>
-                <groupId>com.bird</groupId>
-                <artifactId>bird-core</artifactId>
-                <version>${this.bird.version}</version>
-            </dependency>
             <dependency>
                 <groupId>com.bird</groupId>
                 <artifactId>bird-commons</artifactId>

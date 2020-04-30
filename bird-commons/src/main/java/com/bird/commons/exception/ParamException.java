@@ -1,4 +1,4 @@
-package com.bird.core.exception;
+package com.bird.commons.exception;
 
 
 /**
