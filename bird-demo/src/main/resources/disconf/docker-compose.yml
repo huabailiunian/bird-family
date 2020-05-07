@@ -18,12 +18,12 @@ services:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - /Users/master/Data/mysql/conf:/etc/mysql/conf.d
-      - /Users/master/Data/mysql/data:/var/lib/mysql
+      - /Users/master/software/mysql/conf:/etc/mysql/conf.d
+      - /Users/master/software/mysql/data:/var/lib/mysql
     networks:
       - default
   zk:
-    image: zookeeper:3.6
+    image: zookeeper:3.4
     container_name: zk
     ports:
       - "2181:2181"
