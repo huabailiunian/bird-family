@@ -1,4 +1,4 @@
-package com.bird.demo.factorybean;
+package com.bird.demo.infrastructure.factorybean;
 
 import com.bird.commons.tools.IdWorker;
 import com.bird.redis.client.RedisClient;
@@ -52,7 +52,7 @@ public class IdWorkFactoryBean implements FactoryBean<IdWorker> {
      */
     private String lockKey = "temp:worker:id:lock";
 
-    private static final long WAIT_TIME_OUT = 3000L;
+    private static final long WAIT_TIME_OUT = 5000L;
 
     @Override
     public IdWorker getObject() throws Exception {

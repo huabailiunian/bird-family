@@ -1,7 +1,7 @@
 package com.bird.demo.app.config;
 
 import com.bird.commons.tools.IdWorker;
-import com.bird.demo.factorybean.IdWorkFactoryBean;
+import com.bird.demo.infrastructure.factorybean.IdWorkFactoryBean;
 import com.bird.redis.client.RedisClient;
 import com.bird.zookeeper.service.ZkService;
 import org.springframework.beans.factory.annotation.Value;
