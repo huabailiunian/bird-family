@@ -1,15 +1,14 @@
-package com.bird.commons.tools;
+package com.bird.zookeeper.utils;
 
 import com.bird.commons.constant.Const;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.SystemUtils;
 
 /**
- * @author youly
- * 2019/10/21 14:41
+ * @author master
+ * @date 2020-05-19 10:46
  */
-public class PathTools {
+public class ZkPathUtils {
 
     public static String getPath(String... paths) {
         if (ArrayUtils.isEmpty(paths)) {
@@ -37,9 +36,5 @@ public class PathTools {
         } else {
             return Const.EMPTY_STRING;
         }
-    }
-
-    public static String getTempPath() {
-        return verifyPath(SystemUtils.JAVA_IO_TMPDIR);
     }
 }

@@ -33,6 +33,14 @@
             <artifactId>bird-commons</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.bird</groupId>
+            <artifactId>bird-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bird</groupId>
+            <artifactId>bird-zookeeper</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
@@ -40,16 +48,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.bird.boot</groupId>
-            <artifactId>bird-redis-spring-boot-starter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.bird.boot</groupId>
-            <artifactId>bird-zookeeper-spring-boot-starter</artifactId>
-            <version>1.0</version>
         </dependency>
 
         <dependency>

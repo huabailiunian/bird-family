@@ -1,9 +1,9 @@
 package com.bird.demo.factorybean;
 
 import com.bird.commons.tools.IdWorker;
-import com.bird.commons.tools.PathTools;
 import com.bird.redis.client.RedisClient;
 import com.bird.zookeeper.service.ZkService;
+import com.bird.zookeeper.utils.ZkPathUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.springframework.beans.factory.BeanInitializationException;
@@ -65,7 +65,7 @@ public class IdWorkFactoryBean implements FactoryBean<IdWorker> {
         try {
             lock.tryLock(WAIT_TIME_OUT, TimeUnit.MILLISECONDS);
             List<String> children = Collections.emptyList();
-            String zkPath = PathTools.cleanPath(this.zkPath, appName);
+            String zkPath = ZkPathUtils.cleanPath(this.zkPath, appName);
             boolean exist = zkService.checkExist(zkPath);
             if (exist) {
                 children = zkService.getChildren(zkPath);
@@ -75,7 +75,7 @@ public class IdWorkFactoryBean implements FactoryBean<IdWorker> {
                 if (children.contains(id)) {
                     continue;
                 }
-                String node = PathTools.getPath(zkPath, id);
+                String node = ZkPathUtils.getPath(zkPath, id);
                 String path = zkService.create(node, Boolean.TRUE, Boolean.FALSE, Boolean.TRUE);
                 log.info("分布式ID生成器建立zk节点path:{}, workerId:{}", path, i);
                 return i;
