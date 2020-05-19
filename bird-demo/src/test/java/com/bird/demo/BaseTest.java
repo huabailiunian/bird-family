@@ -6,7 +6,6 @@ public class BaseTest {
 
     @Test
     public void name() {
-        System.out.println(tableSizeFor(17));
     }
 
 

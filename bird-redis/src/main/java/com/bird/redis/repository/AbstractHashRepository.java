@@ -1,56 +1,62 @@
 package com.bird.redis.repository;
 
+import org.redisson.api.RMap;
+
 import java.util.Map;
 import java.util.Set;
 
 /**
  * @author master
- * on 6/16/2017
+ * @date 2020-05-12 13:16
  */
-public abstract class AbstractHashRepository<T> extends AbstractRepository<T> implements HashRepository<T, String> {
+public abstract class AbstractHashRepository<V> extends AbstractKeyRepository implements HashRepository<V, String> {
 
     @Override
-    public T hGet(final String key, final String field) {
-        return getMap(key).get(field);
+    public V hGet(String key, String field) {
+        return this.getMap(key).get(field);
     }
 
     @Override
-    public Map<String, T> hMGet(final String key, final Set<String> fields) {
-        return getMap(key).getAll(fields);
+    public Map<String, V> hMGet(String key, Set<String> fields) {
+        return this.getMap(key).getAll(fields);
     }
 
     @Override
-    public boolean hSet(final String key, final String field, final T value) {
-        return getMap(key).fastPut(field, value);
+    public boolean hSet(String key, String field, V value) {
+        return this.getMap(key).fastPut(field, value);
     }
 
     @Override
-    public void hMSet(final String key, final Map<String, T> values) {
-        getMap(key).putAll(values);
+    public void hMSet(String key, Map<String, V> values) {
+        this.getMap(key).putAll(values);
     }
 
     @Override
-    public long hRemove(final String key, final String... field) {
-        return getMap(key).fastRemove(field);
+    public long hRemove(String key, String... field) {
+        return this.getMap(key).fastRemove(field);
     }
 
     @Override
-    public boolean hExists(final String key, final String field) {
-        return getMap(key).containsKey(field);
+    public boolean hExists(String key, String field) {
+        return this.getMap(key).containsKey(field);
     }
 
     @Override
-    public Set<String> hKeys(final String key) {
-        return getMap(key).keySet();
+    public Set<String> hKeys(String key) {
+        return this.getMap(key).readAllKeySet();
     }
 
     @Override
-    public Set<Map.Entry<String, T>> hGetAllEntrySet(final String key) {
-        return getMap(key).readAllEntrySet();
+    public Set<Map.Entry<String, V>> hEntrySet(String key) {
+        return this.getMap(key).readAllEntrySet();
     }
 
     @Override
-    public Map<String, T> hGetAll(String key) {
-        return getMap(key).readAllMap();
+    public Map<String, V> hGetAll(String key) {
+        return this.getMap(key).readAllMap();
+    }
+
+    protected RMap<String, V> getMap(String key) {
+        return this.getRedisClient().getMap(this.getKey(key), this.getCodec());
     }
 }

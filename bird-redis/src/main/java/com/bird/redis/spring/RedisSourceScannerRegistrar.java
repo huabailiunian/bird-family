@@ -1,7 +1,6 @@
 package com.bird.redis.spring;
 
-import com.bird.redis.annotation.MQConsumer;
-import com.bird.redis.annotation.RedisRepository;
+import com.bird.redis.repository.RedisRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -49,10 +48,7 @@ public class RedisSourceScannerRegistrar implements ImportBeanDefinitionRegistra
                 scanner.addIncludeFilter(new AnnotationTypeFilter(RedisRepository.class));
             }
             boolean scanConsumer = attributes.getBoolean("scanConsumer");
-            if (scanConsumer) {
-                logger.info("Searching for consumers annotated with @MQConsumer");
-                scanner.addIncludeFilter(new AnnotationTypeFilter(MQConsumer.class));
-            }
+
             String[] values = attributes.getStringArray("value");
             for (String value : values) {
                 if (StringUtils.hasText(value)) {
@@ -68,6 +64,9 @@ public class RedisSourceScannerRegistrar implements ImportBeanDefinitionRegistra
             Class<?>[] classes = attributes.getClassArray("basePackageClasses");
             for (Class<?> cls : classes) {
                 packages.add(ClassUtils.getPackageName(cls));
+            }
+            if (packages.isEmpty()){
+                packages.add(ClassUtils.getPackageName(importingClassMetadata.getClassName()));
             }
             if (logger.isDebugEnabled()) {
                 logger.debug("Searching for redis source base package {}", packages);

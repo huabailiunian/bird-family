@@ -1,4 +1,4 @@
-package com.bird.redis.annotation;
+package com.bird.redis.message;
 
 import java.lang.annotation.*;
 

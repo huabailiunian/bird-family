@@ -61,7 +61,7 @@ public class IdWorkFactoryBean implements FactoryBean<IdWorker> {
     }
 
     private long nextWorkId() throws Exception {
-        RLock lock = redisClient.getClient().getLock(lockKey);
+        RLock lock = redisClient.getLock(lockKey);
         try {
             lock.tryLock(WAIT_TIME_OUT, TimeUnit.MILLISECONDS);
             List<String> children = Collections.emptyList();
