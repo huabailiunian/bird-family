@@ -1,6 +1,6 @@
 package com.bird.commons.tools;
 
-import com.bird.commons.constant.Const;
+import com.bird.commons.consts.Const;
 
 import java.io.*;
 import java.nio.channels.FileChannel;

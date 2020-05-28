@@ -1,6 +1,6 @@
 package com.bird.commons.tools;
 
-import com.bird.commons.constant.Const;
+import com.bird.commons.consts.Const;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 

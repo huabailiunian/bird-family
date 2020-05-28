@@ -1,4 +1,4 @@
-package com.bird.commons.constant;
+package com.bird.commons.consts;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

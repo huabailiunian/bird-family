@@ -1,6 +1,6 @@
 package com.bird.commons.object;
 
-import com.bird.commons.constant.Const;
+import com.bird.commons.consts.Const;
 import lombok.Data;
 
 /**
