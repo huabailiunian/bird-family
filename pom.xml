@@ -24,40 +24,31 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <java.version>1.8</java.version>
 
         <!--this project-->
-        <this.bird.version>1.0.0</this.bird.version>
+        <this.project.version>1.0.0</this.project.version>
+
+        <spring.boot.version>2.2.5.RELEASE</spring.boot.version>
+        <spring.cloud.version>Hoxton.SR3</spring.cloud.version>
 
         <!--maven plugin-->
         <maven.plugin.api.version>3.5.0</maven.plugin.api.version>
         <maven.plugin.annotations.version>3.5</maven.plugin.annotations.version>
 
         <!--三方库-->
-        <spring.version>5.1.3.RELEASE</spring.version>
-        <spring.boot.version>2.1.1.RELEASE</spring.boot.version>
         <fastjson.version>1.2.67</fastjson.version>
         <jackson.version>2.10.0</jackson.version>
-        <gson.version>2.8.2</gson.version>
-        <commons.lang3.version>3.8</commons.lang3.version>
-        <commons.codec.version>1.12</commons.codec.version>
         <xstream.version>1.4.9</xstream.version>
-        <slf4j.version>1.7.25</slf4j.version>
         <poi.version>3.17</poi.version>
         <redisson.version>3.8.2</redisson.version>
         <mybatis.version>3.4.5</mybatis.version>
         <mybatis.spring.version>1.3.2</mybatis.spring.version>
         <druid.version>1.1.10</druid.version>
-        <aspectj.version>1.9.2</aspectj.version>
         <curator.version>4.2.0</curator.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <guava.version>27.1-jre</guava.version>
         <jsch.version>0.1.54</jsch.version>
-        <freemarker.version>2.3.23</freemarker.version>
-        <okhttp.version>4.4.0</okhttp.version>
         <etcd.core.version>0.5.0</etcd.core.version>
-        <lombok.version>1.18.8</lombok.version>
-        <hibernate.validator.version>6.0.18.Final</hibernate.validator.version>
     </properties>
 
     <dependencyManagement>
@@ -66,27 +57,44 @@
             <dependency>
                 <groupId>com.bird</groupId>
                 <artifactId>bird-commons</artifactId>
-                <version>${this.bird.version}</version>
+                <version>${this.project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.bird</groupId>
                 <artifactId>bird-mybatis</artifactId>
-                <version>${this.bird.version}</version>
+                <version>${this.project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.bird</groupId>
                 <artifactId>bird-redis</artifactId>
-                <version>${this.bird.version}</version>
+                <version>${this.project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.bird</groupId>
                 <artifactId>bird-zookeeper</artifactId>
-                <version>${this.bird.version}</version>
+                <version>${this.project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.bird</groupId>
                 <artifactId>bird-codegen</artifactId>
-                <version>${this.bird.version}</version>
+                <version>${this.project.version}</version>
+            </dependency>
+
+            <!--spring boot 依赖-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring cloud 依赖-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
 
@@ -101,21 +109,6 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
-            </dependency>
-
-            <!--测试框架-->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
-
-            <!--日志框架API-->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
             </dependency>
 
             <!--XML文档读取-->
@@ -151,72 +144,6 @@
                 <artifactId>jackson-dataformat-yaml</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>${gson.version}</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons.lang3.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>${commons.codec.version}</version>
-            </dependency>
-
-            <!--Spring框架-->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <!--Spring boot 框架-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter</artifactId>
-                <version>${spring.boot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-configuration-processor</artifactId>
-                <version>${spring.boot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-autoconfigure</artifactId>
-                <version>${spring.boot.version}</version>
-            </dependency>
 
             <!--Excel操作-->
             <dependency>
@@ -235,18 +162,6 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson</artifactId>
                 <version>${redisson.version}</version>
-            </dependency>
-
-            <!--aspectj-->
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjrt</artifactId>
-                <version>${aspectj.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjweaver</artifactId>
-                <version>${aspectj.version}</version>
             </dependency>
 
             <!--ORM框架-->
@@ -315,20 +230,6 @@
                 <version>${jsch.version}</version>
             </dependency>
 
-            <!--模板引擎-->
-            <dependency>
-                <groupId>org.freemarker</groupId>
-                <artifactId>freemarker</artifactId>
-                <version>${freemarker.version}</version>
-            </dependency>
-
-            <!--http support -->
-            <dependency>
-                <groupId>com.squareup.okhttp3</groupId>
-                <artifactId>okhttp</artifactId>
-                <version>${okhttp.version}</version>
-            </dependency>
-
             <!--maven plugin-->
             <dependency>
                 <groupId>org.apache.maven</groupId>
@@ -339,18 +240,6 @@
                 <groupId>org.apache.maven.plugin-tools</groupId>
                 <artifactId>maven-plugin-annotations</artifactId>
                 <version>${maven.plugin.annotations.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-            <!--参数校验-->
-            <dependency>
-                <groupId>org.hibernate.validator</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${hibernate.validator.version}</version>
             </dependency>
 
         </dependencies>
@@ -368,14 +257,12 @@
     </dependencies>
 
     <build>
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+        <pluginManagement>
             <plugins>
-                <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.1.0</version>
                 </plugin>
-                <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>3.0.2</version>
@@ -384,8 +271,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.0</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
@@ -405,14 +292,9 @@
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>2.8.2</version>
                 </plugin>
-                <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.7.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.0.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
