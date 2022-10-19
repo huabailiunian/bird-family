@@ -37,7 +37,7 @@
 
         <!--三方库-->
         <fastjson.version>1.2.67</fastjson.version>
-        <jackson.version>2.10.0</jackson.version>
+        <jackson.version>2.13.4.1</jackson.version>
         <xstream.version>1.4.10-java7</xstream.version>
         <poi.version>3.17</poi.version>
         <redisson.version>3.8.2</redisson.version>
